@@ -3720,14 +3720,6 @@
   "file": "covers/Other & Collaborations/One Extra Large! Garupa☆Pico.png"
  },
  {
-  "id": "other-collaborations-final-phase",
-  "title": "[原曲] final phase",
-  "jp": "[原曲] final phase",
-  "band": "other",
-  "variant": true,
-  "file": "covers/Other & Collaborations/final phase.png"
- },
- {
   "id": "other-collaborations-kizunairo-no-ensemble",
   "title": "Kizunairo no Ensemble",
   "jp": "絆色のアンサンブル",
@@ -3776,14 +3768,6 @@
   "file": "covers/Other & Collaborations/Yuushou feat.Afterglow.png"
  },
  {
-  "id": "other-collaborations-luminous-once-more-collab-ver",
-  "title": "Luminous Once More (Collab ver.)",
-  "jp": "もういちど ルミナス（コラボver）",
-  "band": "other",
-  "variant": true,
-  "file": "covers/Other & Collaborations/Luminous Once More (Collab ver.).png"
- },
- {
   "id": "other-collaborations-catastrophe-banquet",
   "title": "CATASTROPHE BANQUET",
   "jp": "CATASTROPHE BANQUET",
@@ -3798,14 +3782,6 @@
   "band": "other",
   "variant": false,
   "file": "covers/Other & Collaborations/CiRCLE THANKS MUSiC♪.png"
- },
- {
-  "id": "other-collaborations-full-circle-thanks-music",
-  "title": "[FULL] CiRCLE THANKS MUSiC♪",
-  "jp": "[FULL] CiRCLE THANKS MUSiC♪",
-  "band": "other",
-  "variant": true,
-  "file": "covers/Other & Collaborations/CiRCLE THANKS MUSiC♪ [variant].png"
  },
  {
   "id": "other-collaborations-freedom",
@@ -3840,14 +3816,6 @@
   "file": "covers/Other & Collaborations/My Poppin' Days for Seeking Glitter.png"
  },
  {
-  "id": "other-collaborations-yuushou-feat-afterglow-2",
-  "title": "Yuushou feat.Afterglow",
-  "jp": "優勝 feat.Afterglow",
-  "band": "other",
-  "variant": false,
-  "file": "covers/Other & Collaborations/Yuushou feat.Afterglow [528].png"
- },
- {
   "id": "other-collaborations-be-born",
   "title": "Be born",
   "jp": "Be born",
@@ -3862,14 +3830,6 @@
   "band": "other",
   "variant": false,
   "file": "covers/Other & Collaborations/good bye.png"
- },
- {
-  "id": "other-collaborations-aien-jihen",
-  "title": "Aien Jihen",
-  "jp": "合縁事変",
-  "band": "other",
-  "variant": false,
-  "file": "covers/Other & Collaborations/Aien Jihen.png"
  },
  {
   "id": "other-collaborations-mayoiuta-parallel-ver",
@@ -3910,14 +3870,6 @@
   "band": "other",
   "variant": true,
   "file": "covers/Other & Collaborations/Orchestra Of Smiles! (Parallel Ver.).png"
- },
- {
-  "id": "other-collaborations-limited-time-special-pico-papi-girls-ba",
-  "title": "[LIMITED TIME SPECIAL] Pico! Papi! Girls Band Party! PICO!!!",
-  "jp": "[期間限定 SPECIAL]ピコっと！パピっと！！ガルパ☆ピコ！！！",
-  "band": "other",
-  "variant": true,
-  "file": "covers/Other & Collaborations/Pico! Papi! Girls Band Party! PICO!!! [variant].png"
  },
  {
   "id": "other-collaborations-snowflakes-smile-ephemerally",
@@ -3992,14 +3944,6 @@
   "file": "covers/Other & Collaborations/Passionate Starmine (Parallel Ver.).png"
  },
  {
-  "id": "other-collaborations-mystic-light-quest",
-  "title": "Mystic Light Quest",
-  "jp": "Mystic Light Quest",
-  "band": "other",
-  "variant": false,
-  "file": "covers/Other & Collaborations/Mystic Light Quest.png"
- },
- {
   "id": "other-collaborations-wonder-night-land",
   "title": "Wonder Night Land",
   "jp": "Wonder Night Land",
@@ -4032,28 +3976,12 @@
   "file": "covers/Other & Collaborations/Tokimeki Experience! (Tsukishima Marina ver.).png"
  },
  {
-  "id": "other-collaborations-tokimeki-experience-tsukishima-marina-v-2",
-  "title": "Tokimeki Experience! (Tsukishima Marina ver.) ",
-  "jp": "ときめきエクスペリエンス！ (月島まりなver.)",
-  "band": "other",
-  "variant": true,
-  "file": "covers/Other & Collaborations/Tokimeki Experience! (Tsukishima Marina ver.) [790].png"
- },
- {
   "id": "other-collaborations-hello-wink-ver",
   "title": "Hello! Wink!(パラレルver.)",
   "jp": "Hello! Wink!(パラレルver.)",
   "band": "other",
   "variant": true,
   "file": "covers/Other & Collaborations/Hello! Wink!(パラレルver.).png"
- },
- {
-  "id": "other-collaborations-see-the-world",
-  "title": "See the world",
-  "jp": "",
-  "band": "other",
-  "variant": false,
-  "file": "covers/Other & Collaborations/See the world.png"
  },
  {
   "id": "other-collaborations-ameagari-no-yume",
