@@ -1,4 +1,4 @@
-import { savePoster } from './poster.js?v=20261005-4';
+import { savePoster } from './poster.js?v=20261005-5';
 
 const SLOTS = 10;
 const STORAGE_KEY = 'song-top10-v1';
@@ -10,8 +10,8 @@ const $ = (selector) => document.querySelector(selector);
 const encodePath = (path) => path.split('/').map(encodeURIComponent).join('/');
 
 const [bands, songs] = await Promise.all([
-  fetch('./data/bands.json?v=20261005-4').then((r) => r.json()),
-  fetch('./data/songs.json?v=20261005-4').then((r) => r.json()),
+  fetch('./data/bands.json?v=20261005-5').then((r) => r.json()),
+  fetch('./data/songs.json?v=20261005-5').then((r) => r.json()),
 ]);
 const bandById = Object.fromEntries(bands.map((b) => [b.id, b]));
 const songById = Object.fromEntries(songs.map((s) => [s.id, s]));

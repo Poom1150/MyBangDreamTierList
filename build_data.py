@@ -17,10 +17,10 @@ BANDS = [
     ("Morfonica", "morfonica", "#33aaff", "assets/bands/band_21.svg", "M"),
     ("RAISE A SUILEN", "ras", "#22cccc", "assets/bands/band_18.svg", "RAS"),
     ("MyGO!!!!!", "mygo", "#3388bb", "assets/bands/band_45.svg", "MyGO"),
-    ("Ave Mujica", "ave", "#881144", "", "AM"),
-    ("Mugendai Mewtype", "mewtype", "#ee6699", "", "MM"),
-    ("Ikka Dumb Rock!", "ikka", "#ff9933", "", "IDR"),
-    ("millsage", "millsage", "#99aa55", "", "ms"),
+    ("Ave Mujica", "ave", "#881144", "assets/bands/band_ave.webp", "AM"),
+    ("Mugendai Mewtype", "mewtype", "#ee6699", "assets/bands/band_mewtype.webp", "MM"),
+    ("Ikka Dumb Rock!", "ikka", "#ff9933", "assets/bands/band_ikka.webp", "IDR"),
+    ("millsage", "millsage", "#99aa55", "assets/bands/band_millsage.webp", "ms"),
 ]
 bands = [{"name": n, "id": i, "color": c, "icon": ic, "mono": m} for n, i, c, ic, m in BANDS]
 band_id = {b[0]: b[1] for b in BANDS}
