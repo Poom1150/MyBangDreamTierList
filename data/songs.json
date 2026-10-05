@@ -3998,5 +3998,61 @@
   "band": "mygo",
   "variant": false,
   "file": "covers/MyGO!!!!!/Haruhikage (MyGO!!!!! Ver.).webp"
+ },
+ {
+  "id": "other-collaborations-don-t-be-afraid",
+  "title": "Don't Be Afraid!",
+  "jp": "Don’t be afraid!",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Don't Be Afraid!.png"
+ },
+ {
+  "id": "other-collaborations-glee-glee-glee",
+  "title": "Glee! Glee! Glee!",
+  "jp": "Glee! Glee! Glee!",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Glee! Glee! Glee!.png"
+ },
+ {
+  "id": "other-collaborations-haruhikage",
+  "title": "Haruhikage",
+  "jp": "春日影",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Haruhikage.png"
+ },
+ {
+  "id": "other-collaborations-be-shine-shining",
+  "title": "Be shine, shining!",
+  "jp": "",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Be shine, shining!.jpg"
+ },
+ {
+  "id": "other-collaborations-here-the-world",
+  "title": "Here, the world!",
+  "jp": "",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Here, the world!.png"
+ },
+ {
+  "id": "other-collaborations-ningen-ni-naritai-uta",
+  "title": "Ningen ni Naritai Uta",
+  "jp": "",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Ningen ni Naritai Uta.png"
+ },
+ {
+  "id": "other-collaborations-sweet-escape",
+  "title": "Sweet Escape",
+  "jp": "",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Sweet Escape.png"
  }
 ]
