@@ -5,12 +5,16 @@ const FONT = '"Space Grotesk", "Noto Sans JP", system-ui, sans-serif';
 
 // Same pyramid as the page: rank 1 is the biggest.
 const ROWS = [
-  { ranks: [0], size: 420, title: 34, sub: 20, color: '#f4c95d' },
-  { ranks: [1, 2], size: 300, title: 24, sub: 17, color: '#c9d2e8' },
-  { ranks: [3, 4, 5], size: 204, title: 18, sub: 15, color: '#8fa3ff' },
-  { ranks: [6, 7, 8, 9], size: 150, title: 15, sub: 13, color: '#6c7396' },
+  { ranks: [0], size: 420, title: 34, sub: 20, color: '#f5b400' },
+  { ranks: [1, 2], size: 300, title: 24, sub: 17, color: '#aab4cc' },
+  { ranks: [3, 4, 5], size: 204, title: 18, sub: 15, color: '#33aaff' },
+  { ranks: [6, 7, 8, 9], size: 150, title: 15, sub: 13, color: '#a9a3e8' },
 ];
-const COLORS = ['#f4c95d', '#c9d2e8', '#d99a6c'];
+const COLORS = ['#f5b400', '#aab4cc', '#e0925a'];
+const INK = '#2a2347';
+const MUTED = '#7a7298';
+// BanG Dream! band colors for the top stripe
+const STRIPE = ['#ff3377', '#e23344', '#ffcc11', '#33ddaa', '#22cccc', '#33aaff', '#3344aa'];
 const GAP = 28;
 
 const encodePath = (path) => path.split('/').map(encodeURIComponent).join('/');
@@ -73,26 +77,35 @@ export async function savePoster({ ranks, bandById, nickname }) {
 
   // background
   const bg = ctx.createLinearGradient(0, 0, 0, height);
-  bg.addColorStop(0, '#171929');
-  bg.addColorStop(1, '#0e0f1a');
+  bg.addColorStop(0, '#fff0f6');
+  bg.addColorStop(1, '#fff8fb');
   ctx.fillStyle = bg;
   ctx.fillRect(0, 0, WIDTH, height);
-  const glow = ctx.createRadialGradient(WIDTH / 2, 0, 0, WIDTH / 2, 0, 700);
-  glow.addColorStop(0, 'rgba(244, 201, 93, 0.22)');
-  glow.addColorStop(1, 'rgba(244, 201, 93, 0)');
-  ctx.fillStyle = glow;
+  const glowL = ctx.createRadialGradient(0, 0, 0, 0, 0, 700);
+  glowL.addColorStop(0, 'rgba(255, 51, 119, 0.16)');
+  glowL.addColorStop(1, 'rgba(255, 51, 119, 0)');
+  ctx.fillStyle = glowL;
   ctx.fillRect(0, 0, WIDTH, 700);
+  const glowR = ctx.createRadialGradient(WIDTH, 0, 0, WIDTH, 0, 700);
+  glowR.addColorStop(0, 'rgba(51, 170, 255, 0.18)');
+  glowR.addColorStop(1, 'rgba(51, 170, 255, 0)');
+  ctx.fillStyle = glowR;
+  ctx.fillRect(0, 0, WIDTH, 700);
+  STRIPE.forEach((color, i) => {
+    ctx.fillStyle = color;
+    ctx.fillRect((WIDTH / STRIPE.length) * i, 0, WIDTH / STRIPE.length + 1, 12);
+  });
 
   // header
   ctx.textAlign = 'center';
   ctx.textBaseline = 'alphabetic';
-  ctx.fillStyle = '#f4c95d';
+  ctx.fillStyle = '#ff3377';
   ctx.font = `700 22px ${FONT}`;
-  ctx.fillText('BANG DREAM! ORIGINAL SONGS', WIDTH / 2, 70);
-  ctx.fillStyle = '#eef0ff';
+  ctx.fillText('BANG DREAM! ORIGINAL SONGS', WIDTH / 2, 72);
+  ctx.fillStyle = INK;
   ctx.font = `700 60px ${FONT}`;
   const owner = nickname ? `${nickname}'s` : 'My';
-  ctx.fillText(fitText(ctx, `${owner} Song Top 10`, WIDTH - PAD * 2), WIDTH / 2, 138);
+  ctx.fillText(fitText(ctx, `${owner} Song Top 10`, WIDTH - PAD * 2), WIDTH / 2, 140);
 
   // rows
   let y = headerH;
@@ -111,12 +124,12 @@ export async function savePoster({ ranks, bandById, nickname }) {
         const side = Math.min(img.width, img.height);
         ctx.drawImage(img, (img.width - side) / 2, (img.height - side) / 2, side, side, x, y, row.size, row.size);
       } else {
-        ctx.fillStyle = '#1f2236';
+        ctx.fillStyle = '#ffe3ee';
         ctx.fillRect(x, y, row.size, row.size);
       }
       ctx.restore();
       ctx.lineWidth = index === 0 ? 6 : 3;
-      ctx.strokeStyle = song ? color : '#2c3050';
+      ctx.strokeStyle = song ? color : '#e8bfd2';
       if (!song) ctx.setLineDash([10, 8]);
       roundRect(ctx, x, y, row.size, row.size, 18);
       ctx.stroke();
@@ -128,7 +141,7 @@ export async function savePoster({ ranks, bandById, nickname }) {
       ctx.beginPath();
       ctx.arc(x + 14 + badge, y + 14 + badge, badge, 0, Math.PI * 2);
       ctx.fill();
-      ctx.fillStyle = '#14110a';
+      ctx.fillStyle = INK;
       ctx.font = `700 ${Math.round(badge * 1.05)}px ${FONT}`;
       ctx.textBaseline = 'middle';
       ctx.fillText(String(index + 1), x + 14 + badge, y + 16 + badge);
@@ -136,11 +149,11 @@ export async function savePoster({ ranks, bandById, nickname }) {
 
       if (song) {
         const band = bandById[song.band];
-        ctx.fillStyle = '#eef0ff';
+        ctx.fillStyle = INK;
         ctx.font = `700 ${row.title}px ${FONT}`;
         const lines = wrapTwoLines(ctx, song.title, row.size + 8);
         lines.forEach((line, i) => ctx.fillText(line, x + row.size / 2, y + row.size + row.title + 8 + i * (row.title + 4)));
-        ctx.fillStyle = '#9aa0c0';
+        ctx.fillStyle = MUTED;
         ctx.font = `500 ${row.sub}px ${FONT}`;
         const bandY = y + row.size + row.title + 8 + (lines.length - 1) * (row.title + 4) + row.sub + 8;
         ctx.fillText(fitText(ctx, band.name, row.size + 8), x + row.size / 2, bandY);
@@ -151,7 +164,7 @@ export async function savePoster({ ranks, bandById, nickname }) {
   }
 
   // footer
-  ctx.fillStyle = '#6c7396';
+  ctx.fillStyle = MUTED;
   ctx.font = `500 15px ${FONT}`;
   ctx.fillText('Unofficial fan project. BanG Dream! © Bushiroad / BanG Dream! Project.', WIDTH / 2, height - 36);
 

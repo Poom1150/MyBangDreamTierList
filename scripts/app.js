@@ -93,6 +93,8 @@ function renderBoard() {
   });
   $('#board-count').textContent = `${filled()} / ${SLOTS}`;
   $('#btn-save').disabled = filled() === 0;
+  renderList();
+  renderTargetNote();
 }
 
 function createSlot(index) {
@@ -117,15 +119,8 @@ function createSlot(index) {
     badge.className = 'badge';
     badge.textContent = index + 1;
     cover.append(badge);
-    const ctrl = document.createElement('div');
-    ctrl.className = 'ctrl';
-    ctrl.append(
-      ctrlButton('↑', 'Move up', 'up', index === 0),
-      ctrlButton('↓', 'Move down', 'down', index === SLOTS - 1),
-      ctrlButton('✕', 'Remove', 'remove'),
-    );
-    cover.append(ctrl);
     slot.draggable = true;
+    slot.title = song.title;
   } else {
     const label = document.createElement('div');
     label.className = 'empty-label';
@@ -150,32 +145,82 @@ function createSlot(index) {
   return slot;
 }
 
-function ctrlButton(symbol, label, action, disabled = false) {
+function ctrlButton(symbol, label, action, index, disabled = false) {
   const button = document.createElement('button');
   button.type = 'button';
   button.textContent = symbol;
   button.title = label;
-  button.setAttribute('aria-label', label);
+  button.setAttribute('aria-label', `${label} (rank ${index + 1})`);
   button.dataset.action = action;
+  button.dataset.index = index;
   button.disabled = disabled;
   return button;
+}
+
+// Compact numbered list under the board: full titles plus move / remove controls.
+function renderList() {
+  const list = $('#rank-list');
+  list.replaceChildren();
+  state.ranks.forEach((id, index) => {
+    const song = id && songById[id];
+    const item = document.createElement('li');
+    if (state.selected === index) item.classList.add('is-selected');
+    const n = document.createElement('span');
+    n.className = 'n';
+    n.textContent = index + 1;
+    const label = document.createElement('span');
+    label.className = song ? 'lt' : 'lt none';
+    if (song) {
+      const pickButton = document.createElement('button');
+      pickButton.type = 'button';
+      pickButton.dataset.action = 'select';
+      pickButton.dataset.index = index;
+      pickButton.textContent = song.title;
+      pickButton.title = `${song.title} – ${bandById[song.band].name}`;
+      label.append(pickButton);
+    } else label.textContent = 'Empty';
+    const ctl = document.createElement('span');
+    ctl.className = 'ctl';
+    if (song) {
+      ctl.append(
+        ctrlButton('↑', 'Move up', 'up', index, index === 0),
+        ctrlButton('↓', 'Move down', 'down', index, index === SLOTS - 1),
+        ctrlButton('✕', 'Remove', 'remove', index),
+      );
+    }
+    item.append(n, label, ctl);
+    list.append(item);
+  });
+}
+
+function renderTargetNote() {
+  const note = $('#target-note');
+  const next = state.selected ?? state.ranks.indexOf(null);
+  if (state.selected !== null) note.innerHTML = `Your next pick replaces <b>rank ${state.selected + 1}</b>.`;
+  else if (next === -1) note.textContent = 'All 10 ranks are filled. Select a rank to replace it.';
+  else note.innerHTML = `Your next pick goes to <b>rank ${next + 1}</b>.`;
+}
+
+function selectRank(index) {
+  state.selected = state.selected === index ? null : index;
+  renderBoard();
 }
 
 const board = $('#board');
 board.addEventListener('click', (event) => {
   const slot = event.target.closest('.slot');
-  if (!slot) return;
-  const index = Number(slot.dataset.index);
-  const action = event.target.closest('[data-action]')?.dataset.action;
-  if (action === 'remove') state.ranks[index] = null;
-  else if (action === 'up') move(index, -1);
-  else if (action === 'down') move(index, 1);
-  else {
-    state.selected = state.selected === index ? null : index;
-    renderBoard();
-    return;
-  }
-  if (action === 'remove') state.selected = null;
+  if (slot) selectRank(Number(slot.dataset.index));
+});
+$('#rank-list').addEventListener('click', (event) => {
+  const button = event.target.closest('[data-action]');
+  if (!button) return;
+  const index = Number(button.dataset.index);
+  const action = button.dataset.action;
+  if (action === 'select') return selectRank(index);
+  if (action === 'remove') {
+    state.ranks[index] = null;
+    state.selected = null;
+  } else move(index, action === 'up' ? -1 : 1);
   commit();
 });
 board.addEventListener('keydown', (event) => {
