@@ -3990,5 +3990,13 @@
   "band": "other",
   "variant": false,
   "file": "covers/Other & Collaborations/Ameagari no Yume.jpg"
+ },
+ {
+  "id": "mygo-haruhikage-mygo-ver",
+  "title": "Haruhikage (MyGO!!!!! Ver.)",
+  "jp": "春日影 (MyGO!!!!!ver.)",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Haruhikage (MyGO!!!!! Ver.).webp"
  }
 ]
