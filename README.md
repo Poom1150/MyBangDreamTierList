@@ -1,0 +1,2 @@
+# MyBangDreamTierList
+MyBangDreamTierList
