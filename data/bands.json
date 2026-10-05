@@ -59,28 +59,28 @@
   "name": "Ave Mujica",
   "id": "ave",
   "color": "#881144",
-  "icon": "assets/bands/band_ave.webp",
+  "icon": "assets/bands/Ave_Logo_Alter.png",
   "mono": "AM"
  },
  {
   "name": "Mugendai Mewtype",
   "id": "mewtype",
   "color": "#ee6699",
-  "icon": "assets/bands/band_mewtype.webp",
+  "icon": "assets/bands/Mugendai_logo.png",
   "mono": "MM"
  },
  {
   "name": "Ikka Dumb Rock!",
   "id": "ikka",
   "color": "#ff9933",
-  "icon": "assets/bands/band_ikka.webp",
+  "icon": "assets/bands/Ikka_Logo.png",
   "mono": "IDR"
  },
  {
   "name": "millsage",
   "id": "millsage",
   "color": "#99aa55",
-  "icon": "assets/bands/band_millsage.webp",
+  "icon": "assets/bands/Millsage_Logo.png",
   "mono": "ms"
  },
  {
