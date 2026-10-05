@@ -1,4 +1,4 @@
-import { savePoster } from './poster.js?v=20261005-3';
+import { savePoster } from './poster.js?v=20261005-4';
 
 const SLOTS = 10;
 const STORAGE_KEY = 'song-top10-v1';
@@ -10,15 +10,15 @@ const $ = (selector) => document.querySelector(selector);
 const encodePath = (path) => path.split('/').map(encodeURIComponent).join('/');
 
 const [bands, songs] = await Promise.all([
-  fetch('./data/bands.json?v=20261005-3').then((r) => r.json()),
-  fetch('./data/songs.json?v=20261005-3').then((r) => r.json()),
+  fetch('./data/bands.json?v=20261005-4').then((r) => r.json()),
+  fetch('./data/songs.json?v=20261005-4').then((r) => r.json()),
 ]);
 const bandById = Object.fromEntries(bands.map((b) => [b.id, b]));
 const songById = Object.fromEntries(songs.map((s) => [s.id, s]));
 const bandCount = songs.reduce((acc, s) => ((acc[s.band] = (acc[s.band] || 0) + 1), acc), {});
 
 // ---------- state ----------
-const state = { ranks: Array(SLOTS).fill(null), nickname: '', selected: null, band: 'all', query: '' };
+const state = { ranks: Array(SLOTS).fill(null), nickname: '', selected: null, band: null, query: '' };
 
 function load() {
   let saved = {};
@@ -272,36 +272,92 @@ board.addEventListener('drop', (event) => {
 });
 
 // ---------- library ----------
-function renderChips() {
-  const chips = $('#chips');
-  chips.replaceChildren();
-  const all = document.createElement('button');
-  all.type = 'button';
-  all.className = 'chip';
-  all.dataset.band = 'all';
-  all.setAttribute('aria-pressed', String(state.band === 'all'));
-  all.innerHTML = `All <em>${songs.length}</em>`;
-  chips.append(all);
-  for (const band of bands) {
-    if (!bandCount[band.id]) continue;
-    const chip = document.createElement('button');
-    chip.type = 'button';
-    chip.className = 'chip';
-    chip.dataset.band = band.id;
-    chip.style.setProperty('--c', band.color);
-    chip.setAttribute('aria-pressed', String(state.band === band.id));
-    chip.append(bandMark(band, 'icon'), band.name);
-    const count = document.createElement('em');
-    count.textContent = bandCount[band.id];
-    chip.append(count);
-    chips.append(chip);
-  }
+// Library has two views: a grid of band folders, and the songs inside one folder (or search results).
+function folderSongs(bandId) {
+  return songs.filter((s) => s.band === bandId && !s.variant);
 }
 
-function renderGrid() {
+function renderFolders() {
+  const wrap = $('#folders');
+  const fragment = document.createDocumentFragment();
+  const entries = bands.filter((b) => bandCount[b.id]).map((b) => ({ id: b.id, band: b }));
+  entries.push({ id: 'all', band: { id: 'all', name: 'All songs', color: '#2a2347', icon: '', mono: 'ALL' } });
+  for (const { id, band } of entries) {
+    const list = id === 'all' ? songs : songs.filter((s) => s.band === id);
+    const ranked = list.filter((s) => rankOf(s.id) !== -1).length;
+    const folder = document.createElement('button');
+    folder.type = 'button';
+    folder.className = 'folder';
+    folder.dataset.band = id;
+    folder.style.setProperty('--c', band.color);
+    folder.setAttribute('aria-label', `${band.name} folder, ${list.length} songs${ranked ? `, ${ranked} in your top 10` : ''}`);
+
+    const stack = document.createElement('span');
+    stack.className = 'folder-stack';
+    const previews = (id === 'all' ? songs.filter((s, i) => i % Math.ceil(songs.length / 3) === 0) : folderSongs(id)).slice(0, 3);
+    previews.forEach((song, i) => {
+      const img = document.createElement('img');
+      img.src = encodePath(song.file);
+      img.alt = '';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.style.setProperty('--i', i);
+      stack.append(img);
+    });
+
+    const head = document.createElement('span');
+    head.className = 'folder-head';
+    head.append(id === 'all' ? Object.assign(document.createElement('span'), { className: 'mono', textContent: '★' }) : bandMark(band, 'icon'));
+    const name = document.createElement('span');
+    name.className = 'folder-name';
+    name.textContent = band.name;
+    head.append(name);
+
+    const meta = document.createElement('span');
+    meta.className = 'folder-meta';
+    meta.textContent = `${list.length} songs`;
+    if (ranked) {
+      const badge = document.createElement('b');
+      badge.textContent = `${ranked} ranked`;
+      meta.append(badge);
+    }
+    folder.append(stack, head, meta);
+    fragment.append(folder);
+  }
+  wrap.replaceChildren(fragment);
+}
+
+function visibleSongs() {
   const query = state.query.toLowerCase();
-  const visible = songs.filter((s) => (state.band === 'all' || s.band === state.band)
+  return songs.filter((s) => (state.band === null || state.band === 'all' || s.band === state.band)
     && (!query || `${s.title} ${s.jp} ${bandById[s.band].name}`.toLowerCase().includes(query)));
+}
+
+function renderLibrary() {
+  const folderView = state.band === null && !state.query;
+  $('#folders').hidden = !folderView;
+  $('#grid').hidden = folderView;
+  $('#crumb').hidden = folderView;
+  if (folderView) {
+    renderFolders();
+    $('#lib-count').textContent = `${bands.filter((b) => bandCount[b.id]).length} bands · ${songs.length} songs`;
+    $('#lib-hint').textContent = 'Open a band folder to see its songs, or search all songs above.';
+    $('#empty').hidden = true;
+    return;
+  }
+  const visible = visibleSongs();
+  let heading = 'Search results';
+  if (state.band && state.band !== 'all') heading = bandById[state.band].name;
+  else if (state.band === 'all' && !state.query) heading = 'All songs';
+  $('#crumb-name').textContent = state.query && state.band && state.band !== 'all' ? `${heading} › search` : heading;
+  const color = state.band && state.band !== 'all' ? bandById[state.band].color : 'var(--pink)';
+  $('#crumb').style.setProperty('--c', color);
+  $('#lib-count').textContent = `${visible.length} songs`;
+  $('#lib-hint').textContent = 'Tap a song to add it to your ranking.';
+  renderGrid(visible);
+}
+
+function renderGrid(visible) {
   const grid = $('#grid');
   const fragment = document.createDocumentFragment();
   for (const song of visible) {
@@ -330,7 +386,6 @@ function renderGrid() {
     fragment.append(card);
   }
   grid.replaceChildren(fragment);
-  $('#lib-count').textContent = `${visible.length} songs`;
   $('#empty').hidden = visible.length !== 0;
   updateCards();
 }
@@ -372,14 +427,20 @@ $('#grid').addEventListener('dragstart', (event) => {
 });
 $('#grid').addEventListener('dragend', () => { dragSource = null; board.querySelectorAll('.drag-over').forEach((el) => el.classList.remove('drag-over')); });
 
-$('#chips').addEventListener('click', (event) => {
-  const chip = event.target.closest('.chip');
-  if (!chip) return;
-  state.band = chip.dataset.band;
-  renderChips();
-  renderGrid();
+$('#folders').addEventListener('click', (event) => {
+  const folder = event.target.closest('.folder');
+  if (!folder) return;
+  state.band = folder.dataset.band;
+  renderLibrary();
+  $('#lib-title').scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
-$('#search').addEventListener('input', (event) => { state.query = event.target.value.trim(); renderGrid(); });
+$('#btn-back').addEventListener('click', () => {
+  state.band = null;
+  state.query = '';
+  $('#search').value = '';
+  renderLibrary();
+});
+$('#search').addEventListener('input', (event) => { state.query = event.target.value.trim(); renderLibrary(); });
 document.addEventListener('keydown', (event) => {
   if (event.key === '/' && !event.target.matches('input, textarea, select')) {
     event.preventDefault();
@@ -422,10 +483,10 @@ function commit() {
   persist();
   renderBoard();
   updateCards();
+  if (!$('#folders').hidden) renderFolders();
 }
 
 load();
 $('#nickname').value = state.nickname;
-renderChips();
-renderGrid();
+renderLibrary();
 renderBoard();
