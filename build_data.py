@@ -23,7 +23,12 @@ BANDS = [
     ("millsage", "millsage", "#99aa55", "assets/bands/Millsage_Logo.png", "ms"),
     ("Other & Collaborations", "other", "#aa99dd", "", "★"),
 ]
-bands = [{"name": n, "id": i, "color": c, "icon": ic, "mono": m} for n, i, c, ic, m in BANDS]
+def logo_for(band_id):
+    path = f"assets/logos/{band_id}.webp"
+    return path if os.path.exists(os.path.join(ROOT, path)) else ""
+
+
+bands = [{"name": n, "id": i, "color": c, "icon": ic, "mono": m, "logo": logo_for(i)} for n, i, c, ic, m in BANDS]
 band_id = {b[0]: b[1] for b in BANDS}
 
 songs, seen = [], set()

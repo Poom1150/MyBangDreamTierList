@@ -4,90 +4,103 @@
   "id": "popipa",
   "color": "#ff3377",
   "icon": "assets/bands/band_1.svg",
-  "mono": "PP"
+  "mono": "PP",
+  "logo": "assets/logos/popipa.webp"
  },
  {
   "name": "Afterglow",
   "id": "afterglow",
   "color": "#e23344",
   "icon": "assets/bands/band_2.svg",
-  "mono": "AG"
+  "mono": "AG",
+  "logo": "assets/logos/afterglow.webp"
  },
  {
   "name": "Pastel Palettes",
   "id": "pasupare",
   "color": "#33ddaa",
   "icon": "assets/bands/band_4.svg",
-  "mono": "PP"
+  "mono": "PP",
+  "logo": "assets/logos/pasupare.webp"
  },
  {
   "name": "Roselia",
   "id": "roselia",
   "color": "#3344aa",
   "icon": "assets/bands/band_5.svg",
-  "mono": "R"
+  "mono": "R",
+  "logo": "assets/logos/roselia.webp"
  },
  {
   "name": "Hello, Happy World!",
   "id": "harohapi",
   "color": "#ffcc11",
   "icon": "assets/bands/band_3.svg",
-  "mono": "HHW"
+  "mono": "HHW",
+  "logo": "assets/logos/harohapi.webp"
  },
  {
   "name": "Morfonica",
   "id": "morfonica",
   "color": "#33aaff",
   "icon": "assets/bands/band_21.svg",
-  "mono": "M"
+  "mono": "M",
+  "logo": "assets/logos/morfonica.webp"
  },
  {
   "name": "RAISE A SUILEN",
   "id": "ras",
   "color": "#22cccc",
   "icon": "assets/bands/band_18.svg",
-  "mono": "RAS"
+  "mono": "RAS",
+  "logo": "assets/logos/ras.webp"
  },
  {
   "name": "MyGO!!!!!",
   "id": "mygo",
   "color": "#3388bb",
   "icon": "assets/bands/band_45.svg",
-  "mono": "MyGO"
+  "mono": "MyGO",
+  "logo": "assets/logos/mygo.webp"
  },
  {
   "name": "Ave Mujica",
   "id": "ave",
   "color": "#881144",
   "icon": "assets/bands/Ave_Logo_Alter.png",
-  "mono": "AM"
+  "mono": "AM",
+  "logo": "assets/logos/ave.webp"
  },
  {
   "name": "Mugendai Mewtype",
   "id": "mewtype",
   "color": "#ee6699",
   "icon": "assets/bands/Mugendai_logo.png",
-  "mono": "MM"
+  "mono": "MM",
+  "logo": "assets/logos/mewtype.webp"
  },
  {
   "name": "Ikka Dumb Rock!",
   "id": "ikka",
   "color": "#ff9933",
   "icon": "assets/bands/Ikka_Logo.png",
-  "mono": "IDR"
+  "mono": "IDR",
+  "logo": "assets/logos/ikka.webp"
  },
  {
   "name": "millsage",
   "id": "millsage",
   "color": "#99aa55",
   "icon": "assets/bands/Millsage_Logo.png",
-  "mono": "ms"
+  "mono": "ms",
+  "logo": "assets/logos/millsage.webp"
  },
  {
   "name": "Other & Collaborations",
   "id": "other",
   "color": "#aa99dd",
   "icon": "",
-  "mono": "★"
+  "mono": "★",
+  "logo": ""
  }
 ]

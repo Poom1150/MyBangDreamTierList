@@ -1,4 +1,4 @@
-import { savePoster } from './poster.js?v=20261005-10';
+import { savePoster, savePosterBands } from './poster.js?v=20261005-11';
 
 const SLOTS = 10;
 const STORAGE_KEY = 'song-top10-v1';
@@ -10,15 +10,17 @@ const $ = (selector) => document.querySelector(selector);
 const encodePath = (path) => path.split('/').map(encodeURIComponent).join('/');
 
 const [bands, songs] = await Promise.all([
-  fetch('./data/bands.json?v=20261005-10').then((r) => r.json()),
-  fetch('./data/songs.json?v=20261005-10').then((r) => r.json()),
+  fetch('./data/bands.json?v=20261005-11').then((r) => r.json()),
+  fetch('./data/songs.json?v=20261005-11').then((r) => r.json()),
 ]);
 const bandById = Object.fromEntries(bands.map((b) => [b.id, b]));
 const songById = Object.fromEntries(songs.map((s) => [s.id, s]));
 const bandCount = songs.reduce((acc, s) => ((acc[s.band] = (acc[s.band] || 0) + 1), acc), {});
+// Bands that can have a "best song": every band except the catch-all Other & Collaborations folder.
+const mainBands = bands.filter((b) => b.id !== 'other' && bandCount[b.id]);
 
 // ---------- state ----------
-const state = { ranks: Array(SLOTS).fill(null), nickname: '', selected: null, band: null, query: '' };
+const state = { mode: 'top10', ranks: Array(SLOTS).fill(null), bandPicks: {}, nickname: '', selected: null, band: null, query: '' };
 
 function load() {
   let saved = {};
@@ -27,10 +29,21 @@ function load() {
   const fromLink = hash.get('r');
   const ids = fromLink ? fromLink.split(',') : saved.ranks || [];
   state.ranks = Array.from({ length: SLOTS }, (_, i) => (songById[ids[i]] ? ids[i] : null));
+
+  // best-song-per-band picks: "bandId:songId,bandId:songId" in a share link, or an object when saved
+  const linked = hash.get('b');
+  const rawPicks = linked
+    ? Object.fromEntries(linked.split(',').map((pair) => pair.split(':')))
+    : saved.bandPicks || {};
+  state.bandPicks = Object.fromEntries(mainBands.map((b) => [b.id, songById[rawPicks[b.id]]?.band === b.id ? rawPicks[b.id] : null]));
+
   state.nickname = hash.get('n') ?? saved.nickname ?? '';
+  if (hash.get('m') === 'band' || (!fromLink && !hash.get('m') && saved.mode === 'band')) state.mode = 'band';
 }
 function persist() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ ranks: state.ranks, nickname: state.nickname })); } catch { /* storage unavailable */ }
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ranks: state.ranks, bandPicks: state.bandPicks, nickname: state.nickname, mode: state.mode }));
+  } catch { /* storage unavailable */ }
 }
 
 // ---------- helpers ----------
@@ -43,7 +56,11 @@ function toast(message) {
   toastTimer = setTimeout(() => { el.hidden = true; }, 2600);
 }
 const rankOf = (id) => state.ranks.indexOf(id);
-const filled = () => state.ranks.filter(Boolean).length;
+const bandFilled = () => mainBands.filter((b) => state.bandPicks[b.id]).length;
+const filled = () => (state.mode === 'band' ? bandFilled() : state.ranks.filter(Boolean).length);
+const isChosen = (songId) => (state.mode === 'band'
+  ? state.bandPicks[songById[songId].band] === songId
+  : rankOf(songId) !== -1);
 
 function bandMark(band, className = 'dot') {
   if (className === 'dot') {
@@ -91,8 +108,6 @@ function renderBoard() {
     for (let n = 0; n < count; n++, rank++) row.append(createSlot(rank - 1));
     board.append(row);
   });
-  $('#board-count').textContent = `${filled()} / ${SLOTS}`;
-  $('#btn-save').disabled = filled() === 0;
   renderList();
   renderTargetNote();
 }
@@ -206,6 +221,143 @@ function selectRank(index) {
   renderBoard();
 }
 
+// ---------- panel (switches between the two modes) ----------
+function renderPanel() {
+  const band = state.mode === 'band';
+  document.querySelectorAll('.mode').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.mode === state.mode)));
+  $('#board').hidden = band;
+  $('#rank-list').hidden = band;
+  $('#band-board').hidden = !band;
+  $('#band-list').hidden = !band;
+  $('#board-title').textContent = band ? 'Best song per band' : 'My ranking';
+  $('#board-count').textContent = band ? `${bandFilled()} / ${mainBands.length}` : `${filled()} / ${SLOTS}`;
+  $('#btn-save').disabled = filled() === 0;
+  if (band) renderBandPanel();
+  else renderBoard();
+}
+
+function bandIcon(band, className) {
+  if (band.icon) {
+    const img = document.createElement('img');
+    if (className) img.className = className;
+    img.src = encodePath(band.icon);
+    img.alt = '';
+    return img;
+  }
+  const mono = document.createElement('b');
+  mono.textContent = band.mono;
+  return mono;
+}
+
+function renderBandPanel() {
+  const left = mainBands.length - bandFilled();
+  $('#target-note').innerHTML = left === 0
+    ? 'Every band has a pick. Tap a band to change its song.'
+    : `Pick <b>one song per band</b>. Tap a band, then a song. ${left} to go.`;
+
+  const tiles = document.createDocumentFragment();
+  for (const band of mainBands) {
+    const song = songById[state.bandPicks[band.id]];
+    const tile = document.createElement('button');
+    tile.type = 'button';
+    tile.className = `band-tile${song ? ' picked' : ''}${state.band === band.id ? ' active' : ''}`;
+    tile.dataset.band = band.id;
+    tile.style.setProperty('--c', band.color);
+    tile.title = song ? `${band.name}: ${song.title}` : `${band.name}: nothing picked yet`;
+    tile.setAttribute('aria-label', song ? `${band.name}, picked ${song.title}. Open this band.` : `${band.name}, nothing picked. Open this band.`);
+    if (song) {
+      const img = document.createElement('img');
+      img.className = 'cv';
+      img.src = encodePath(song.file);
+      img.alt = '';
+      tile.append(img);
+      const corner = document.createElement('span');
+      corner.className = 'corner';
+      corner.append(bandIcon(band));
+      tile.append(corner);
+    } else if (band.icon) {
+      tile.append(bandIcon(band, 'empty-ico'));
+    } else {
+      const mono = document.createElement('span');
+      mono.className = 'empty-mono';
+      mono.textContent = band.mono;
+      tile.append(mono);
+    }
+    tiles.append(tile);
+  }
+  $('#band-board').replaceChildren(tiles);
+
+  const list = $('#band-list');
+  list.replaceChildren();
+  for (const band of mainBands) {
+    const song = songById[state.bandPicks[band.id]];
+    const item = document.createElement('li');
+    item.style.setProperty('--c', band.color);
+    if (state.band === band.id) item.classList.add('is-active');
+    const ico = document.createElement('span');
+    ico.className = 'bico';
+    ico.append(bandIcon(band));
+    const open = document.createElement('button');
+    open.type = 'button';
+    open.className = 'open';
+    open.dataset.action = 'open';
+    open.dataset.band = band.id;
+    open.innerHTML = '<div class="bn"></div><div class="bt"></div>';
+    open.querySelector('.bn').textContent = band.name;
+    const title = open.querySelector('.bt');
+    title.textContent = song ? song.title : 'Not picked yet';
+    if (!song) title.classList.add('none');
+    const side = document.createElement('span');
+    if (song) {
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'rm';
+      remove.dataset.action = 'remove';
+      remove.dataset.band = band.id;
+      remove.textContent = '\u2715';
+      remove.title = 'Remove';
+      remove.setAttribute('aria-label', `Remove the pick for ${band.name}`);
+      side.append(remove);
+    }
+    item.append(ico, open, side);
+    list.append(item);
+  }
+}
+
+function openBand(bandId) {
+  state.band = bandId;
+  state.query = '';
+  $('#search').value = '';
+  renderLibrary();
+  renderPanel();
+  $('#lib-title').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+$('#band-board').addEventListener('click', (event) => {
+  const tile = event.target.closest('.band-tile');
+  if (tile) openBand(tile.dataset.band);
+});
+$('#band-list').addEventListener('click', (event) => {
+  const button = event.target.closest('[data-action]');
+  if (!button) return;
+  if (button.dataset.action === 'open') return openBand(button.dataset.band);
+  state.bandPicks[button.dataset.band] = null;
+  commit();
+});
+
+function setMode(mode) {
+  if (state.mode === mode) return;
+  state.mode = mode;
+  state.band = null;
+  state.query = '';
+  state.selected = null;
+  $('#search').value = '';
+  persist();
+  renderLibrary();
+  renderPanel();
+}
+document.querySelectorAll('.mode').forEach((button) => button.addEventListener('click', () => setMode(button.dataset.mode)));
+
 const board = $('#board');
 board.addEventListener('click', (event) => {
   const slot = event.target.closest('.slot');
@@ -280,17 +432,18 @@ function folderSongs(bandId) {
 function renderFolders() {
   const wrap = $('#folders');
   const fragment = document.createDocumentFragment();
-  const entries = bands.filter((b) => bandCount[b.id]).map((b) => ({ id: b.id, band: b }));
-  entries.push({ id: 'all', band: { id: 'all', name: 'All songs', color: '#2a2347', icon: '', mono: 'ALL' } });
+  const bandMode = state.mode === 'band';
+  const entries = (bandMode ? mainBands : bands.filter((b) => bandCount[b.id])).map((b) => ({ id: b.id, band: b }));
+  if (!bandMode) entries.push({ id: 'all', band: { id: 'all', name: 'All songs', color: '#2a2347', icon: '', mono: 'ALL' } });
   for (const { id, band } of entries) {
     const list = id === 'all' ? songs : songs.filter((s) => s.band === id);
-    const ranked = list.filter((s) => rankOf(s.id) !== -1).length;
+    const ranked = list.filter((s) => isChosen(s.id)).length;
     const folder = document.createElement('button');
     folder.type = 'button';
     folder.className = 'folder';
     folder.dataset.band = id;
     folder.style.setProperty('--c', band.color);
-    folder.setAttribute('aria-label', `${band.name} folder, ${list.length} songs${ranked ? `, ${ranked} in your top 10` : ''}`);
+    folder.setAttribute('aria-label', `${band.name} folder, ${list.length} songs${ranked ? (bandMode ? ', best song picked' : `, ${ranked} in your top 10`) : ''}`);
 
     const stack = document.createElement('span');
     stack.className = 'folder-stack';
@@ -318,7 +471,7 @@ function renderFolders() {
     meta.textContent = `${list.length} songs`;
     if (ranked) {
       const badge = document.createElement('b');
-      badge.textContent = `${ranked} ranked`;
+      badge.textContent = bandMode ? '\u2713 picked' : `${ranked} ranked`;
       meta.append(badge);
     }
     folder.append(stack, head, meta);
@@ -330,6 +483,7 @@ function renderFolders() {
 function visibleSongs() {
   const query = state.query.toLowerCase();
   return songs.filter((s) => (state.band === null || state.band === 'all' || s.band === state.band)
+    && (state.mode !== 'band' || s.band !== 'other')
     && (!query || `${s.title} ${s.jp} ${bandById[s.band].name}`.toLowerCase().includes(query)));
 }
 
@@ -340,8 +494,12 @@ function renderLibrary() {
   $('#crumb').hidden = folderView;
   if (folderView) {
     renderFolders();
-    $('#lib-count').textContent = `${bands.filter((b) => bandCount[b.id]).length} bands · ${songs.length} songs`;
-    $('#lib-hint').textContent = 'Open a band folder to see its songs, or search all songs above.';
+    const folderBands = state.mode === 'band' ? mainBands : bands.filter((b) => bandCount[b.id]);
+    const folderSongsTotal = state.mode === 'band' ? songs.filter((s) => s.band !== 'other').length : songs.length;
+    $('#lib-count').textContent = `${folderBands.length} bands · ${folderSongsTotal} songs`;
+    $('#lib-hint').textContent = state.mode === 'band'
+      ? 'Open a band folder, then tap the one song you like most from that band.'
+      : 'Open a band folder to see its songs, or search all songs above.';
     $('#empty').hidden = true;
     return;
   }
@@ -353,7 +511,9 @@ function renderLibrary() {
   const color = state.band && state.band !== 'all' ? bandById[state.band].color : 'var(--pink)';
   $('#crumb').style.setProperty('--c', color);
   $('#lib-count').textContent = `${visible.length} songs`;
-  $('#lib-hint').textContent = 'Tap a song to add it to your ranking.';
+  $('#lib-hint').textContent = state.mode === 'band'
+    ? "Tap a song to make it this band's best song. Tap another to replace it."
+    : 'Tap a song to add it to your ranking.';
   renderGrid(visible);
 }
 
@@ -366,7 +526,7 @@ function renderGrid(visible) {
     card.type = 'button';
     card.className = 'card';
     card.dataset.id = song.id;
-    card.draggable = true;
+    card.draggable = state.mode === 'top10';
     card.style.setProperty('--c', band.color);
     const img = document.createElement('img');
     img.src = encodePath(song.file);
@@ -392,12 +552,14 @@ function renderGrid(visible) {
 
 function updateCards() {
   document.querySelectorAll('.card').forEach((card) => {
-    const rank = rankOf(card.dataset.id);
-    card.classList.toggle('chosen', rank !== -1);
-    card.querySelector('.pick').textContent = rank === -1 ? '' : `#${rank + 1}`;
     const song = songById[card.dataset.id];
-    card.setAttribute('aria-pressed', String(rank !== -1));
-    card.setAttribute('aria-label', `${song.title}, ${bandById[song.band].name}${rank !== -1 ? `, ranked ${rank + 1}` : ''}`);
+    const rank = rankOf(card.dataset.id);
+    const chosen = isChosen(card.dataset.id);
+    card.classList.toggle('chosen', chosen);
+    card.querySelector('.pick').textContent = !chosen ? '' : (state.mode === 'band' ? '\u2713' : `#${rank + 1}`);
+    card.setAttribute('aria-pressed', String(chosen));
+    const status = !chosen ? '' : (state.mode === 'band' ? ', best song of this band' : `, ranked ${rank + 1}`);
+    card.setAttribute('aria-label', `${song.title}, ${bandById[song.band].name}${status}`);
   });
 }
 
@@ -405,6 +567,11 @@ $('#grid').addEventListener('click', (event) => {
   const card = event.target.closest('.card');
   if (!card) return;
   const id = card.dataset.id;
+  if (state.mode === 'band') {
+    const bandId = songById[id].band;
+    state.bandPicks[bandId] = state.bandPicks[bandId] === id ? null : id;
+    return commit();
+  }
   const current = rankOf(id);
   if (current !== -1) {
     state.ranks[current] = null;
@@ -454,14 +621,20 @@ $('#nickname').addEventListener('input', (event) => { state.nickname = event.tar
 
 $('#btn-clear').addEventListener('click', () => {
   if (!filled()) return;
-  if (!window.confirm('Clear all 10 ranks?')) return;
-  state.ranks = Array(SLOTS).fill(null);
+  const band = state.mode === 'band';
+  if (!window.confirm(band ? 'Clear every band pick?' : 'Clear all 10 ranks?')) return;
+  if (band) state.bandPicks = Object.fromEntries(mainBands.map((b) => [b.id, null]));
+  else state.ranks = Array(SLOTS).fill(null);
   state.selected = null;
   commit();
 });
 $('#btn-share').addEventListener('click', async () => {
   if (!filled()) { toast('Pick at least one song first.'); return; }
-  const params = new URLSearchParams({ r: state.ranks.map((id) => id || '').join(',') });
+  const params = new URLSearchParams();
+  if (state.mode === 'band') {
+    params.set('m', 'band');
+    params.set('b', mainBands.filter((b) => state.bandPicks[b.id]).map((b) => `${b.id}:${state.bandPicks[b.id]}`).join(','));
+  } else params.set('r', state.ranks.map((id) => id || '').join(','));
   if (state.nickname.trim()) params.set('n', state.nickname.trim());
   const link = `${location.origin}${location.pathname}#${params}`;
   try { await navigator.clipboard.writeText(link); toast('Share link copied.'); }
@@ -471,7 +644,12 @@ $('#btn-save').addEventListener('click', async () => {
   const button = $('#btn-save');
   button.disabled = true;
   try {
-    await savePoster({ ranks: state.ranks.map((id) => (id ? songById[id] : null)), bandById, nickname: state.nickname.trim() });
+    const nickname = state.nickname.trim();
+    if (state.mode === 'band') {
+      await savePosterBands({ picks: mainBands.map((band) => ({ band, song: songById[state.bandPicks[band.id]] || null })), nickname });
+    } else {
+      await savePoster({ ranks: state.ranks.map((id) => (id ? songById[id] : null)), bandById, nickname });
+    }
   } catch (error) {
     toast(error.message || 'Could not save the image.');
   } finally {
@@ -481,7 +659,7 @@ $('#btn-save').addEventListener('click', async () => {
 
 function commit() {
   persist();
-  renderBoard();
+  renderPanel();
   updateCards();
   if (!$('#folders').hidden) renderFolders();
 }
@@ -489,4 +667,4 @@ function commit() {
 load();
 $('#nickname').value = state.nickname;
 renderLibrary();
-renderBoard();
+renderPanel();

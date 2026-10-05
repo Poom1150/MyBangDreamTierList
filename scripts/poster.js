@@ -147,18 +147,7 @@ function drawCover(ctx, { song, image, band, index, x, y, row }) {
   ctx.textBaseline = 'alphabetic';
 }
 
-export async function savePoster({ ranks, bandById, nickname }) {
-  if (document.fonts?.load) {
-    await Promise.allSettled([document.fonts.load(`700 24px ${FONT}`), document.fonts.load(`500 16px ${FONT}`)]);
-  }
-  const images = await Promise.all(ranks.map((song) => (song ? loadImage(encodePath(song.file)) : null)));
-
-  const canvas = document.createElement('canvas');
-  canvas.width = WIDTH;
-  canvas.height = HEIGHT;
-  const ctx = canvas.getContext('2d');
-
-  // background
+function paintBackground(ctx) {
   const bg = ctx.createLinearGradient(0, 0, 0, HEIGHT);
   bg.addColorStop(0, '#fff0f6');
   bg.addColorStop(1, '#fff8fb');
@@ -178,8 +167,9 @@ export async function savePoster({ ranks, bandById, nickname }) {
     ctx.fillStyle = color;
     ctx.fillRect((WIDTH / STRIPE.length) * i, 0, WIDTH / STRIPE.length + 1, 10);
   });
+}
 
-  // header
+function paintHeader(ctx, title) {
   ctx.textAlign = 'center';
   ctx.textBaseline = 'alphabetic';
   ctx.fillStyle = '#ff3377';
@@ -187,8 +177,40 @@ export async function savePoster({ ranks, bandById, nickname }) {
   ctx.fillText('BANG DREAM! ORIGINAL SONGS', WIDTH / 2, 46);
   ctx.fillStyle = INK;
   ctx.font = `700 50px ${FONT}`;
-  const owner = nickname ? `${nickname}'s` : 'My';
-  ctx.fillText(fitText(ctx, `${owner} Song Top 10`, WIDTH - PAD * 2), WIDTH / 2, 96);
+  ctx.fillText(fitText(ctx, title, WIDTH - PAD * 2), WIDTH / 2, 96);
+}
+
+function paintFooter(ctx) {
+  ctx.textAlign = 'center';
+  ctx.fillStyle = MUTED;
+  ctx.font = `500 14px ${FONT}`;
+  ctx.fillText('Unofficial fan project. BanG Dream! \u00A9 Bushiroad / BanG Dream! Project.', WIDTH / 2, HEIGHT - 20);
+}
+
+async function downloadCanvas(canvas, filename) {
+  const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
+  if (!blob) throw new Error('Image export is not available in this browser, or the page was opened as a local file. Try the hosted page.');
+  const url = URL.createObjectURL(blob);
+  const link = Object.assign(document.createElement('a'), { href: url, download: filename });
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+}
+
+export async function savePoster({ ranks, bandById, nickname }) {
+  if (document.fonts?.load) {
+    await Promise.allSettled([document.fonts.load(`700 24px ${FONT}`), document.fonts.load(`500 16px ${FONT}`)]);
+  }
+  const images = await Promise.all(ranks.map((song) => (song ? loadImage(encodePath(song.file)) : null)));
+
+  const canvas = document.createElement('canvas');
+  canvas.width = WIDTH;
+  canvas.height = HEIGHT;
+  const ctx = canvas.getContext('2d');
+
+  paintBackground(ctx);
+  paintHeader(ctx, `${nickname ? `${nickname}'s` : 'My'} Song Top 10`);
 
   // rows
   let y = HEADER;
@@ -203,18 +225,119 @@ export async function savePoster({ ranks, bandById, nickname }) {
     y += row.size + GAP;
   }
 
-  // footer
-  ctx.textAlign = 'center';
-  ctx.fillStyle = MUTED;
-  ctx.font = `500 14px ${FONT}`;
-  ctx.fillText('Unofficial fan project. BanG Dream! © Bushiroad / BanG Dream! Project.', WIDTH / 2, HEIGHT - 20);
+  paintFooter(ctx);
+  await downloadCanvas(canvas, 'my-song-top-10.png');
+}
 
-  const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
-  if (!blob) throw new Error('Image export is not available in this browser, or the page was opened as a local file. Try the hosted page.');
-  const url = URL.createObjectURL(blob);
-  const link = Object.assign(document.createElement('a'), { href: url, download: 'my-song-top-10.png' });
-  document.body.append(link);
-  link.click();
-  link.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 2000);
+// ---------- best song per band: 2 columns x 6 rows of horizontal cards, one per band ----------
+const BAND_COLS = 2;
+const BAND_ROWS = 6;
+
+function drawBandCard(ctx, { band, song, cover, logo, x, y, w, h }) {
+  // card body with a soft shadow
+  ctx.save();
+  ctx.shadowColor = 'rgba(42, 35, 71, 0.14)';
+  ctx.shadowBlur = 16;
+  ctx.shadowOffsetY = 4;
+  ctx.fillStyle = '#ffffff';
+  roundRect(ctx, x, y, w, h, 18);
+  ctx.fill();
+  ctx.restore();
+
+  // band-colored edge
+  ctx.save();
+  roundRect(ctx, x, y, w, h, 18);
+  ctx.clip();
+  ctx.fillStyle = band.color;
+  ctx.fillRect(x, y, 9, h);
+  ctx.restore();
+
+  const size = h - 20;
+  const cx = x + 22;
+  const cy = y + 10;
+  ctx.save();
+  roundRect(ctx, cx, cy, size, size, 12);
+  ctx.clip();
+  if (song && cover) {
+    const side = Math.min(cover.width, cover.height);
+    ctx.drawImage(cover, (cover.width - side) / 2, (cover.height - side) / 2, side, side, cx, cy, size, size);
+  } else {
+    ctx.fillStyle = '#ffe3ee';
+    ctx.fillRect(cx, cy, size, size);
+  }
+  ctx.restore();
+  ctx.lineWidth = song ? 3 : 2;
+  ctx.strokeStyle = song ? band.color : '#e8bfd2';
+  if (!song) ctx.setLineDash([8, 6]);
+  roundRect(ctx, cx, cy, size, size, 12);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  if (!song) {
+    ctx.fillStyle = '#e3b5c9';
+    ctx.font = `700 ${Math.round(size * 0.42)}px ${FONT}`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('?', cx + size / 2, cy + size / 2 + 4);
+    ctx.textBaseline = 'alphabetic';
+  }
+
+  // band logo (falls back to the band name), then the song title
+  const tx = cx + size + 18;
+  const tw = x + w - tx - 16;
+  const logoBox = { w: Math.min(tw, 270), h: 58 };
+  if (logo) {
+    const scale = Math.min(logoBox.w / logo.width, logoBox.h / logo.height);
+    ctx.drawImage(logo, tx, y + 14 + (logoBox.h - logo.height * scale) / 2, logo.width * scale, logo.height * scale);
+  } else {
+    ctx.textAlign = 'left';
+    ctx.fillStyle = band.color;
+    ctx.font = `700 24px ${FONT}`;
+    ctx.fillText(fitText(ctx, band.name, tw), tx, y + 14 + 38);
+  }
+
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'alphabetic';
+  if (song) {
+    ctx.fillStyle = INK;
+    ctx.font = `700 25px ${FONT}`;
+    const lines = wrapTwoLines(ctx, song.title, tw);
+    lines.forEach((line, i) => ctx.fillText(line, tx, y + 14 + logoBox.h + 30 + i * 29));
+  } else {
+    ctx.fillStyle = '#b79bb0';
+    ctx.font = `500 21px ${FONT}`;
+    ctx.fillText('No pick yet', tx, y + 14 + logoBox.h + 30);
+  }
+}
+
+export async function savePosterBands({ picks, nickname }) {
+  if (document.fonts?.load) {
+    await Promise.allSettled([document.fonts.load(`700 24px ${FONT}`), document.fonts.load(`500 16px ${FONT}`)]);
+  }
+  // a missing logo is not fatal: the card falls back to the band name
+  const loadLogo = (band) => (band.logo ? loadImage(encodePath(band.logo)).catch(() => null) : Promise.resolve(null));
+  const [covers, logos] = await Promise.all([
+    Promise.all(picks.map(({ song }) => (song ? loadImage(encodePath(song.file)) : null))),
+    Promise.all(picks.map(({ band }) => loadLogo(band))),
+  ]);
+
+  const canvas = document.createElement('canvas');
+  canvas.width = WIDTH;
+  canvas.height = HEIGHT;
+  const ctx = canvas.getContext('2d');
+  paintBackground(ctx);
+  paintHeader(ctx, `${nickname ? `${nickname}'s` : 'My'} Favorite Song per Band`);
+
+  const cardW = Math.floor((WIDTH - PAD * 2 - GAP * (BAND_COLS - 1)) / BAND_COLS);
+  const cardH = Math.floor((HEIGHT - HEADER - FOOTER - BOTTOM - GAP * (BAND_ROWS - 1)) / BAND_ROWS);
+  picks.forEach(({ band, song }, i) => {
+    const col = i % BAND_COLS;
+    const row = Math.floor(i / BAND_COLS);
+    drawBandCard(ctx, {
+      band, song, cover: covers[i], logo: logos[i],
+      x: PAD + col * (cardW + GAP), y: HEADER + row * (cardH + GAP), w: cardW, h: cardH,
+    });
+  });
+
+  paintFooter(ctx);
+  await downloadCanvas(canvas, 'my-best-song-per-band.png');
 }
