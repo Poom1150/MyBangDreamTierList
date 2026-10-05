@@ -3470,5 +3470,173 @@
   "band": "ave",
   "variant": false,
   "file": "covers/Ave Mujica/‘S_’ The Way.webp"
+ },
+ {
+  "id": "ave-mujica-a-song-of-romance",
+  "title": "A Song Of Romance",
+  "jp": "",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/A Song Of Romance.webp"
+ },
+ {
+  "id": "mugendai-mewtype-ai-wa-shoudou",
+  "title": "Ai wa Shoudou",
+  "jp": "愛は衝動",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Ai wa Shoudou.webp"
+ },
+ {
+  "id": "millsage-everscape",
+  "title": "Everscape",
+  "jp": "",
+  "band": "millsage",
+  "variant": false,
+  "file": "covers/millsage/Everscape.webp"
+ },
+ {
+  "id": "mugendai-mewtype-face-the-next",
+  "title": "Face The Next",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Face The Next.webp"
+ },
+ {
+  "id": "mugendai-mewtype-ichiban-no-hikari",
+  "title": "Ichiban no Hikari",
+  "jp": "一番のひかり",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Ichiban no Hikari.webp"
+ },
+ {
+  "id": "mugendai-mewtype-in-my-words",
+  "title": "In my words",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/In my words.webp"
+ },
+ {
+  "id": "poppin-party-introduction",
+  "title": "Introduction",
+  "jp": "イントロダクション",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Introduction.webp"
+ },
+ {
+  "id": "mugendai-mewtype-kore-wa-bokutachi-no-seizon-no-arasuji",
+  "title": "Kore wa Bokutachi no Seizon no Arasuji",
+  "jp": "これはぼくたちの生存のあらすじ",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Kore wa Bokutachi no Seizon no Arasuji.webp"
+ },
+ {
+  "id": "mygo-line",
+  "title": "Line",
+  "jp": "羅永線",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Line.webp"
+ },
+ {
+  "id": "mygo-meikyoushisui",
+  "title": "Meikyoushisui",
+  "jp": "迷況指漱",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Meikyoushisui.webp"
+ },
+ {
+  "id": "mugendai-mewtype-mugamuchuu",
+  "title": "Mugamuchuu",
+  "jp": "夢我夢中",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Mugamuchuu.webp"
+ },
+ {
+  "id": "mugendai-mewtype-nikoichi-mirai",
+  "title": "Nikoichi Mirai",
+  "jp": "にこいちミライ",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Nikoichi Mirai.webp"
+ },
+ {
+  "id": "mygo-sepia",
+  "title": "Sepia",
+  "jp": "世点彩",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Sepia.webp"
+ },
+ {
+  "id": "poppin-party-skip-slump-slipper",
+  "title": "Skip Slump Slipper",
+  "jp": "スキップ・スランプ・スリッパ",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Skip Slump Slipper.webp"
+ },
+ {
+  "id": "mygo-sukima",
+  "title": "Sukima",
+  "jp": "素寄曲",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Sukima.webp"
+ },
+ {
+  "id": "mygo-sunday",
+  "title": "Sunday",
+  "jp": "騒混出",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Sunday.webp"
+ },
+ {
+  "id": "mugendai-mewtype-tearjerker",
+  "title": "TearJerker",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/TearJerker.webp"
+ },
+ {
+  "id": "poppin-party-totteoki-answer",
+  "title": "Totteoki Answer",
+  "jp": "とっておきAnswer",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Totteoki Answer.webp"
+ },
+ {
+  "id": "mugendai-mewtype-toushindai-unlimited",
+  "title": "Toushindai Unlimited",
+  "jp": "等身大あんりみてっど",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Toushindai Unlimited.webp"
+ },
+ {
+  "id": "mugendai-mewtype-uchuu-no-fushigi",
+  "title": "Uchuu no Fushigi",
+  "jp": "うちゅうのふしぎ",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Uchuu no Fushigi.webp"
+ },
+ {
+  "id": "mugendai-mewtype-yume-wa-true-end",
+  "title": "Yume wa True End!",
+  "jp": "夢はトゥルーエンド！",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Yume wa True End!.webp"
  }
 ]
