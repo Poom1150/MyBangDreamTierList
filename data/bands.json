@@ -82,5 +82,12 @@
   "color": "#99aa55",
   "icon": "assets/bands/band_millsage.webp",
   "mono": "ms"
+ },
+ {
+  "name": "Other & Collaborations",
+  "id": "other",
+  "color": "#aa99dd",
+  "icon": "",
+  "mono": "★"
  }
 ]

@@ -3638,5 +3638,429 @@
   "band": "mewtype",
   "variant": false,
   "file": "covers/Mugendai Mewtype/Yume wa True End!.webp"
+ },
+ {
+  "id": "other-collaborations-doki-doki-sing-out",
+  "title": "Doki-Doki Sing Out!",
+  "jp": "どきどきSING OUT!",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Doki-Doki Sing Out!.png"
+ },
+ {
+  "id": "other-collaborations-hanazono-electric-guitar",
+  "title": "Hanazono Electric Guitar!!!",
+  "jp": "花園電気ギター！！！",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Hanazono Electric Guitar!!!.png"
+ },
+ {
+  "id": "other-collaborations-chocolate-bass-recipe",
+  "title": "Chocolate Bass Recipe",
+  "jp": "チョコレイトの低音レシピ",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Chocolate Bass Recipe.png"
+ },
+ {
+  "id": "other-collaborations-a-distant-heartbeat",
+  "title": "A Distant Heartbeat",
+  "jp": "遠い音楽～ハートビート～",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/A Distant Heartbeat.png"
+ },
+ {
+  "id": "other-collaborations-i-i-never-said-love",
+  "title": "I-I Never Said Love!",
+  "jp": "す、好きなんかじゃない！",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/I-I Never Said Love!.png"
+ },
+ {
+  "id": "other-collaborations-quintuple-smile",
+  "title": "Quintuple☆Smile",
+  "jp": "クインティプル☆すまいる",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Quintuple☆Smile.png"
+ },
+ {
+  "id": "other-collaborations-pico-papi-girls-band-party-pico",
+  "title": "Pico! Papi! Girls Band Party! PICO!!!",
+  "jp": "ピコっと！パピっと！！ガルパ☆ピコ！！！",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Pico! Papi! Girls Band Party! PICO!!!.png"
+ },
+ {
+  "id": "other-collaborations-you-re-not-alone",
+  "title": "You're Not Alone",
+  "jp": "ひとりじゃないんだから",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/You're Not Alone.png"
+ },
+ {
+  "id": "other-collaborations-twinkle-circle",
+  "title": "TWiNKLE CiRCLE",
+  "jp": "TWiNKLE CiRCLE",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/TWiNKLE CiRCLE.png"
+ },
+ {
+  "id": "other-collaborations-one-extra-large-garupa-pico",
+  "title": "One Extra Large! Garupa☆Pico",
+  "jp": "大盛り一丁！ガルパ☆ピコ",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/One Extra Large! Garupa☆Pico.png"
+ },
+ {
+  "id": "other-collaborations-final-phase",
+  "title": "[原曲] final phase",
+  "jp": "[原曲] final phase",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/final phase.png"
+ },
+ {
+  "id": "other-collaborations-kizunairo-no-ensemble",
+  "title": "Kizunairo no Ensemble",
+  "jp": "絆色のアンサンブル",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Kizunairo no Ensemble.png"
+ },
+ {
+  "id": "other-collaborations-kyouen-red-violet",
+  "title": "Kyouen Red×Violet",
+  "jp": "競宴Red×Violet",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Kyouen Red×Violet.png"
+ },
+ {
+  "id": "other-collaborations-rashapeople",
+  "title": "RASHAPEOPLE!",
+  "jp": "ラスハピーポー！",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/RASHAPEOPLE!.png"
+ },
+ {
+  "id": "other-collaborations-picotarumono-fever",
+  "title": "Picotarumono Fever!",
+  "jp": "ピコたるもの、ふぃーばー！",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Picotarumono Fever!.png"
+ },
+ {
+  "id": "other-collaborations-nakana-ina-kanai",
+  "title": "Nakana iNa kanai",
+  "jp": "ナカナ イナ カナイ",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Nakana iNa kanai.png"
+ },
+ {
+  "id": "other-collaborations-yuushou-feat-afterglow",
+  "title": "Yuushou feat.Afterglow",
+  "jp": "優勝 feat.Afterglow",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Yuushou feat.Afterglow.png"
+ },
+ {
+  "id": "other-collaborations-luminous-once-more-collab-ver",
+  "title": "Luminous Once More (Collab ver.)",
+  "jp": "もういちど ルミナス（コラボver）",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/Luminous Once More (Collab ver.).png"
+ },
+ {
+  "id": "other-collaborations-catastrophe-banquet",
+  "title": "CATASTROPHE BANQUET",
+  "jp": "CATASTROPHE BANQUET",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/CATASTROPHE BANQUET.png"
+ },
+ {
+  "id": "other-collaborations-circle-thanks-music",
+  "title": "CiRCLE THANKS MUSiC♪",
+  "jp": "CiRCLE THANKS MUSiC♪",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/CiRCLE THANKS MUSiC♪.png"
+ },
+ {
+  "id": "other-collaborations-full-circle-thanks-music",
+  "title": "[FULL] CiRCLE THANKS MUSiC♪",
+  "jp": "[FULL] CiRCLE THANKS MUSiC♪",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/CiRCLE THANKS MUSiC♪ [variant].png"
+ },
+ {
+  "id": "other-collaborations-freedom",
+  "title": "Freedom",
+  "jp": "Freedom",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Freedom.png"
+ },
+ {
+  "id": "other-collaborations-see-you-to-each-of-our-tomorrows",
+  "title": "See you! ~To Each of Our Tomorrows~",
+  "jp": "See you! 〜それぞれの明日へ〜",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/See you! ~To Each of Our Tomorrows~.png"
+ },
+ {
+  "id": "other-collaborations-hanayobukoe",
+  "title": "Hanayobukoe",
+  "jp": "花呼ぶ声",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Hanayobukoe.png"
+ },
+ {
+  "id": "other-collaborations-my-poppin-days-for-seeking-glitter",
+  "title": "My Poppin' Days for Seeking Glitter",
+  "jp": "私色きらめき日和",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/My Poppin' Days for Seeking Glitter.png"
+ },
+ {
+  "id": "other-collaborations-yuushou-feat-afterglow-2",
+  "title": "Yuushou feat.Afterglow",
+  "jp": "優勝 feat.Afterglow",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Yuushou feat.Afterglow [528].png"
+ },
+ {
+  "id": "other-collaborations-be-born",
+  "title": "Be born",
+  "jp": "Be born",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Be born.png"
+ },
+ {
+  "id": "other-collaborations-good-bye",
+  "title": "good bye",
+  "jp": "グッド・バイ",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/good bye.png"
+ },
+ {
+  "id": "other-collaborations-aien-jihen",
+  "title": "Aien Jihen",
+  "jp": "合縁事変",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Aien Jihen.png"
+ },
+ {
+  "id": "other-collaborations-mayoiuta-parallel-ver",
+  "title": "Mayoiuta (Parallel Ver.)",
+  "jp": "迷星叫(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/Mayoiuta (Parallel Ver.).png"
+ },
+ {
+  "id": "other-collaborations-markarian-s-chain",
+  "title": "Markarian's Chain",
+  "jp": "マルカリアンチェイン",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Markarian's Chain.png"
+ },
+ {
+  "id": "other-collaborations-blessing-chord-parallel-ver",
+  "title": "Blessing Chord (Parallel Ver.)",
+  "jp": "Blessing Chord(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/Blessing Chord (Parallel Ver.).png"
+ },
+ {
+  "id": "other-collaborations-you-re-not-alone-parallel-ver",
+  "title": "You're Not Alone (Parallel Ver.)",
+  "jp": "ひとりじゃないんだから(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/You're Not Alone (Parallel Ver.).png"
+ },
+ {
+  "id": "other-collaborations-orchestra-of-smiles-parallel-ver",
+  "title": "Orchestra Of Smiles! (Parallel Ver.)",
+  "jp": "えがおのオーケストラっ！(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/Orchestra Of Smiles! (Parallel Ver.).png"
+ },
+ {
+  "id": "other-collaborations-limited-time-special-pico-papi-girls-ba",
+  "title": "[LIMITED TIME SPECIAL] Pico! Papi! Girls Band Party! PICO!!!",
+  "jp": "[期間限定 SPECIAL]ピコっと！パピっと！！ガルパ☆ピコ！！！",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/Pico! Papi! Girls Band Party! PICO!!! [variant].png"
+ },
+ {
+  "id": "other-collaborations-snowflakes-smile-ephemerally",
+  "title": "Snowflakes Smile Ephemerally",
+  "jp": "雪華は無常に微笑む",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Snowflakes Smile Ephemerally.png"
+ },
+ {
+  "id": "other-collaborations-on-your-new-journey-parallel-ver",
+  "title": "On Your New Journey (Parallel Ver.)",
+  "jp": "走り始めたばかりのキミに(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/On Your New Journey (Parallel Ver.).png"
+ },
+ {
+  "id": "other-collaborations-flame-of-hope-parallel-ver",
+  "title": "flame of hope (Parallel Ver.)",
+  "jp": "flame of hope(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/flame of hope (Parallel Ver.).png"
+ },
+ {
+  "id": "other-collaborations-theme-of-ganso-bang-dream-chan",
+  "title": "Theme of GANSO! BanG Dream Chan",
+  "jp": "元祖！バンドリちゃんのテーマ",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Theme of GANSO! BanG Dream Chan.png"
+ },
+ {
+  "id": "other-collaborations-singer",
+  "title": "Singer",
+  "jp": "Singer",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Singer.png"
+ },
+ {
+  "id": "other-collaborations-teotatake",
+  "title": "TEOTATAKE",
+  "jp": "手を叩け今ここで祈るだけ願うだけ",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/TEOTATAKE.png"
+ },
+ {
+  "id": "other-collaborations-kyu-mai-flower-parallel-ver",
+  "title": "Kyu～Mai＊Flower (Parallel Ver.)",
+  "jp": "きゅ〜まい＊flower(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/Kyu～Mai＊Flower (Parallel Ver.).png"
+ },
+ {
+  "id": "other-collaborations-determination-symphony-parallel-ver",
+  "title": "Determination Symphony (Parallel Ver.)",
+  "jp": "Determination Symphony(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/Determination Symphony (Parallel Ver.).png"
+ },
+ {
+  "id": "other-collaborations-passionate-starmine-parallel-ver",
+  "title": "Passionate Starmine (Parallel Ver.)",
+  "jp": "熱色スターマイン(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/Passionate Starmine (Parallel Ver.).png"
+ },
+ {
+  "id": "other-collaborations-mystic-light-quest",
+  "title": "Mystic Light Quest",
+  "jp": "Mystic Light Quest",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Mystic Light Quest.png"
+ },
+ {
+  "id": "other-collaborations-wonder-night-land",
+  "title": "Wonder Night Land",
+  "jp": "Wonder Night Land",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Wonder Night Land.png"
+ },
+ {
+  "id": "other-collaborations-comic-panic-parallel-ver",
+  "title": "COMIC PANIC!!! (Parallel ver.)",
+  "jp": "COMIC PANIC!!!(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/COMIC PANIC!!! (Parallel ver.).png"
+ },
+ {
+  "id": "other-collaborations-blazing-bonfire-parallel-ver",
+  "title": "Blazing Bonfire! (Parallel ver.)",
+  "jp": "灼熱 Bonfire!(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/Blazing Bonfire! (Parallel ver.).png"
+ },
+ {
+  "id": "other-collaborations-tokimeki-experience-tsukishima-marina-v",
+  "title": "Tokimeki Experience! (Tsukishima Marina ver.) ",
+  "jp": "ときめきエクスペリエンス！ (月島まりなver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/Tokimeki Experience! (Tsukishima Marina ver.).png"
+ },
+ {
+  "id": "other-collaborations-tokimeki-experience-tsukishima-marina-v-2",
+  "title": "Tokimeki Experience! (Tsukishima Marina ver.) ",
+  "jp": "ときめきエクスペリエンス！ (月島まりなver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/Tokimeki Experience! (Tsukishima Marina ver.) [790].png"
+ },
+ {
+  "id": "other-collaborations-hello-wink-ver",
+  "title": "Hello! Wink!(パラレルver.)",
+  "jp": "Hello! Wink!(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/Hello! Wink!(パラレルver.).png"
+ },
+ {
+  "id": "other-collaborations-see-the-world",
+  "title": "See the world",
+  "jp": "",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/See the world.png"
+ },
+ {
+  "id": "other-collaborations-ameagari-no-yume",
+  "title": "Ameagari no Yume",
+  "jp": "",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Ameagari no Yume.jpg"
  }
 ]

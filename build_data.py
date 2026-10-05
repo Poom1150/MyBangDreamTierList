@@ -21,6 +21,7 @@ BANDS = [
     ("Mugendai Mewtype", "mewtype", "#ee6699", "assets/bands/band_mewtype.webp", "MM"),
     ("Ikka Dumb Rock!", "ikka", "#ff9933", "assets/bands/band_ikka.webp", "IDR"),
     ("millsage", "millsage", "#99aa55", "assets/bands/band_millsage.webp", "ms"),
+    ("Other & Collaborations", "other", "#aa99dd", "", "★"),
 ]
 bands = [{"name": n, "id": i, "color": c, "icon": ic, "mono": m} for n, i, c, ic, m in BANDS]
 band_id = {b[0]: b[1] for b in BANDS}
