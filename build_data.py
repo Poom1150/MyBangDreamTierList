@@ -21,17 +21,14 @@ BANDS = [
     ("Mugendai Mewtype", "mewtype", "#ee6699", "", "MM"),
     ("Ikka Dumb Rock!", "ikka", "#ff9933", "", "IDR"),
     ("millsage", "millsage", "#99aa55", "", "ms"),
-    ("Glitter Green", "glitter", "#44cc66", "", "GG"),
-    ("CRYCHIC", "crychic", "#7788aa", "", "CR"),
-    ("sumimi", "sumimi", "#cc88cc", "", "sm"),
-    ("CHiSPA", "chispa", "#bb7744", "", "CH"),
-    ("Other & Collaborations", "other", "#aa99dd", "", "★"),
 ]
 bands = [{"name": n, "id": i, "color": c, "icon": ic, "mono": m} for n, i, c, ic, m in BANDS]
 band_id = {b[0]: b[1] for b in BANDS}
 
 songs, seen = [], set()
 for r in rows:
+    if r['band'] not in band_id:
+        continue
     rel = r['file'].replace(chr(92), '/')
     if not os.path.exists(os.path.join(ROOT, 'covers', rel)):
         print('MISSING', rel)

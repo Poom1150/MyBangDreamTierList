@@ -82,40 +82,5 @@
   "color": "#99aa55",
   "icon": "",
   "mono": "ms"
- },
- {
-  "name": "Glitter Green",
-  "id": "glitter",
-  "color": "#44cc66",
-  "icon": "",
-  "mono": "GG"
- },
- {
-  "name": "CRYCHIC",
-  "id": "crychic",
-  "color": "#7788aa",
-  "icon": "",
-  "mono": "CR"
- },
- {
-  "name": "sumimi",
-  "id": "sumimi",
-  "color": "#cc88cc",
-  "icon": "",
-  "mono": "sm"
- },
- {
-  "name": "CHiSPA",
-  "id": "chispa",
-  "color": "#bb7744",
-  "icon": "",
-  "mono": "CH"
- },
- {
-  "name": "Other & Collaborations",
-  "id": "other",
-  "color": "#aa99dd",
-  "icon": "",
-  "mono": "★"
  }
 ]
