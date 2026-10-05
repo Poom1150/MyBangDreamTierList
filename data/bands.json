@@ -1,0 +1,121 @@
+[
+ {
+  "name": "Poppin'Party",
+  "id": "popipa",
+  "color": "#ff3377",
+  "icon": "assets/bands/band_1.svg",
+  "mono": "PP"
+ },
+ {
+  "name": "Afterglow",
+  "id": "afterglow",
+  "color": "#e23344",
+  "icon": "assets/bands/band_2.svg",
+  "mono": "AG"
+ },
+ {
+  "name": "Pastel Palettes",
+  "id": "pasupare",
+  "color": "#33ddaa",
+  "icon": "assets/bands/band_4.svg",
+  "mono": "PP"
+ },
+ {
+  "name": "Roselia",
+  "id": "roselia",
+  "color": "#3344aa",
+  "icon": "assets/bands/band_5.svg",
+  "mono": "R"
+ },
+ {
+  "name": "Hello, Happy World!",
+  "id": "harohapi",
+  "color": "#ffcc11",
+  "icon": "assets/bands/band_3.svg",
+  "mono": "HHW"
+ },
+ {
+  "name": "Morfonica",
+  "id": "morfonica",
+  "color": "#33aaff",
+  "icon": "assets/bands/band_21.svg",
+  "mono": "M"
+ },
+ {
+  "name": "RAISE A SUILEN",
+  "id": "ras",
+  "color": "#22cccc",
+  "icon": "assets/bands/band_18.svg",
+  "mono": "RAS"
+ },
+ {
+  "name": "MyGO!!!!!",
+  "id": "mygo",
+  "color": "#3388bb",
+  "icon": "assets/bands/band_45.svg",
+  "mono": "MyGO"
+ },
+ {
+  "name": "Ave Mujica",
+  "id": "ave",
+  "color": "#881144",
+  "icon": "",
+  "mono": "AM"
+ },
+ {
+  "name": "Mugendai Mewtype",
+  "id": "mewtype",
+  "color": "#ee6699",
+  "icon": "",
+  "mono": "MM"
+ },
+ {
+  "name": "Ikka Dumb Rock!",
+  "id": "ikka",
+  "color": "#ff9933",
+  "icon": "",
+  "mono": "IDR"
+ },
+ {
+  "name": "millsage",
+  "id": "millsage",
+  "color": "#99aa55",
+  "icon": "",
+  "mono": "ms"
+ },
+ {
+  "name": "Glitter Green",
+  "id": "glitter",
+  "color": "#44cc66",
+  "icon": "",
+  "mono": "GG"
+ },
+ {
+  "name": "CRYCHIC",
+  "id": "crychic",
+  "color": "#7788aa",
+  "icon": "",
+  "mono": "CR"
+ },
+ {
+  "name": "sumimi",
+  "id": "sumimi",
+  "color": "#cc88cc",
+  "icon": "",
+  "mono": "sm"
+ },
+ {
+  "name": "CHiSPA",
+  "id": "chispa",
+  "color": "#bb7744",
+  "icon": "",
+  "mono": "CH"
+ },
+ {
+  "name": "Other & Collaborations",
+  "id": "other",
+  "color": "#aa99dd",
+  "icon": "",
+  "mono": "★"
+ }
+]

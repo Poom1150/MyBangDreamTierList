@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0e0f1a" />
+  <meta name="description" content="Rank your ten favorite BanG Dream! original songs, then save or share the board." />
+  <title>Song Top 10 | My BanG Dream Tier List</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e0f1a'/%3E%3Ctext x='16' y='23' font-size='20' font-weight='700' text-anchor='middle' fill='%23f4c95d' font-family='sans-serif'%3E1%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles/main.css" />
+  <script src="./scripts/app.js" type="module"></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">10</span>
+        <div>
+          <h1>Song Top 10</h1>
+          <p>Rank your favorite BanG Dream! originals. Number one gets the spotlight.</p>
+        </div>
+      </div>
+      <label class="nick">
+        <span>Your name</span>
+        <input id="nickname" type="text" maxlength="24" placeholder="Enter a name" autocomplete="nickname" />
+      </label>
+    </div>
+  </header>
+
+  <main>
+    <section class="stage" aria-labelledby="board-title">
+      <div class="stage-head">
+        <h2 id="board-title">My ranking <small id="board-count">0 / 10</small></h2>
+        <div class="actions">
+          <button id="btn-clear" class="btn ghost" type="button">Clear all</button>
+          <button id="btn-share" class="btn ghost" type="button">Copy share link</button>
+          <button id="btn-save" class="btn primary" type="button" disabled>Save as image</button>
+        </div>
+      </div>
+      <p class="hint" id="hint">Tap a song below to place it in the next free rank. Tap a rank first to choose where it goes. Drag to reorder.</p>
+      <div class="board" id="board" aria-live="polite"></div>
+    </section>
+
+    <section class="library" aria-labelledby="lib-title">
+      <div class="lib-head">
+        <h2 id="lib-title">Song library <small id="lib-count"></small></h2>
+        <label class="search">
+          <span class="sr-only">Search songs</span>
+          <input id="search" type="search" placeholder="Search by title (press / )" autocomplete="off" />
+        </label>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Filter by band"></div>
+      <div class="grid" id="grid"></div>
+      <p class="empty" id="empty" hidden>No songs match that search.</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>Unofficial fan project. BanG Dream! and all related artwork are &copy; Bushiroad / BanG Dream! Project. Cover images and band icons are used for personal, non-commercial fan purposes.</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

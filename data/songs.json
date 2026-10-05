@@ -1,0 +1,3954 @@
+[
+ {
+  "id": "poppin-party-yes-bang-dream",
+  "title": "Yes! BanG_Dream!",
+  "jp": "Yes! BanG_Dream!",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Yes! BanG_Dream!.webp"
+ },
+ {
+  "id": "poppin-party-star-beat",
+  "title": "Star Beat!",
+  "jp": "STAR BEAT!〜ホシノコドウ〜",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Star Beat!.webp"
+ },
+ {
+  "id": "poppin-party-poppin-shuffle",
+  "title": "Poppin' Shuffle",
+  "jp": "ぽっぴん’しゃっふる",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Poppin' Shuffle.webp"
+ },
+ {
+  "id": "poppin-party-tear-drops",
+  "title": "Tear Drops",
+  "jp": "ティアドロップス",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Tear Drops.webp"
+ },
+ {
+  "id": "poppin-party-summer-skies-sun-sun-seven",
+  "title": "Summer Skies & Sun! Sun! Seven!",
+  "jp": "夏空 SUN! SUN! SEVEN!",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Summer Skies & Sun! Sun! Seven!.webp"
+ },
+ {
+  "id": "poppin-party-on-your-new-journey",
+  "title": "On Your New Journey",
+  "jp": "走り始めたばかりのキミに",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/On Your New Journey.webp"
+ },
+ {
+  "id": "poppin-party-1000-crying-skies",
+  "title": "1000 Crying Skies",
+  "jp": "1000回潤んだ空",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/1000 Crying Skies.webp"
+ },
+ {
+  "id": "poppin-party-tokimeki-experience",
+  "title": "Tokimeki Experience!",
+  "jp": "ときめきエクスペリエンス！",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Tokimeki Experience!.webp"
+ },
+ {
+  "id": "poppin-party-sparkling-dreaming-sing-girls",
+  "title": "Sparkling Dreaming ~ Sing Girls ~",
+  "jp": "キラキラだとか夢だとか ～Sing Girls～",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Sparkling Dreaming ~ Sing Girls ~.webp"
+ },
+ {
+  "id": "afterglow-that-is-how-i-roll",
+  "title": "That Is How I Roll!",
+  "jp": "That Is How I Roll!",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/That Is How I Roll!.webp"
+ },
+ {
+  "id": "afterglow-true-color",
+  "title": "True Color",
+  "jp": "True color",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/True Color.webp"
+ },
+ {
+  "id": "afterglow-scarlet-sky",
+  "title": "Scarlet Sky",
+  "jp": "Scarlet Sky",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Scarlet Sky.webp"
+ },
+ {
+  "id": "roselia-black-shout",
+  "title": "BLACK SHOUT",
+  "jp": "BLACK SHOUT",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/BLACK SHOUT.webp"
+ },
+ {
+  "id": "roselia-re-birth-day",
+  "title": "Re:birth Day",
+  "jp": "Re:birth day",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Re_birth Day.webp"
+ },
+ {
+  "id": "roselia-louder",
+  "title": "LOUDER",
+  "jp": "LOUDER",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/LOUDER.webp"
+ },
+ {
+  "id": "pastel-palettes-shuwarin-dreaming",
+  "title": "Shuwarin☆Dreaming",
+  "jp": "しゅわりん☆どり〜みん",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Shuwarin☆Dreaming.webp"
+ },
+ {
+  "id": "pastel-palettes-pasupa-revolutions",
+  "title": "Pasupa Revolutions☆",
+  "jp": "パスパレボリューションず☆",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Pasupa Revolutions☆.webp"
+ },
+ {
+  "id": "pastel-palettes-hanamaru-andante",
+  "title": "Hanamaru◎Andante",
+  "jp": "はなまる◎アンダンテ",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Hanamaru◎Andante.webp"
+ },
+ {
+  "id": "hello-happy-world-orchestra-of-smiles",
+  "title": "Orchestra Of Smiles!",
+  "jp": "えがおのオーケストラっ！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Orchestra Of Smiles!.webp"
+ },
+ {
+  "id": "hello-happy-world-happiness-happy-magical",
+  "title": "Happiness! Happy Magical♪",
+  "jp": "ハピネスっ！ハピィーマジカルっ♪",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Happiness! Happy Magical♪.webp"
+ },
+ {
+  "id": "hello-happy-world-goka-gokai-phantom-thief",
+  "title": "Goka! Gokai!? Phantom Thief!",
+  "jp": "ゴーカ！ごーかい！？ファントムシーフ！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Goka! Gokai!_ Phantom Thief!.webp"
+ },
+ {
+  "id": "poppin-party-happy-happy-party",
+  "title": "Happy Happy Party!",
+  "jp": "Happy Happy Party！",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Happy Happy Party!.webp"
+ },
+ {
+  "id": "glitter-green-don-t-be-afraid",
+  "title": "Don't Be Afraid!",
+  "jp": "Don’t be afraid!",
+  "band": "glitter",
+  "variant": false,
+  "file": "covers/Glitter Green/Don't Be Afraid!.png"
+ },
+ {
+  "id": "poppin-party-keep-on-moving",
+  "title": "Keep On Moving!",
+  "jp": "前へススメ！",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Keep On Moving!.webp"
+ },
+ {
+  "id": "poppin-party-sunflower-dreams",
+  "title": "Sunflower Dreams",
+  "jp": "夢みるSunflower",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Sunflower Dreams.webp"
+ },
+ {
+  "id": "poppin-party-your-gift-to-me",
+  "title": "Your Gift To Me",
+  "jp": "キミにもらったもの",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Your Gift To Me.webp"
+ },
+ {
+  "id": "other-collaborations-doki-doki-sing-out",
+  "title": "Doki-Doki Sing Out!",
+  "jp": "どきどきSING OUT!",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Doki-Doki Sing Out!.png"
+ },
+ {
+  "id": "roselia-sunkissed-rhodonite",
+  "title": "Sunkissed Rhodonite",
+  "jp": "陽だまりロードナイト",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Sunkissed Rhodonite.webp"
+ },
+ {
+  "id": "roselia-passionate-starmine",
+  "title": "Passionate Starmine",
+  "jp": "熱色スターマイン",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Passionate Starmine.webp"
+ },
+ {
+  "id": "other-collaborations-hanazono-electric-guitar",
+  "title": "Hanazono Electric Guitar!!!",
+  "jp": "花園電気ギター！！！",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Hanazono Electric Guitar!!!.png"
+ },
+ {
+  "id": "other-collaborations-chocolate-bass-recipe",
+  "title": "Chocolate Bass Recipe",
+  "jp": "チョコレイトの低音レシピ",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Chocolate Bass Recipe.png"
+ },
+ {
+  "id": "pastel-palettes-yura-yura-ring-dong-dance",
+  "title": "Yura-Yura Ring-Dong-Dance",
+  "jp": "ゆら・ゆらRing-Dong-Dance",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Yura-Yura Ring-Dong-Dance.webp"
+ },
+ {
+  "id": "poppin-party-boom-through-summer",
+  "title": "Boom Through Summer!",
+  "jp": "夏のドーン！",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Boom Through Summer!.webp"
+ },
+ {
+  "id": "poppin-party-if-in-august",
+  "title": "If In August",
+  "jp": "八月のif",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/If In August.webp"
+ },
+ {
+  "id": "afterglow-hey-day-capriccio",
+  "title": "Hey-day Capriccio",
+  "jp": "Hey-day狂騒曲（カプリチオ）",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Hey-day Capriccio.webp"
+ },
+ {
+  "id": "hello-happy-world-yappy-school-carnival",
+  "title": "YAPPY! SCHOOL CARNIVAL☆彡",
+  "jp": "YAPPY！SCHOOL CARNIVAL☆彡",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/YAPPY! SCHOOL CARNIVAL☆彡.webp"
+ },
+ {
+  "id": "hello-happy-world-worldwide-treasure",
+  "title": "Worldwide Treasure!",
+  "jp": "せかいのっびのびトレジャー！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Worldwide Treasure!.webp"
+ },
+ {
+  "id": "pastel-palettes-survivor-never-give-up",
+  "title": "SURVIVOR Never Give Up!",
+  "jp": "SURVIVOR ねばーぎぶあっぷ！",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/SURVIVOR Never Give Up!.webp"
+ },
+ {
+  "id": "poppin-party-time-lapse",
+  "title": "Time Lapse",
+  "jp": "Time Lapse",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Time Lapse.webp"
+ },
+ {
+  "id": "other-collaborations-a-distant-heartbeat",
+  "title": "A Distant Heartbeat",
+  "jp": "遠い音楽～ハートビート～",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/A Distant Heartbeat.png"
+ },
+ {
+  "id": "roselia-heroic-advent",
+  "title": "-HEROIC ADVENT-",
+  "jp": "－HEROIC ADVENT－",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/-HEROIC ADVENT-.webp"
+ },
+ {
+  "id": "roselia-determination-symphony",
+  "title": "Determination Symphony",
+  "jp": "Determination Symphony",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Determination Symphony.webp"
+ },
+ {
+  "id": "other-collaborations-i-i-never-said-love",
+  "title": "I-I Never Said Love!",
+  "jp": "す、好きなんかじゃない！",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/I-I Never Said Love!.png"
+ },
+ {
+  "id": "other-collaborations-quintuple-smile",
+  "title": "Quintuple☆Smile",
+  "jp": "クインティプル☆すまいる",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Quintuple☆Smile.png"
+ },
+ {
+  "id": "poppin-party-our-christmas-song",
+  "title": "Our Christmas Song",
+  "jp": "クリスマスのうた",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Our Christmas Song.webp"
+ },
+ {
+  "id": "poppin-party-b-o-f",
+  "title": "B.O.F",
+  "jp": "B.O.F",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/B.O.F.webp"
+ },
+ {
+  "id": "afterglow-y-o-l-o",
+  "title": "Y.O.L.O!!!!!",
+  "jp": "Y.O.L.O！！！！！",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Y.O.L.O!!!!!.webp"
+ },
+ {
+  "id": "hello-happy-world-wacha-mocha-pettan-march",
+  "title": "Wacha-Mocha Pettan March",
+  "jp": "わちゃ・もちゃ・ぺったん行進曲",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Wacha-Mocha Pettan March.webp"
+ },
+ {
+  "id": "poppin-party-circling",
+  "title": "CiRCLING",
+  "jp": "CiRCLING",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/CiRCLING.webp"
+ },
+ {
+  "id": "roselia-oneness",
+  "title": "ONENESS",
+  "jp": "ONENESS",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/ONENESS.webp"
+ },
+ {
+  "id": "roselia-opera-of-the-wasteland",
+  "title": "Opera of the wasteland",
+  "jp": "Opera of the wasteland",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Opera of the wasteland.webp"
+ },
+ {
+  "id": "pastel-palettes-luminous-once-more",
+  "title": "Luminous Once More",
+  "jp": "もういちど ルミナス",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Luminous Once More.webp"
+ },
+ {
+  "id": "pastel-palettes-wonderland-girl",
+  "title": "Wonderland Girl",
+  "jp": "Wonderland Girl",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Wonderland Girl.webp"
+ },
+ {
+  "id": "roselia-our-path",
+  "title": "Our Path",
+  "jp": "軌跡",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Our Path.webp"
+ },
+ {
+  "id": "poppin-party-light-delight",
+  "title": "Light Delight",
+  "jp": "Light Delight",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Light Delight.webp"
+ },
+ {
+  "id": "afterglow-jamboree-journey",
+  "title": "Jamboree!Journey!",
+  "jp": "Jamboree!Journey!",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Jamboree!Journey!.webp"
+ },
+ {
+  "id": "poppin-party-choco-cornet-love",
+  "title": "Choco Cornet Love",
+  "jp": "私の心はチョココロネ",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Choco Cornet Love.webp"
+ },
+ {
+  "id": "roselia-neo-aspect",
+  "title": "Neo-Aspect",
+  "jp": "Neo-Aspect",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Neo-Aspect.webp"
+ },
+ {
+  "id": "roselia-legendary",
+  "title": "Legendary",
+  "jp": "Legendary",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Legendary.webp"
+ },
+ {
+  "id": "afterglow-comic-panic",
+  "title": "COMIC PANIC!!!",
+  "jp": "COMIC PANIC!!!",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/COMIC PANIC!!!.webp"
+ },
+ {
+  "id": "poppin-party-double-rainbow",
+  "title": "Double Rainbow",
+  "jp": "二重の虹(ダブル レインボウ)",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Double Rainbow.webp"
+ },
+ {
+  "id": "hello-happy-world-fuwa-fuwa-dreamy-sandwich",
+  "title": "Fuwa Fuwa ☆ Dreamy Sandwich",
+  "jp": "ふわふわ☆ゆめいろサンドイッチ",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Fuwa Fuwa ☆ Dreamy Sandwich.webp"
+ },
+ {
+  "id": "pastel-palettes-unite-from-a-to-z",
+  "title": "Unite! From A To Z",
+  "jp": "天下トーイツA to Z☆",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Unite! From A To Z.webp"
+ },
+ {
+  "id": "poppin-party-excellent-hey-let-s-go",
+  "title": "Excellent (Hey, Let's Go!)",
+  "jp": "最高(さあ行こう)！",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Excellent (Hey, Let's Go!).webp"
+ },
+ {
+  "id": "other-collaborations-pico-papi-girls-band-party-pico",
+  "title": "Pico! Papi! Girls Band Party! PICO!!!",
+  "jp": "ピコっと！パピっと！！ガルパ☆ピコ！！！",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Pico! Papi! Girls Band Party! PICO!!!.png"
+ },
+ {
+  "id": "hello-happy-world-high-five-adventure",
+  "title": "High Five ∞ Adventure",
+  "jp": "ハイファイブ∞あどべんちゃっ",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/High Five ∞ Adventure.webp"
+ },
+ {
+  "id": "roselia-sanctuary",
+  "title": "Sanctuary",
+  "jp": "Sanctuary",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Sanctuary.webp"
+ },
+ {
+  "id": "poppin-party-girl-s-code",
+  "title": "Girl's Code",
+  "jp": "ガールズコード",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Girl's Code.webp"
+ },
+ {
+  "id": "afterglow-tied-to-the-skies",
+  "title": "Tied to the Skies",
+  "jp": "ツナグ、ソラモヨウ",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Tied to the Skies.webp"
+ },
+ {
+  "id": "other-collaborations-you-re-not-alone",
+  "title": "You're Not Alone",
+  "jp": "ひとりじゃないんだから",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/You're Not Alone.png"
+ },
+ {
+  "id": "pastel-palettes-zettai-sengen-recital",
+  "title": "Zettai Sengen ~Recital~",
+  "jp": "ゼッタイ宣言～Recital～",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Zettai Sengen ~Recital~.webp"
+ },
+ {
+  "id": "roselia-r",
+  "title": "R",
+  "jp": "R",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/R.webp"
+ },
+ {
+  "id": "hello-happy-world-i-need-you",
+  "title": "I need you!",
+  "jp": "キミがいなくちゃっ！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/I need you!.webp"
+ },
+ {
+  "id": "roselia-passionate-anthem",
+  "title": "PASSIONATE ANTHEM",
+  "jp": "PASSIONATE ANTHEM",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/PASSIONATE ANTHEM.webp"
+ },
+ {
+  "id": "poppin-party-home-street",
+  "title": "Home Street",
+  "jp": "Home Street",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Home Street.webp"
+ },
+ {
+  "id": "afterglow-rumbling-memory",
+  "title": "Rumbling Memory",
+  "jp": "ランブリングメモリー",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Rumbling Memory.webp"
+ },
+ {
+  "id": "poppin-party-kizuna-music",
+  "title": "KIZUNA MUSIC♪",
+  "jp": "キズナミュージック♪",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/KIZUNA MUSIC♪.webp"
+ },
+ {
+  "id": "roselia-brave-jewel",
+  "title": "BRAVE JEWEL",
+  "jp": "BRAVE JEWEL",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/BRAVE JEWEL.webp"
+ },
+ {
+  "id": "raise-a-suilen-r-i-o-t",
+  "title": "R・I・O・T",
+  "jp": "R·I·O·T",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/R・I・O・T.webp"
+ },
+ {
+  "id": "roselia-safe-and-sound",
+  "title": "Safe and Sound",
+  "jp": "Safe and Sound",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Safe and Sound.webp"
+ },
+ {
+  "id": "pastel-palettes-days-of-embrace",
+  "title": "DAYS of Embrace♪",
+  "jp": "ぎゅっDAYS♪",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/DAYS of Embrace♪.webp"
+ },
+ {
+  "id": "poppin-party-jumpin",
+  "title": "Jumpin'",
+  "jp": "Jumpin'",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Jumpin'.webp"
+ },
+ {
+  "id": "hello-happy-world-sunny-bright-pikarinrin",
+  "title": "Sunny Bright Pikarinrin♪",
+  "jp": "はれやか すこやか ぴかりんりん♪",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Sunny Bright Pikarinrin♪.webp"
+ },
+ {
+  "id": "roselia-ringing-bloom",
+  "title": "Ringing Bloom",
+  "jp": "Ringing Bloom",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Ringing Bloom.webp"
+ },
+ {
+  "id": "poppin-party-sakura-memories",
+  "title": "SAKURA MEMORIES",
+  "jp": "SAKURA MEMORIES",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/SAKURA MEMORIES.webp"
+ },
+ {
+  "id": "poppin-party-returns",
+  "title": "Returns",
+  "jp": "Returns",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Returns.webp"
+ },
+ {
+  "id": "poppin-party-no-girl-no-cry",
+  "title": "NO GIRL NO CRY",
+  "jp": "NO GIRL NO CRY",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/NO GIRL NO CRY.webp"
+ },
+ {
+  "id": "poppin-party-dreamers-go",
+  "title": "Dreamers Go!",
+  "jp": "Dreamers Go!",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Dreamers Go!.webp"
+ },
+ {
+  "id": "afterglow-on-your-mark",
+  "title": "ON YOUR MARK",
+  "jp": "ON YOUR MARK",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/ON YOUR MARK.webp"
+ },
+ {
+  "id": "afterglow-brand-new-days-same-as-always",
+  "title": "Brand New Days - Same As Always",
+  "jp": "いつも通りのBrand new days",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Brand New Days - Same As Always.webp"
+ },
+ {
+  "id": "pastel-palettes-kyu-mai-flower",
+  "title": "Kyu～Mai＊Flower",
+  "jp": "きゅ〜まい＊flower",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Kyu～Mai＊Flower.webp"
+ },
+ {
+  "id": "roselia-fire-bird",
+  "title": "FIRE BIRD",
+  "jp": "FIRE BIRD",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/FIRE BIRD.webp"
+ },
+ {
+  "id": "hello-happy-world-smiling-singing-a-song",
+  "title": "Smiling & Singing A Song",
+  "jp": "えがお･シング･あ･ソング",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Smiling & Singing A Song.webp"
+ },
+ {
+  "id": "pastel-palettes-pep-meets-step",
+  "title": "Pep Meets Step",
+  "jp": "ワクワクmeetsトリップ",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Pep Meets Step.webp"
+ },
+ {
+  "id": "raise-a-suilen-unstoppable",
+  "title": "UNSTOPPABLE",
+  "jp": "UNSTOPPABLE",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/UNSTOPPABLE.webp"
+ },
+ {
+  "id": "hello-happy-world-smile-x-smile-hyper-smile-power",
+  "title": "Smile x Smile = Hyper Smile Power!",
+  "jp": "にこ×にこ＝ハイパースマイルパワー！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Smile x Smile = Hyper Smile Power!.webp"
+ },
+ {
+  "id": "roselia-promise",
+  "title": "Promise",
+  "jp": "約束",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Promise.webp"
+ },
+ {
+  "id": "poppin-party-anniversary",
+  "title": "Anniversary",
+  "jp": "アニバーサリー",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Anniversary.webp"
+ },
+ {
+  "id": "raise-a-suilen-a-declaration-of",
+  "title": "A DECLARATION OF ×××",
+  "jp": "A DECLARATION OF ×××",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/A DECLARATION OF ×××.webp"
+ },
+ {
+  "id": "afterglow-easy-come-easy-go",
+  "title": "Easy come, Easy go！",
+  "jp": "Easy come, Easy go！",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Easy come, Easy go！.webp"
+ },
+ {
+  "id": "pastel-palettes-hot-hot-sunny-love-summer",
+  "title": "Hot, Hot! Sunny Love☆Summer!",
+  "jp": "あっつあつ 常夏 らぶ☆サマー！",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Hot, Hot! Sunny Love☆Summer!.webp"
+ },
+ {
+  "id": "poppin-party-setsunai-sandglass",
+  "title": "Setsunai Sandglass",
+  "jp": "切ないSandglass",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Setsunai Sandglass.webp"
+ },
+ {
+  "id": "hello-happy-world-cheering-for-the-smile-bouquet",
+  "title": "Cheering for the Smile Bouquet!",
+  "jp": "スマイルブーケで た〜まや〜！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Cheering for the Smile Bouquet!.webp"
+ },
+ {
+  "id": "roselia-unions-road",
+  "title": "“UNIONS” Road",
+  "jp": "“UNIONS” Road",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/“UNIONS” Road.webp"
+ },
+ {
+  "id": "poppin-party-hello-wink",
+  "title": "Hello! Wink!",
+  "jp": "Hello! Wink!",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Hello! Wink!.webp"
+ },
+ {
+  "id": "poppin-party-what-s-the-popipa",
+  "title": "What's the POPIPA!?",
+  "jp": "What's the POPIPA!?",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/What's the POPIPA!_.webp"
+ },
+ {
+  "id": "afterglow-sasanqua",
+  "title": "Sasanqua",
+  "jp": "Sasanqua",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Sasanqua.webp"
+ },
+ {
+  "id": "pastel-palettes-dream-gradient",
+  "title": "Dream Gradient",
+  "jp": "ゆめゆめグラデーション",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Dream Gradient.webp"
+ },
+ {
+  "id": "hello-happy-world-memory-illumination",
+  "title": "Memory Illumination",
+  "jp": "おもいでイルミネーション",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Memory Illumination.webp"
+ },
+ {
+  "id": "poppin-party-initial",
+  "title": "Initial",
+  "jp": "イニシャル",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Initial.webp"
+ },
+ {
+  "id": "poppin-party-white-afternoon",
+  "title": "White Afternoon",
+  "jp": "White Afternoon",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/White Afternoon.webp"
+ },
+ {
+  "id": "poppin-party-straight-through-our-dreams",
+  "title": "Straight Through Our Dreams!",
+  "jp": "夢を撃ち抜く瞬間に！",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Straight Through Our Dreams!.webp"
+ },
+ {
+  "id": "poppin-party-aketara-dream",
+  "title": "Aketara Dream!",
+  "jp": "開けたらDream!",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Aketara Dream!.webp"
+ },
+ {
+  "id": "pastel-palettes-wonderful-sweet",
+  "title": "Wonderful Sweet!",
+  "jp": "Wonderful Sweet!",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Wonderful Sweet!.webp"
+ },
+ {
+  "id": "poppin-party-step-step",
+  "title": "Step×Step!",
+  "jp": "Step×Step！",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Step×Step!.webp"
+ },
+ {
+  "id": "roselia-song-i-am",
+  "title": "Song I am.",
+  "jp": "Song I am.",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Song I am.webp"
+ },
+ {
+  "id": "raise-a-suilen-expose-burn-out",
+  "title": "EXPOSE 'Burn out!!!'",
+  "jp": "EXPOSE ‘Burn out!!!’",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/EXPOSE 'Burn out!!!'.webp"
+ },
+ {
+  "id": "other-collaborations-twinkle-circle",
+  "title": "TWiNKLE CiRCLE",
+  "jp": "TWiNKLE CiRCLE",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/TWiNKLE CiRCLE.png"
+ },
+ {
+  "id": "roselia-break-your-desire",
+  "title": "Break your desire",
+  "jp": "Break your desire",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Break your desire.webp"
+ },
+ {
+  "id": "afterglow-i-love-your-way",
+  "title": "I love your way!",
+  "jp": "I love your way！",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/I love your way!.webp"
+ },
+ {
+  "id": "morfonica-daylight",
+  "title": "Daylight",
+  "jp": "Daylight -デイライト-",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Daylight.webp"
+ },
+ {
+  "id": "morfonica-prelude-to-gold",
+  "title": "Prelude to Gold",
+  "jp": "金色へのプレリュード",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Prelude to Gold.webp"
+ },
+ {
+  "id": "hello-happy-world-we-can-hurray",
+  "title": "We Can☆Hurray!",
+  "jp": "うぃーきゃん☆フレフレっ！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/We Can☆Hurray!.webp"
+ },
+ {
+  "id": "morfonica-bloom-bloom",
+  "title": "Bloom Bloom",
+  "jp": "ブルームブルーム",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Bloom Bloom.webp"
+ },
+ {
+  "id": "pastel-palettes-winking-cheer",
+  "title": "Winking☆Cheer",
+  "jp": "Winking☆Cheer",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Winking☆Cheer.webp"
+ },
+ {
+  "id": "poppin-party-mirai-train",
+  "title": "Mirai Train",
+  "jp": "ミライトレイン",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Mirai Train.webp"
+ },
+ {
+  "id": "roselia-avant-garde-history",
+  "title": "Avant-garde HISTORY",
+  "jp": "Avant-garde HISTORY",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Avant-garde HISTORY.webp"
+ },
+ {
+  "id": "other-collaborations-one-extra-large-garupa-pico",
+  "title": "One Extra Large! Garupa☆Pico",
+  "jp": "大盛り一丁！ガルパ☆ピコ",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/One Extra Large! Garupa☆Pico.png"
+ },
+ {
+  "id": "afterglow-red-red-red",
+  "title": "RED RED RED",
+  "jp": "RED RED RED",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/RED RED RED.webp"
+ },
+ {
+  "id": "roselia-blessing-chord",
+  "title": "Blessing Chord",
+  "jp": "Blessing Chord",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Blessing Chord.webp"
+ },
+ {
+  "id": "other-collaborations-final-phase",
+  "title": "[原曲] final phase",
+  "jp": "[原曲] final phase",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/_variants/final phase.png"
+ },
+ {
+  "id": "poppin-party-breakthrough",
+  "title": "Breakthrough!",
+  "jp": "Breakthrough!",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Breakthrough!.webp"
+ },
+ {
+  "id": "morfonica-flame-of-hope",
+  "title": "flame of hope",
+  "jp": "flame of hope",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/flame of hope.webp"
+ },
+ {
+  "id": "hello-happy-world-i-found-a-smile",
+  "title": "I found a smile~!",
+  "jp": "えがお、み～っけた！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/I found a smile~!.webp"
+ },
+ {
+  "id": "afterglow-i-knew-it",
+  "title": "I knew it!",
+  "jp": "I knew it!",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/I knew it!.webp"
+ },
+ {
+  "id": "raise-a-suilen-beautiful-birthday",
+  "title": "Beautiful Birthday",
+  "jp": "Beautiful Birthday",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/Beautiful Birthday.webp"
+ },
+ {
+  "id": "raise-a-suilen-nvade-show",
+  "title": "!NVADE SHOW!",
+  "jp": "!NVADE SHOW!",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/!NVADE SHOW!.webp"
+ },
+ {
+  "id": "pastel-palettes-power-of-love",
+  "title": "Power of LOVE!!!",
+  "jp": "Power of LOVE!!!",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Power of LOVE!!!.webp"
+ },
+ {
+  "id": "roselia-zeal-of-proud",
+  "title": "ZEAL of proud",
+  "jp": "ZEAL of proud",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/ZEAL of proud.webp"
+ },
+ {
+  "id": "afterglow-one-of-us",
+  "title": "ONE OF US",
+  "jp": "ONE OF US",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/ONE OF US.webp"
+ },
+ {
+  "id": "poppin-party-photograph",
+  "title": "Photograph",
+  "jp": "Photograph",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Photograph.webp"
+ },
+ {
+  "id": "morfonica-harmony-day",
+  "title": "Harmony Day",
+  "jp": "ハーモニー・デイ",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Harmony Day.webp"
+ },
+ {
+  "id": "raise-a-suilen-mind-of-prominence",
+  "title": "mind of Prominence",
+  "jp": "mind of Prominence",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/mind of Prominence.webp"
+ },
+ {
+  "id": "pastel-palettes-title-idol",
+  "title": "TITLE IDOL",
+  "jp": "TITLE IDOL",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/TITLE IDOL.webp"
+ },
+ {
+  "id": "afterglow-sensenfukoku",
+  "title": "SENSENFUKOKU",
+  "jp": "SENSENFUKOKU",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/SENSENFUKOKU.webp"
+ },
+ {
+  "id": "roselia-keep-heart",
+  "title": "Keep Heart",
+  "jp": "Keep Heart",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Keep Heart.webp"
+ },
+ {
+  "id": "poppin-party-sweets-ban",
+  "title": "Sweets BAN!",
+  "jp": "Sweets BAN!",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Sweets BAN!.webp"
+ },
+ {
+  "id": "hello-happy-world-smile-connection",
+  "title": "Smile Connection!",
+  "jp": "にこにこねくと！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Smile Connection!.webp"
+ },
+ {
+  "id": "raise-a-suilen-outsider-rodeo",
+  "title": "OUTSIDER RODEO",
+  "jp": "OUTSIDER RODEO",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/OUTSIDER RODEO.webp"
+ },
+ {
+  "id": "pastel-palettes-boppin-identity",
+  "title": "Boppin'♪ Identity!",
+  "jp": "るんっ♪てぃてぃー！",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Boppin'♪ Identity!.webp"
+ },
+ {
+  "id": "raise-a-suilen-exist",
+  "title": "EXIST",
+  "jp": "EXIST",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/EXIST.webp"
+ },
+ {
+  "id": "poppin-party-live-beyond",
+  "title": "Live Beyond!!",
+  "jp": "Live Beyond!!",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Live Beyond!!.webp"
+ },
+ {
+  "id": "morfonica-sonorous",
+  "title": "Sonorous",
+  "jp": "Sonorous",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Sonorous.webp"
+ },
+ {
+  "id": "roselia-proud-of-oneself",
+  "title": "Proud of oneself",
+  "jp": "Proud of oneself",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Proud of oneself.webp"
+ },
+ {
+  "id": "roselia-original-call",
+  "title": "Original Call",
+  "jp": "Original Call",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Original Call.webp"
+ },
+ {
+  "id": "roselia-overture",
+  "title": "overtuRe",
+  "jp": "overtuRe",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/overtuRe.webp"
+ },
+ {
+  "id": "raise-a-suilen-domination-to-world",
+  "title": "Domination to world",
+  "jp": "Domination to world",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/Domination to world.webp"
+ },
+ {
+  "id": "afterglow-kanayume",
+  "title": "Kanayume",
+  "jp": "カナユメ",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Kanayume.webp"
+ },
+ {
+  "id": "hello-happy-world-nice-to-meet-you",
+  "title": "Nice to Meet You!",
+  "jp": "ないすみちゅっ！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Nice to Meet You!.webp"
+ },
+ {
+  "id": "roselia-sing-alive",
+  "title": "Sing Alive",
+  "jp": "Sing Alive",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Sing Alive.webp"
+ },
+ {
+  "id": "roselia-sprechchor",
+  "title": "Sprechchor",
+  "jp": "Sprechchor",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Sprechchor.webp"
+ },
+ {
+  "id": "morfonica-secret-dawn",
+  "title": "Secret Dawn",
+  "jp": "Secret Dawn",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Secret Dawn.webp"
+ },
+ {
+  "id": "raise-a-suilen-blazing-bonfire",
+  "title": "Blazing Bonfire!",
+  "jp": "灼熱 Bonfire!",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/Blazing Bonfire!.webp"
+ },
+ {
+  "id": "poppin-party-a-song-no-more",
+  "title": "A Song No More",
+  "jp": "ここから先は歌にならない",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/A Song No More.webp"
+ },
+ {
+  "id": "roselia-singing-ours",
+  "title": "Singing “OURS”",
+  "jp": "Singing “OURS”",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Singing “OURS”.webp"
+ },
+ {
+  "id": "other-collaborations-kizunairo-no-ensemble",
+  "title": "Kizunairo no Ensemble",
+  "jp": "絆色のアンサンブル",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Kizunairo no Ensemble.png"
+ },
+ {
+  "id": "poppin-party-shut-away-in-summer",
+  "title": "Shut Away in Summer",
+  "jp": "夏に閉じこめて",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Shut Away in Summer.webp"
+ },
+ {
+  "id": "other-collaborations-kyouen-red-violet",
+  "title": "Kyouen Red×Violet",
+  "jp": "競宴Red×Violet",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Kyouen Red×Violet.png"
+ },
+ {
+  "id": "afterglow-trouble-joyful",
+  "title": "Trouble Joyful!!",
+  "jp": "Trouble Joyful!!",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Trouble Joyful!!.webp"
+ },
+ {
+  "id": "other-collaborations-rashapeople",
+  "title": "RASHAPEOPLE!",
+  "jp": "ラスハピーポー！",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/RASHAPEOPLE!.png"
+ },
+ {
+  "id": "raise-a-suilen-hell-or-hell",
+  "title": "HELL! or HELL?",
+  "jp": "HELL! or HELL?",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/HELL! or HELL_.webp"
+ },
+ {
+  "id": "raise-a-suilen-sacred-world",
+  "title": "Sacred world",
+  "jp": "Sacred world",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/Sacred world.webp"
+ },
+ {
+  "id": "hello-happy-world-sparkling-festival-with-you",
+  "title": "Sparkling Festival☆ with You!",
+  "jp": "きらっ☆と キミフェス！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Sparkling Festival☆ with You!.webp"
+ },
+ {
+  "id": "other-collaborations-picotarumono-fever",
+  "title": "Picotarumono Fever!",
+  "jp": "ピコたるもの、ふぃーばー！",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Picotarumono Fever!.png"
+ },
+ {
+  "id": "morfonica-fly-with-the-night",
+  "title": "fly with the night",
+  "jp": "fly with the night",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/fly with the night.webp"
+ },
+ {
+  "id": "other-collaborations-nakana-ina-kanai",
+  "title": "Nakana iNa kanai",
+  "jp": "ナカナ イナ カナイ",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Nakana iNa kanai.png"
+ },
+ {
+  "id": "pastel-palettes-pappare-life-bang-banzai",
+  "title": "Pappare☆Life! Bang! Banzai!",
+  "jp": "パッパレ☆人生！バーン万歳！",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Pappare☆Life! Bang! Banzai!.webp"
+ },
+ {
+  "id": "poppin-party-courage-limit",
+  "title": "Courage Limit!",
+  "jp": "勇気Limit！",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Courage Limit!.webp"
+ },
+ {
+  "id": "afterglow-off-we-go",
+  "title": "Off we go.",
+  "jp": "Off we go.",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Off we go.webp"
+ },
+ {
+  "id": "roselia-our-carol",
+  "title": "Our Carol",
+  "jp": "Our Carol",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Our Carol.webp"
+ },
+ {
+  "id": "morfonica-fateful",
+  "title": "Fateful…",
+  "jp": "Fateful...",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Fateful….webp"
+ },
+ {
+  "id": "raise-a-suilen-embrace-of-light",
+  "title": "Embrace of light",
+  "jp": "Embrace of light",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/Embrace of light.webp"
+ },
+ {
+  "id": "other-collaborations-yuushou-feat-afterglow",
+  "title": "Yuushou feat.Afterglow",
+  "jp": "優勝 feat.Afterglow",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Yuushou feat.Afterglow.png"
+ },
+ {
+  "id": "raise-a-suilen-coruscate-dna",
+  "title": "CORUSCATE -DNA-",
+  "jp": "CORUSCATE -DNA-",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/CORUSCATE -DNA-.webp"
+ },
+ {
+  "id": "other-collaborations-luminous-once-more-collab-ver",
+  "title": "Luminous Once More (Collab ver.)",
+  "jp": "もういちど ルミナス（コラボver）",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/_variants/Luminous Once More (Collab ver.).png"
+ },
+ {
+  "id": "poppin-party-poppin-dream",
+  "title": "Poppin'Dream!",
+  "jp": "ぽっぴん'どりーむ！",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Poppin'Dream!.webp"
+ },
+ {
+  "id": "poppin-party-star-promise",
+  "title": "Star Promise",
+  "jp": "星の約束",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Star Promise.webp"
+ },
+ {
+  "id": "hello-happy-world-the-great-hello-happy-phantom-thief-appear",
+  "title": "The Great Hello Happy Phantom Thief Appears!",
+  "jp": "現るっ！大怪盗ハロハッピー！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/The Great Hello Happy Phantom Thief Appears!.webp"
+ },
+ {
+  "id": "pastel-palettes-brand-new-pastel-road",
+  "title": "Brand new Pastel Road!",
+  "jp": "Brand new Pastel Road！",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Brand new Pastel Road!.webp"
+ },
+ {
+  "id": "morfonica-one-step-at-a-time",
+  "title": "One step at a time",
+  "jp": "One step at a time",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/One step at a time.webp"
+ },
+ {
+  "id": "raise-a-suilen-repaint",
+  "title": "Repaint",
+  "jp": "Repaint",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/Repaint.webp"
+ },
+ {
+  "id": "other-collaborations-catastrophe-banquet",
+  "title": "CATASTROPHE BANQUET",
+  "jp": "CATASTROPHE BANQUET",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/CATASTROPHE BANQUET.png"
+ },
+ {
+  "id": "other-collaborations-circle-thanks-music",
+  "title": "CiRCLE THANKS MUSiC♪",
+  "jp": "CiRCLE THANKS MUSiC♪",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/CiRCLE THANKS MUSiC♪.png"
+ },
+ {
+  "id": "roselia-flashlight",
+  "title": "FLASHLIGHT",
+  "jp": "閃光",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/FLASHLIGHT.webp"
+ },
+ {
+  "id": "other-collaborations-full-circle-thanks-music",
+  "title": "[FULL] CiRCLE THANKS MUSiC♪",
+  "jp": "[FULL] CiRCLE THANKS MUSiC♪",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/_variants/CiRCLE THANKS MUSiC♪.png"
+ },
+ {
+  "id": "raise-a-suilen-drive-us-crazy",
+  "title": "DRIVE US CRAZY",
+  "jp": "DRIVE US CRAZY",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/DRIVE US CRAZY.webp"
+ },
+ {
+  "id": "afterglow-sakura-zensen",
+  "title": "Sakura-zensen",
+  "jp": "サクラゼンセン",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Sakura-zensen.webp"
+ },
+ {
+  "id": "other-collaborations-freedom",
+  "title": "Freedom",
+  "jp": "Freedom",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Freedom.png"
+ },
+ {
+  "id": "roselia-the-historic",
+  "title": "THE HISTORIC...",
+  "jp": "THE HISTORIC...",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/THE HISTORIC.webp"
+ },
+ {
+  "id": "raise-a-suilen-light-a-fire",
+  "title": "Light a fire",
+  "jp": "Light a fire",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/Light a fire.webp"
+ },
+ {
+  "id": "pastel-palettes-akogare-across",
+  "title": "Akogare Across",
+  "jp": "あこがれacross",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Akogare Across.webp"
+ },
+ {
+  "id": "hello-happy-world-thoughtful-harmony",
+  "title": "Thoughtful Harmony",
+  "jp": "おもいやりハーモニー",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Thoughtful Harmony.webp"
+ },
+ {
+  "id": "pastel-palettes-sunny-fortune",
+  "title": "Sunny☆Fortune",
+  "jp": "ハレハレ☆フォーチュン",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Sunny☆Fortune.webp"
+ },
+ {
+  "id": "afterglow-switch-on-now",
+  "title": "SWITCH ON NOW",
+  "jp": "SWITCH ON NOW",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/SWITCH ON NOW.webp"
+ },
+ {
+  "id": "hello-happy-world-happy-happier-happiest",
+  "title": "Happy! Happier! Happiest!",
+  "jp": "Happy! Happier! Happiest!",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Happy! Happier! Happiest!.webp"
+ },
+ {
+  "id": "roselia-rozen-horizon",
+  "title": "ROZEN HORIZON",
+  "jp": "ROZEN HORIZON",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/ROZEN HORIZON.webp"
+ },
+ {
+  "id": "raise-a-suilen-soul-soldier",
+  "title": "SOUL SOLDIER",
+  "jp": "SOUL SOLDIER",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/SOUL SOLDIER.webp"
+ },
+ {
+  "id": "poppin-party-daisuki",
+  "title": "Daisuki!",
+  "jp": "大好き！",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Daisuki!.webp"
+ },
+ {
+  "id": "roselia-swear-night-day",
+  "title": "Swear ~Night & Day~",
+  "jp": "Swear 〜Night & Day〜",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Swear ~Night & Day~.webp"
+ },
+ {
+  "id": "morfonica-yorube-no-sunny-sunny",
+  "title": "Yorube no Sunny, Sunny",
+  "jp": "寄る辺のSunny, Sunny",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Yorube no Sunny, Sunny.webp"
+ },
+ {
+  "id": "morfonica-colorful-liberty",
+  "title": "Colorful Liberty",
+  "jp": "カラフルリバティー",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Colorful Liberty.webp"
+ },
+ {
+  "id": "pastel-palettes-hana-hibana",
+  "title": "Hana Hibana",
+  "jp": "ハナヒバナ",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Hana Hibana.webp"
+ },
+ {
+  "id": "raise-a-suilen-the-way-of-life",
+  "title": "THE WAY OF LIFE",
+  "jp": "THE WAY OF LIFE",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/THE WAY OF LIFE.webp"
+ },
+ {
+  "id": "morfonica-the-circle-of-butterflies",
+  "title": "The Circle Of Butterflies",
+  "jp": "The Circle Of Butterflies",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/The Circle Of Butterflies.webp"
+ },
+ {
+  "id": "afterglow-dokus-sh-sa",
+  "title": "Dokusô-Shûsa",
+  "jp": "独創収差",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Dokusô-Shûsa.webp"
+ },
+ {
+  "id": "hello-happy-world-uchapa-de-pappikapo-n",
+  "title": "Uchapa! de Pappikapo~n!",
+  "jp": "うちゃパ！で ぱっぴかポーんっ！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Uchapa! de Pappikapo~n!.webp"
+ },
+ {
+  "id": "poppin-party-moonlight-walk",
+  "title": "Moonlight Walk",
+  "jp": "Moonlight Walk",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Moonlight Walk.webp"
+ },
+ {
+  "id": "raise-a-suilen-invincible-fighter",
+  "title": "Invincible Fighter",
+  "jp": "Invincible Fighter",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/Invincible Fighter.webp"
+ },
+ {
+  "id": "raise-a-suilen-takin-my-heart",
+  "title": "Takin’ my Heart",
+  "jp": "Takin’ my Heart",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/Takin’ my Heart.webp"
+ },
+ {
+  "id": "afterglow-punchline-halloween",
+  "title": "Punchline Halloween!!!",
+  "jp": "Punchline Halloween!!!",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Punchline Halloween!!!.webp"
+ },
+ {
+  "id": "poppin-party-future-place",
+  "title": "Future Place",
+  "jp": "Future Place",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Future Place.webp"
+ },
+ {
+  "id": "roselia-dear-gleam",
+  "title": "Dear Gleam",
+  "jp": "Dear Gleam",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Dear Gleam.webp"
+ },
+ {
+  "id": "raise-a-suilen-dead-heat-beat",
+  "title": "DEAD HEAT BEAT",
+  "jp": "DEAD HEAT BEAT",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/DEAD HEAT BEAT.webp"
+ },
+ {
+  "id": "hello-happy-world-smile-are-you-ready",
+  "title": "Smile, Are You Ready???",
+  "jp": "えがお、あーゆーれでぃ???",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Smile, Are You Ready___.webp"
+ },
+ {
+  "id": "poppin-party-five-letters",
+  "title": "Five Letters",
+  "jp": "Five Letters",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Five Letters.webp"
+ },
+ {
+  "id": "afterglow-ignite-glow",
+  "title": "IGNITE GLOW",
+  "jp": "IGNITE GLOW",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/IGNITE GLOW.webp"
+ },
+ {
+  "id": "morfonica-sweet-cheers",
+  "title": "Sweet Cheers!",
+  "jp": "Sweet Cheers!",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Sweet Cheers!.webp"
+ },
+ {
+  "id": "roselia-the-sole-full-glory",
+  "title": "The Sole Full Glory",
+  "jp": "一逢のFull Glory",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/The Sole Full Glory.webp"
+ },
+ {
+  "id": "other-collaborations-see-you-to-each-of-our-tomorrows",
+  "title": "See you! ~To Each of Our Tomorrows~",
+  "jp": "See you! 〜それぞれの明日へ〜",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/See you! ~To Each of Our Tomorrows~.png"
+ },
+ {
+  "id": "poppin-party-ring-a-bell",
+  "title": "RiNG A BELL",
+  "jp": "RiNG A BELL",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/RiNG A BELL.webp"
+ },
+ {
+  "id": "glitter-green-glee-glee-glee",
+  "title": "Glee! Glee! Glee!",
+  "jp": "Glee! Glee! Glee!",
+  "band": "glitter",
+  "variant": false,
+  "file": "covers/Glitter Green/Glee! Glee! Glee!.png"
+ },
+ {
+  "id": "afterglow-made-my-day",
+  "title": "Made My Day",
+  "jp": "Made My Day",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Made My Day.webp"
+ },
+ {
+  "id": "mygo-mayoiuta",
+  "title": "Mayoiuta",
+  "jp": "迷星叫",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Mayoiuta.webp"
+ },
+ {
+  "id": "poppin-party-in-a-new-season",
+  "title": "In a New Season",
+  "jp": "新しい季節に",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/In a New Season.webp"
+ },
+ {
+  "id": "other-collaborations-hanayobukoe",
+  "title": "Hanayobukoe",
+  "jp": "花呼ぶ声",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Hanayobukoe.png"
+ },
+ {
+  "id": "roselia-call-the-shots",
+  "title": "Call the shots",
+  "jp": "Call the shots",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Call the shots.webp"
+ },
+ {
+  "id": "poppin-party-ultimate-song",
+  "title": "Ultimate☆Song",
+  "jp": "最強☆ソング",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Ultimate☆Song.webp"
+ },
+ {
+  "id": "raise-a-suilen-dancing-daring",
+  "title": "DANCING DARING",
+  "jp": "DANCING DARING",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/DANCING DARING.webp"
+ },
+ {
+  "id": "morfonica-angel-s-ladder",
+  "title": "Angel's Ladder",
+  "jp": "Angel's Ladder",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Angel's Ladder.webp"
+ },
+ {
+  "id": "hello-happy-world-you-let-s-have-fun",
+  "title": "You, Let’s Have Fun ♪",
+  "jp": "キミを れっつ・はぶ・ふぁん♪",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/You, Let’s Have Fun ♪.webp"
+ },
+ {
+  "id": "raise-a-suilen-n-e-m-e-s-i-s",
+  "title": "-N-E-M-E-S-I-S-",
+  "jp": "-N-E-M-E-S-I-S-",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/-N-E-M-E-S-I-S-.webp"
+ },
+ {
+  "id": "afterglow-petrichor-ovation",
+  "title": "Petrichor Ovation",
+  "jp": "ペトリコール・オベーション",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Petrichor Ovation.webp"
+ },
+ {
+  "id": "roselia-sunlit-musical",
+  "title": "Sunlit Musical",
+  "jp": "Sunlit Musical",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Sunlit Musical.webp"
+ },
+ {
+  "id": "mygo-hitoshizuku",
+  "title": "Hitoshizuku",
+  "jp": "壱雫空",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Hitoshizuku.webp"
+ },
+ {
+  "id": "mygo-shiori",
+  "title": "Shiori",
+  "jp": "栞",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Shiori.webp"
+ },
+ {
+  "id": "mygo-hekitenbansou",
+  "title": "Hekitenbansou",
+  "jp": "碧天伴走",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Hekitenbansou.webp"
+ },
+ {
+  "id": "other-collaborations-my-poppin-days-for-seeking-glitter",
+  "title": "My Poppin' Days for Seeking Glitter",
+  "jp": "私色きらめき日和",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/My Poppin' Days for Seeking Glitter.png"
+ },
+ {
+  "id": "morfonica-ever-sky-blue",
+  "title": "Ever Sky Blue",
+  "jp": "Ever Sky Blue",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Ever Sky Blue.webp"
+ },
+ {
+  "id": "afterglow-vivid-color",
+  "title": "Vivid Color",
+  "jp": "極彩色",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Vivid Color.webp"
+ },
+ {
+  "id": "mygo-utakotoba",
+  "title": "Utakotoba",
+  "jp": "詩超絆",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Utakotoba.webp"
+ },
+ {
+  "id": "hello-happy-world-our-summer-s-showtime",
+  "title": "Our Summer's☆Showtime!!",
+  "jp": "ボクらの夏's☆ショーたいむっ！！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Our Summer's☆Showtime!!.webp"
+ },
+ {
+  "id": "hello-happy-world-five-smiles-all-in",
+  "title": "Five Smiles 〇All In!",
+  "jp": "ふぁいぶスマイル◯オールインっ！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Five Smiles 〇All In!.webp"
+ },
+ {
+  "id": "mygo-melody",
+  "title": "Melody",
+  "jp": "迷路日々",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Melody.webp"
+ },
+ {
+  "id": "afterglow-sansan",
+  "title": "Sansan",
+  "jp": "燦々",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Sansan.webp"
+ },
+ {
+  "id": "poppin-party-alrighty",
+  "title": "Alrighty!",
+  "jp": "ほな！",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Alrighty!.webp"
+ },
+ {
+  "id": "other-collaborations-yuushou-feat-afterglow-2",
+  "title": "Yuushou feat.Afterglow",
+  "jp": "優勝 feat.Afterglow",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Yuushou feat.Afterglow [528].png"
+ },
+ {
+  "id": "morfonica-serenade-of-gratitude-sound",
+  "title": "Serenade of gratitude sound",
+  "jp": "音がえしのセレナーデ",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Serenade of gratitude sound.webp"
+ },
+ {
+  "id": "ave-mujica-ave-mujica",
+  "title": "Ave Mujica",
+  "jp": "Ave Mujica",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Ave Mujica.webp"
+ },
+ {
+  "id": "other-collaborations-be-born",
+  "title": "Be born",
+  "jp": "Be born",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Be born.png"
+ },
+ {
+  "id": "mygo-silhouette-dance",
+  "title": "Silhouette Dance",
+  "jp": "影色舞",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Silhouette Dance.webp"
+ },
+ {
+  "id": "mygo-let-s-sing-let-it-ring",
+  "title": "Let's Sing, Let it Ring",
+  "jp": "歌いましょう鳴らしましょう",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Let's Sing, Let it Ring.webp"
+ },
+ {
+  "id": "roselia-throne-of-rose",
+  "title": "THRONE OF ROSE",
+  "jp": "THRONE OF ROSE",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/THRONE OF ROSE.webp"
+ },
+ {
+  "id": "pastel-palettes-everyday-flower",
+  "title": "everyday flower",
+  "jp": "everyday flower",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/everyday flower.webp"
+ },
+ {
+  "id": "raise-a-suilen-battle-cry",
+  "title": "BATTLE CRY",
+  "jp": "BATTLE CRY",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/BATTLE CRY.webp"
+ },
+ {
+  "id": "afterglow-that-s-why-i-m-here",
+  "title": "That's why I'm here",
+  "jp": "That's why I'm here",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/That's why I'm here.webp"
+ },
+ {
+  "id": "mygo-kokyu",
+  "title": "Kokyu",
+  "jp": "処救生",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Kokyu.webp"
+ },
+ {
+  "id": "poppin-party-chu-chueen",
+  "title": "Chu Chueen!",
+  "jp": "Chu Chueen!",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Chu Chueen!.webp"
+ },
+ {
+  "id": "morfonica-merry-merry-thanks",
+  "title": "Merry Merry Thanks!!",
+  "jp": "Merry Merry Thanks!!",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Merry Merry Thanks!!.webp"
+ },
+ {
+  "id": "poppin-party-youthful-days-to-be-continued",
+  "title": "Youthful Days To Be Continued",
+  "jp": "青春 To Be Continued",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Youthful Days To Be Continued.webp"
+ },
+ {
+  "id": "roselia-liberation-of-the-determination",
+  "title": "Liberation of the Determination",
+  "jp": "覚悟のLiberation",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Liberation of the Determination.webp"
+ },
+ {
+  "id": "hello-happy-world-life-is-musical",
+  "title": "Life is Musical♪♪♪",
+  "jp": "らいふ・いず・みゅーじかるっ♪♪♪",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Life is Musical♪♪♪.webp"
+ },
+ {
+  "id": "other-collaborations-good-bye",
+  "title": "good bye",
+  "jp": "グッド・バイ",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/good bye.png"
+ },
+ {
+  "id": "pastel-palettes-radiate-warriors",
+  "title": "Radiate Warriors",
+  "jp": "Radiate Warriors",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Radiate Warriors.webp"
+ },
+ {
+  "id": "other-collaborations-aien-jihen",
+  "title": "Aien Jihen",
+  "jp": "合縁事変",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Aien Jihen.png"
+ },
+ {
+  "id": "afterglow-a-sunset-so-bright",
+  "title": "A Sunset So Bright",
+  "jp": "A Sunset So Bright",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/A Sunset So Bright.webp"
+ },
+ {
+  "id": "raise-a-suilen-ray-of-hope",
+  "title": "Ray of hope",
+  "jp": "Ray of hope",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/Ray of hope.webp"
+ },
+ {
+  "id": "mygo-refrain",
+  "title": "Refrain",
+  "jp": "輪符雨",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Refrain.webp"
+ },
+ {
+  "id": "morfonica-trail-to-the-blue-sky",
+  "title": "Trail to the Blue Sky",
+  "jp": "蒼穹へのトレイル",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Trail to the Blue Sky.webp"
+ },
+ {
+  "id": "pastel-palettes-dramatic-alive",
+  "title": "Dramatic! Alive",
+  "jp": "ドラマチック！アライブ",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Dramatic! Alive.webp"
+ },
+ {
+  "id": "pastel-palettes-rerere-evolutions",
+  "title": "ReReRe Evolutions☆",
+  "jp": "ReReReエボリューションず☆",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/ReReRe Evolutions☆.webp"
+ },
+ {
+  "id": "roselia-violet-line",
+  "title": "VIOLET LINE",
+  "jp": "VIOLET LINE",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/VIOLET LINE.webp"
+ },
+ {
+  "id": "roselia-always-recall",
+  "title": "Always recall.",
+  "jp": "Always recall.",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Always recall.webp"
+ },
+ {
+  "id": "morfonica-wingbeat-of-promise",
+  "title": "Wingbeat of Promise",
+  "jp": "誓いのWingbeat",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Wingbeat of Promise.webp"
+ },
+ {
+  "id": "poppin-party-tremolo-eyes",
+  "title": "Tremolo Eyes",
+  "jp": "トレモロアイズ",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Tremolo Eyes.webp"
+ },
+ {
+  "id": "hello-happy-world-connect-and-smile",
+  "title": "Connect and Smile",
+  "jp": "むすんでわらって",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Connect and Smile.webp"
+ },
+ {
+  "id": "morfonica-brilliance-of-wings",
+  "title": "Brilliance of Wings",
+  "jp": "両翼のBrilliance",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Brilliance of Wings.webp"
+ },
+ {
+  "id": "raise-a-suilen-life-on-the-lotus",
+  "title": "Life on the Lotus",
+  "jp": "Life on the Lotus",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/Life on the Lotus.webp"
+ },
+ {
+  "id": "pastel-palettes-furetto-palettes-fight-song",
+  "title": "Furetto Palettes Fight Song!!",
+  "jp": "フレっとパレットFight Song!!",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Furetto Palettes Fight Song!!.webp"
+ },
+ {
+  "id": "pastel-palettes-toridori-palettes",
+  "title": "Toridori Palettes",
+  "jp": "トリドリ＊パレット",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Toridori Palettes.webp"
+ },
+ {
+  "id": "morfonica-melancholic-lullaby",
+  "title": "Melancholic Lullaby",
+  "jp": "メランコリックララバイ",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Melancholic Lullaby.webp"
+ },
+ {
+  "id": "raise-a-suilen-v-i-p-monster",
+  "title": "V.I.P MONSTER",
+  "jp": "V.I.P MONSTER",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/V.I.P MONSTER.webp"
+ },
+ {
+  "id": "hello-happy-world-let-s-samba-de-happy",
+  "title": "Let's Samba de Happy!",
+  "jp": "サンバロハッピ〜！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Let's Samba de Happy!.webp"
+ },
+ {
+  "id": "roselia-floral-haven",
+  "title": "Floral Haven",
+  "jp": "Floral Haven",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Floral Haven.webp"
+ },
+ {
+  "id": "afterglow-glowing-after",
+  "title": "Glowing After",
+  "jp": "Glowing After",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Glowing After.webp"
+ },
+ {
+  "id": "morfonica-wreath-of-brave",
+  "title": "Wreath of Brave",
+  "jp": "Wreath of Brave",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Wreath of Brave.webp"
+ },
+ {
+  "id": "poppin-party-after-the-rain-with-you",
+  "title": "After the Rain, With You",
+  "jp": "雨上がり、キミと",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/After the Rain, With You.webp"
+ },
+ {
+  "id": "roselia-sage-der-rosen",
+  "title": "Sage der Rosen",
+  "jp": "Sage der Rosen",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Sage der Rosen.webp"
+ },
+ {
+  "id": "roselia-cornerstone-corolla",
+  "title": "Cornerstone Corolla",
+  "jp": "礎の花冠",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Cornerstone Corolla.webp"
+ },
+ {
+  "id": "hello-happy-world-listen-to-smile",
+  "title": "Listen to Smile!",
+  "jp": "Listen to Smile!",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Listen to Smile!.webp"
+ },
+ {
+  "id": "pastel-palettes-with-the-story-of-you-and-us",
+  "title": "With〜The Story of You and Us〜",
+  "jp": "With〜きみとわたしたちの物語〜",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/With〜The Story of You and Us〜.webp"
+ },
+ {
+  "id": "afterglow-start-as-usual",
+  "title": "Start as Usual",
+  "jp": "Start as Usual",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Start as Usual.webp"
+ },
+ {
+  "id": "raise-a-suilen-bad-kids-all-bet",
+  "title": "Bad Kids All Bet",
+  "jp": "Bad Kids All Bet",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/Bad Kids All Bet.webp"
+ },
+ {
+  "id": "mygo-namonaki",
+  "title": "Namonaki",
+  "jp": "名無声",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Namonaki.webp"
+ },
+ {
+  "id": "poppin-party-for-the-blooming-future",
+  "title": "For the Blooming Future",
+  "jp": "花咲く未来に",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/For the Blooming Future.webp"
+ },
+ {
+  "id": "mygo-adayume",
+  "title": "Adayume",
+  "jp": "過惰幻",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Adayume.webp"
+ },
+ {
+  "id": "morfonica-tilica-monicalila",
+  "title": "Tilica Monicalila",
+  "jp": "ティリカモニカリラ",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Tilica Monicalila.webp"
+ },
+ {
+  "id": "roselia-frontier-fantasia",
+  "title": "FRONTIER FANTASIA",
+  "jp": "FRONTIER FANTASIA",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/FRONTIER FANTASIA.webp"
+ },
+ {
+  "id": "hello-happy-world-high-touch-believers",
+  "title": "High Touch／＼Believers☆",
+  "jp": "ハイタッチ／＼びりーばーず☆",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/High Touch／＼Believers☆.webp"
+ },
+ {
+  "id": "mygo-speed",
+  "title": "Speed",
+  "jp": "歩拾道",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Speed.webp"
+ },
+ {
+  "id": "poppin-party-doki-doki-scary",
+  "title": "DOKI DOKI SCARY",
+  "jp": "DOKI DOKI SCARY",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/DOKI DOKI SCARY.webp"
+ },
+ {
+  "id": "pastel-palettes-white-nostalgia",
+  "title": "White Nostalgia",
+  "jp": "ホワイト ノスタルジア",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/White Nostalgia.webp"
+ },
+ {
+  "id": "afterglow-say-cheese",
+  "title": "“Say cheese!!!!!”",
+  "jp": "“Say cheese!!!!!”",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/“Say cheese!!!!!”.webp"
+ },
+ {
+  "id": "raise-a-suilen-vivid-first-time",
+  "title": "VIVID FIRST TIME",
+  "jp": "VIVID FIRST TIME",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/VIVID FIRST TIME.webp"
+ },
+ {
+  "id": "other-collaborations-mayoiuta-parallel-ver",
+  "title": "Mayoiuta (Parallel Ver.)",
+  "jp": "迷星叫(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/_variants/Mayoiuta (Parallel Ver.).png"
+ },
+ {
+  "id": "poppin-party-tarinai",
+  "title": "TARINAI",
+  "jp": "TARINAI",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/TARINAI.webp"
+ },
+ {
+  "id": "raise-a-suilen-welcome-to-pandemonium",
+  "title": "WELCOME TO PANDEMONIUM",
+  "jp": "WELCOME TO PANDEMONIUM",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/WELCOME TO PANDEMONIUM.webp"
+ },
+ {
+  "id": "morfonica-tempest",
+  "title": "Tempest",
+  "jp": "Tempest",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Tempest.webp"
+ },
+ {
+  "id": "other-collaborations-markarian-s-chain",
+  "title": "Markarian's Chain",
+  "jp": "マルカリアンチェイン",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Markarian's Chain.png"
+ },
+ {
+  "id": "ave-mujica-killkiss",
+  "title": "KiLLKiSS",
+  "jp": "KiLLKiSS",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/KiLLKiSS.webp"
+ },
+ {
+  "id": "other-collaborations-blessing-chord-parallel-ver",
+  "title": "Blessing Chord (Parallel Ver.)",
+  "jp": "Blessing Chord(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/_variants/Blessing Chord (Parallel Ver.).png"
+ },
+ {
+  "id": "ave-mujica-georgette-me-georgette-you",
+  "title": "Georgette Me, Georgette You",
+  "jp": "Georgette Me, Georgette You",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Georgette Me, Georgette You.webp"
+ },
+ {
+  "id": "raise-a-suilen-just-the-way-i-am",
+  "title": "JUST THE WAY I AM",
+  "jp": "JUST THE WAY I AM",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/JUST THE WAY I AM.webp"
+ },
+ {
+  "id": "morfonica-steer-to-utopia",
+  "title": "Steer to Utopia",
+  "jp": "Steer to Utopia",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Steer to Utopia.webp"
+ },
+ {
+  "id": "hello-happy-world-let-s-smile-strea-ming",
+  "title": "Let's Smile Strea~ming♪",
+  "jp": "れっつ・スマイル・すとり〜みんぐっ♪",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Let's Smile Strea~ming♪.webp"
+ },
+ {
+  "id": "roselia-grateful-melting",
+  "title": "Grateful Melting",
+  "jp": "Grateful Melting",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Grateful Melting.webp"
+ },
+ {
+  "id": "afterglow-duo-of-blooming-smiles",
+  "title": "Duo of Blooming Smiles",
+  "jp": "花笑みのデュオ",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Duo of Blooming Smiles.webp"
+ },
+ {
+  "id": "crychic-haruhikage",
+  "title": "Haruhikage",
+  "jp": "春日影",
+  "band": "crychic",
+  "variant": false,
+  "file": "covers/CRYCHIC/Haruhikage.webp"
+ },
+ {
+  "id": "mygo-otoichie",
+  "title": "Otoichie",
+  "jp": "音一会",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Otoichie.webp"
+ },
+ {
+  "id": "ave-mujica-imprisoned-xii",
+  "title": "Imprisoned XII",
+  "jp": "Imprisoned XII",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Imprisoned XII.webp"
+ },
+ {
+  "id": "ave-mujica-crucifix-x",
+  "title": "Crucifix X",
+  "jp": "Crucifix X",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Crucifix X.webp"
+ },
+ {
+  "id": "raise-a-suilen-howling-ambition",
+  "title": "HOWLING AMBITION",
+  "jp": "HOWLING AMBITION",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/HOWLING AMBITION.webp"
+ },
+ {
+  "id": "other-collaborations-you-re-not-alone-parallel-ver",
+  "title": "You're Not Alone (Parallel Ver.)",
+  "jp": "ひとりじゃないんだから(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/_variants/You're Not Alone (Parallel Ver.).png"
+ },
+ {
+  "id": "other-collaborations-orchestra-of-smiles-parallel-ver",
+  "title": "Orchestra Of Smiles! (Parallel Ver.)",
+  "jp": "えがおのオーケストラっ！(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/_variants/Orchestra Of Smiles! (Parallel Ver.).png"
+ },
+ {
+  "id": "ave-mujica-octagram-dance",
+  "title": "Octagram Dance",
+  "jp": "八芒星ダンス",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Octagram Dance.webp"
+ },
+ {
+  "id": "mygo-ichijitsusenshu",
+  "title": "Ichijitsusenshu",
+  "jp": "聿日箋秋",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Ichijitsusenshu.webp"
+ },
+ {
+  "id": "mygo-tanebi",
+  "title": "Tanebi",
+  "jp": "焚音打",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Tanebi.webp"
+ },
+ {
+  "id": "ave-mujica-alter-ego",
+  "title": "Alter Ego",
+  "jp": "顔",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Alter Ego.webp"
+ },
+ {
+  "id": "ave-mujica-musica-caelestis",
+  "title": "Musica Caelestis",
+  "jp": "天球(そら)のMúsica",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Musica Caelestis.webp"
+ },
+ {
+  "id": "pastel-palettes-day-off-laugh-love-thanks",
+  "title": "Day off Laugh Love Thanks",
+  "jp": "デイオフ・ラフ・ラブ・サンクス",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Day off Laugh Love Thanks.webp"
+ },
+ {
+  "id": "other-collaborations-limited-time-special-pico-papi-girls-ba",
+  "title": "[LIMITED TIME SPECIAL] Pico! Papi! Girls Band Party! PICO!!!",
+  "jp": "[期間限定 SPECIAL]ピコっと！パピっと！！ガルパ☆ピコ！！！",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/_variants/Pico! Papi! Girls Band Party! PICO!!!.png"
+ },
+ {
+  "id": "roselia-second-to-none",
+  "title": "Second to None",
+  "jp": "Second to None",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Second to None.webp"
+ },
+ {
+  "id": "hello-happy-world-yahhoo-ippo-wonderful",
+  "title": "Yahhoo! Ippo! Wonderful!",
+  "jp": "やっほー！いっぽ！わんだふぉー！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Yahhoo! Ippo! Wonderful!.webp"
+ },
+ {
+  "id": "morfonica-portray-empathy",
+  "title": "Portray Empathy",
+  "jp": "Portray Empathy",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Portray Empathy.webp"
+ },
+ {
+  "id": "raise-a-suilen-reigning",
+  "title": "REIGNING",
+  "jp": "REIGNING",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/REIGNING.webp"
+ },
+ {
+  "id": "roselia-dazzle-the-destiny",
+  "title": "Dazzle the Destiny",
+  "jp": "Dazzle the Destiny",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Dazzle the Destiny.webp"
+ },
+ {
+  "id": "mygo-senzai-hyoumei",
+  "title": "Senzai Hyoumei",
+  "jp": "潜在表明",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Senzai Hyoumei.webp"
+ },
+ {
+  "id": "other-collaborations-snowflakes-smile-ephemerally",
+  "title": "Snowflakes Smile Ephemerally",
+  "jp": "雪華は無常に微笑む",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Snowflakes Smile Ephemerally.png"
+ },
+ {
+  "id": "afterglow-against-the-light",
+  "title": "Against the Light",
+  "jp": "Against the Light",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Against the Light.webp"
+ },
+ {
+  "id": "poppin-party-tomorrow-s-door",
+  "title": "Tomorrow’s Door",
+  "jp": "Tomorrow’s Door",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Tomorrow’s Door.webp"
+ },
+ {
+  "id": "morfonica-polyphonyscape",
+  "title": "Polyphonyscape",
+  "jp": "Polyphonyscape",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Polyphonyscape.webp"
+ },
+ {
+  "id": "ave-mujica-black-birthday",
+  "title": "Black Birthday",
+  "jp": "黒のバースデイ",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Black Birthday.webp"
+ },
+ {
+  "id": "raise-a-suilen-five-as-one",
+  "title": "FIVE as ONE",
+  "jp": "FIVE as ONE",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/FIVE as ONE.webp"
+ },
+ {
+  "id": "morfonica-feathered-dreams",
+  "title": "Feathered Dreams",
+  "jp": "Feathered Dreams",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Feathered Dreams.webp"
+ },
+ {
+  "id": "pastel-palettes-shine-n-my-life",
+  "title": "Shine ☆n My Life!",
+  "jp": "Shine ☆n My Life!",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Shine ☆n My Life!.webp"
+ },
+ {
+  "id": "other-collaborations-on-your-new-journey-parallel-ver",
+  "title": "On Your New Journey (Parallel Ver.)",
+  "jp": "走り始めたばかりのキミに(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/_variants/On Your New Journey (Parallel Ver.).png"
+ },
+ {
+  "id": "other-collaborations-flame-of-hope-parallel-ver",
+  "title": "flame of hope (Parallel Ver.)",
+  "jp": "flame of hope(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/_variants/flame of hope (Parallel Ver.).png"
+ },
+ {
+  "id": "poppin-party-drive-your-heart",
+  "title": "Drive Your Heart",
+  "jp": "Drive Your Heart",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Drive Your Heart.webp"
+ },
+ {
+  "id": "roselia-violet-flame",
+  "title": "Violet Flame",
+  "jp": "紫炎",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Violet Flame.webp"
+ },
+ {
+  "id": "roselia-steadfast-spirits",
+  "title": "Steadfast Spirits",
+  "jp": "Steadfast Spirits",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Steadfast Spirits.webp"
+ },
+ {
+  "id": "mygo-page",
+  "title": "Page",
+  "jp": "残痕字",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Page.webp"
+ },
+ {
+  "id": "roselia-requiem-for-fate",
+  "title": "Requiem for Fate",
+  "jp": "Requiem for Fate",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Requiem for Fate.webp"
+ },
+ {
+  "id": "morfonica-color-of-us",
+  "title": "Color of Us",
+  "jp": "Color of Us",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Color of Us.webp"
+ },
+ {
+  "id": "mygo-ourai",
+  "title": "Ourai",
+  "jp": "往欄印",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Ourai.webp"
+ },
+ {
+  "id": "hello-happy-world-starring-myself",
+  "title": "Starring ☆Myself☆",
+  "jp": "スタ〜リング ☆じぶん☆",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Starring ☆Myself☆.webp"
+ },
+ {
+  "id": "hello-happy-world-talk-to-me-talk-to-you",
+  "title": "Talk to me, Talk to you",
+  "jp": "とーくとぅみー・とーくとぅゆー",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Talk to me, Talk to you.webp"
+ },
+ {
+  "id": "pastel-palettes-suki-suki-colorfully",
+  "title": "Suki×Suki×Colorfully",
+  "jp": "スキ×すき×カラフリィ",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Suki×Suki×Colorfully.webp"
+ },
+ {
+  "id": "morfonica-resonant-strings",
+  "title": "Resonant Strings",
+  "jp": "Resonant Strings",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Resonant Strings.webp"
+ },
+ {
+  "id": "raise-a-suilen-fight-addict",
+  "title": "'FIGHT' ADDICT",
+  "jp": "'FIGHT' ADDICT",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/'FIGHT' ADDICT.webp"
+ },
+ {
+  "id": "afterglow-feel-so-good",
+  "title": "Feel so good!",
+  "jp": "Feel so good!",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Feel so good!.webp"
+ },
+ {
+  "id": "morfonica-beauty-for",
+  "title": "Beauty·For",
+  "jp": "ビューティ・フォー",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Beauty·For.webp"
+ },
+ {
+  "id": "mygo-egakumirai",
+  "title": "Egakumirai",
+  "jp": "エガクミライ",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Egakumirai.webp"
+ },
+ {
+  "id": "ave-mujica-mas-uerade-rhapsody-re-uest",
+  "title": "Mas?uerade Rhapsody Re?uest",
+  "jp": "Mas?uerade Rhapsody Re?uest",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Mas_uerade Rhapsody Re_uest.webp"
+ },
+ {
+  "id": "afterglow-part-of-the-life",
+  "title": "Part of the Life",
+  "jp": "Part of the Life",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Part of the Life.webp"
+ },
+ {
+  "id": "raise-a-suilen-bibibabi-braver",
+  "title": "BIBIBABI BRAVER",
+  "jp": "BIBIBABI BRAVER",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/BIBIBABI BRAVER.webp"
+ },
+ {
+  "id": "other-collaborations-theme-of-ganso-bang-dream-chan",
+  "title": "Theme of GANSO! BanG Dream Chan",
+  "jp": "元祖！バンドリちゃんのテーマ",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Theme of GANSO! BanG Dream Chan.png"
+ },
+ {
+  "id": "poppin-party-gather-all-the-blue-skies-in-the-world",
+  "title": "Gather All the Blue Skies in the World",
+  "jp": "世界中の青空をあつめて",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Gather All the Blue Skies in the World.webp"
+ },
+ {
+  "id": "pastel-palettes-you-charmin",
+  "title": "You Charmin'",
+  "jp": "きみCharmin'",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/You Charmin'.webp"
+ },
+ {
+  "id": "roselia-fear-nothing",
+  "title": "Fear Nothing",
+  "jp": "Fear Nothing",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Fear Nothing.webp"
+ },
+ {
+  "id": "hello-happy-world-so-dazzling-that-smile",
+  "title": "So Dazzling☆That Smile!",
+  "jp": "まぶしいねっ☆ そのえがお！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/So Dazzling☆That Smile!.webp"
+ },
+ {
+  "id": "hello-happy-world-smiley-carol",
+  "title": "Smiley Carol",
+  "jp": "スマイリーキャロル",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Smiley Carol.webp"
+ },
+ {
+  "id": "other-collaborations-singer",
+  "title": "Singer",
+  "jp": "Singer",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Singer.png"
+ },
+ {
+  "id": "other-collaborations-teotatake",
+  "title": "TEOTATAKE",
+  "jp": "手を叩け今ここで祈るだけ願うだけ",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/TEOTATAKE.png"
+ },
+ {
+  "id": "mygo-panorama",
+  "title": "Panorama",
+  "jp": "端程山",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Panorama.webp"
+ },
+ {
+  "id": "raise-a-suilen-drown-out-the-noise-and-push-through-the-tras",
+  "title": "Drown Out the Noise and Push Through the Trash",
+  "jp": "Drown Out the Noise and Push Through the Trash",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/Drown Out the Noise and Push Through the Trash.webp"
+ },
+ {
+  "id": "other-collaborations-kyu-mai-flower-parallel-ver",
+  "title": "Kyu～Mai＊Flower (Parallel Ver.)",
+  "jp": "きゅ〜まい＊flower(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/_variants/Kyu～Mai＊Flower (Parallel Ver.).png"
+ },
+ {
+  "id": "other-collaborations-determination-symphony-parallel-ver",
+  "title": "Determination Symphony (Parallel Ver.)",
+  "jp": "Determination Symphony(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/_variants/Determination Symphony (Parallel Ver.).png"
+ },
+ {
+  "id": "other-collaborations-passionate-starmine-parallel-ver",
+  "title": "Passionate Starmine (Parallel Ver.)",
+  "jp": "熱色スターマイン(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/_variants/Passionate Starmine (Parallel Ver.).png"
+ },
+ {
+  "id": "morfonica-shining-leaves",
+  "title": "Shining Leaves",
+  "jp": "Shining Leaves",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Shining Leaves.webp"
+ },
+ {
+  "id": "raise-a-suilen-runaway-star",
+  "title": "RUNAWAY STAR",
+  "jp": "RUNAWAY STAR",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/RUNAWAY STAR.webp"
+ },
+ {
+  "id": "afterglow-choco-typhooooon",
+  "title": "Choco Typhooooon!!",
+  "jp": "Choco Typhooooon!!",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Choco Typhooooon!!.webp"
+ },
+ {
+  "id": "poppin-party-doki-doki-date",
+  "title": "Doki Doki Date",
+  "jp": "どきどきデエト",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Doki Doki Date.webp"
+ },
+ {
+  "id": "other-collaborations-mystic-light-quest",
+  "title": "Mystic Light Quest",
+  "jp": "Mystic Light Quest",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Mystic Light Quest.png"
+ },
+ {
+  "id": "other-collaborations-wonder-night-land",
+  "title": "Wonder Night Land",
+  "jp": "Wonder Night Land",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Wonder Night Land.png"
+ },
+ {
+  "id": "roselia-talk-to-my-tone",
+  "title": "Talk to My Tone",
+  "jp": "Talk to My Tone",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Talk to My Tone.webp"
+ },
+ {
+  "id": "pastel-palettes-thanks-to-you",
+  "title": "Thanks to you.",
+  "jp": "Thanks to you.",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Thanks to you.webp"
+ },
+ {
+  "id": "hello-happy-world-kapontto-gokuraku-yuutopia",
+  "title": "Kapontto Gokuraku ☆ Yuutopia!",
+  "jp": "かぽーんっと極楽☆ 湯〜とぴあ！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Kapontto Gokuraku ☆ Yuutopia!.webp"
+ },
+ {
+  "id": "poppin-party-game-changer",
+  "title": "Game Changer",
+  "jp": "Game Changer",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Game Changer.webp"
+ },
+ {
+  "id": "other-collaborations-comic-panic-parallel-ver",
+  "title": "COMIC PANIC!!! (Parallel ver.)",
+  "jp": "COMIC PANIC!!!(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/_variants/COMIC PANIC!!! (Parallel ver.).png"
+ },
+ {
+  "id": "other-collaborations-blazing-bonfire-parallel-ver",
+  "title": "Blazing Bonfire! (Parallel ver.)",
+  "jp": "灼熱 Bonfire!(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/_variants/Blazing Bonfire! (Parallel ver.).png"
+ },
+ {
+  "id": "morfonica-painting-new-dawn",
+  "title": "Painting New Dawn",
+  "jp": "Painting New Dawn",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Painting New Dawn.webp"
+ },
+ {
+  "id": "other-collaborations-tokimeki-experience-tsukishima-marina-v",
+  "title": "Tokimeki Experience! (Tsukishima Marina ver.) ",
+  "jp": "ときめきエクスペリエンス！ (月島まりなver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/_variants/Tokimeki Experience! (Tsukishima Marina ver.).png"
+ },
+ {
+  "id": "afterglow-akashi-wa-akaku",
+  "title": "Akashi wa Akaku",
+  "jp": "証は赫く",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/Akashi wa Akaku.webp"
+ },
+ {
+  "id": "raise-a-suilen-what-an-explosion",
+  "title": "WHAT AN EXPLOSION",
+  "jp": "WHAT AN EXPLOSION",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/WHAT AN EXPLOSION.webp"
+ },
+ {
+  "id": "other-collaborations-tokimeki-experience-tsukishima-marina-v-2",
+  "title": "Tokimeki Experience! (Tsukishima Marina ver.) ",
+  "jp": "ときめきエクスペリエンス！ (月島まりなver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/_variants/Tokimeki Experience! (Tsukishima Marina ver.) [790].png"
+ },
+ {
+  "id": "roselia-xv",
+  "title": "XV",
+  "jp": "XV",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/XV.webp"
+ },
+ {
+  "id": "mygo-noroshi",
+  "title": "Noroshi",
+  "jp": "無路矢",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Noroshi.webp"
+ },
+ {
+  "id": "morfonica-kocho-kakeru-hoshitsukiyo",
+  "title": "Kocho Kakeru Hoshitsukiyo",
+  "jp": "胡蝶翔る星月夜",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Kocho Kakeru Hoshitsukiyo.webp"
+ },
+ {
+  "id": "pastel-palettes-come-to-see-you",
+  "title": "Come to see YOU!!",
+  "jp": "Come to see YOU!!",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Come to see YOU!!.webp"
+ },
+ {
+  "id": "hello-happy-world-horebore-smile-goal",
+  "title": "Horebore ☆ SMILE GOAL!",
+  "jp": "ほれぼれっ☆すまいるゴール！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/Horebore ☆ SMILE GOAL!.webp"
+ },
+ {
+  "id": "poppin-party-amore",
+  "title": "Amore",
+  "jp": "Amore",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Amore.webp"
+ },
+ {
+  "id": "roselia-who-we-are",
+  "title": "who we aRe",
+  "jp": "who we aRe",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/who we aRe.webp"
+ },
+ {
+  "id": "morfonica-wings-of-the-lights",
+  "title": "Wings of the Lights",
+  "jp": "Wings of the Lights",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Wings of the Lights.webp"
+ },
+ {
+  "id": "afterglow",
+  "title": "夕影と歌う この先も",
+  "jp": "夕影と歌う この先も",
+  "band": "afterglow",
+  "variant": false,
+  "file": "covers/Afterglow/夕影と歌う この先も.webp"
+ },
+ {
+  "id": "pastel-palettes-rainbow-of-dreams",
+  "title": "Rainbow of Dreams",
+  "jp": "Rainbow of Dreams",
+  "band": "pasupare",
+  "variant": false,
+  "file": "covers/Pastel Palettes/Rainbow of Dreams.webp"
+ },
+ {
+  "id": "raise-a-suilen-i-am-who-i-am",
+  "title": "I AM WHO I AM",
+  "jp": "I AM WHO I AM",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/I AM WHO I AM.webp"
+ },
+ {
+  "id": "hello-happy-world",
+  "title": "好き・スキ・だいすき〜ズっ！",
+  "jp": "好き・スキ・だいすき〜ズっ！",
+  "band": "harohapi",
+  "variant": false,
+  "file": "covers/Hello, Happy World!/好き・スキ・だいすき〜ズっ！.webp"
+ },
+ {
+  "id": "roselia-resound-the-way",
+  "title": "Resound the Way",
+  "jp": "Resound the Way",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/Resound the Way.webp"
+ },
+ {
+  "id": "roselia",
+  "title": "この蒼き闇と光",
+  "jp": "この蒼き闇と光",
+  "band": "roselia",
+  "variant": false,
+  "file": "covers/Roselia/この蒼き闇と光.webp"
+ },
+ {
+  "id": "poppin-party",
+  "title": "ライムライト",
+  "jp": "ライムライト",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/ライムライト.webp"
+ },
+ {
+  "id": "other-collaborations-hello-wink-ver",
+  "title": "Hello! Wink!(パラレルver.)",
+  "jp": "Hello! Wink!(パラレルver.)",
+  "band": "other",
+  "variant": true,
+  "file": "covers/Other & Collaborations/_variants/Hello! Wink!(パラレルver.).png"
+ },
+ {
+  "id": "other-collaborations-see-the-world",
+  "title": "See the world",
+  "jp": "",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/See the world.png"
+ },
+ {
+  "id": "mygo-again",
+  "title": "Again",
+  "jp": "",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Again.webp"
+ },
+ {
+  "id": "other-collaborations-ameagari-no-yume",
+  "title": "Ameagari no Yume",
+  "jp": "",
+  "band": "other",
+  "variant": false,
+  "file": "covers/Other & Collaborations/Ameagari no Yume.jpg"
+ },
+ {
+  "id": "ave-mujica-angles",
+  "title": "Angles",
+  "jp": "",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Angles.webp"
+ },
+ {
+  "id": "raise-a-suilen-apocalypse",
+  "title": "Apocalypse",
+  "jp": "",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/Apocalypse.webp"
+ },
+ {
+  "id": "ave-mujica-ave-mujica-song",
+  "title": "Ave Mujica (song)",
+  "jp": "",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Ave Mujica (song).webp"
+ },
+ {
+  "id": "raise-a-suilen-berser-key",
+  "title": "BERSER-KEY",
+  "jp": "",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/BERSER-KEY.webp"
+ },
+ {
+  "id": "chispa-be-shine-shining",
+  "title": "Be shine, shining!",
+  "jp": "",
+  "band": "chispa",
+  "variant": false,
+  "file": "covers/CHiSPA/Be shine, shining!.jpg"
+ },
+ {
+  "id": "mugendai-mewtype-big-mouth",
+  "title": "Big Mouth",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Big Mouth.webp"
+ },
+ {
+  "id": "ave-mujica-choir-s-choir",
+  "title": "Choir ‘S’ Choir",
+  "jp": "",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Choir ‘S’ Choir.webp"
+ },
+ {
+  "id": "ave-mujica-divine",
+  "title": "DIVINE",
+  "jp": "",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/DIVINE.webp"
+ },
+ {
+  "id": "mugendai-mewtype-empty-puppet",
+  "title": "Empty Puppet",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Empty Puppet.webp"
+ },
+ {
+  "id": "morfonica-esora-no-clover",
+  "title": "Esora no clover",
+  "jp": "",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Esora no clover.webp"
+ },
+ {
+  "id": "ave-mujica-ether",
+  "title": "Ether",
+  "jp": "",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Ether.webp"
+ },
+ {
+  "id": "ave-mujica-futatsu-no-tsuki-deep-into-the-forest",
+  "title": "Futatsu no Tsuki ~Deep Into The Forest~",
+  "jp": "",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Futatsu no Tsuki ~Deep Into The Forest~.webp"
+ },
+ {
+  "id": "mugendai-mewtype-genkai-genjitsu-survival-tenshi",
+  "title": "Genkai Genjitsu Survival Tenshi",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Genkai Genjitsu Survival Tenshi.webp"
+ },
+ {
+  "id": "mugendai-mewtype-gradient",
+  "title": "Gradient",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Gradient.webp"
+ },
+ {
+  "id": "sumimi-here-the-world",
+  "title": "Here, the world!",
+  "jp": "",
+  "band": "sumimi",
+  "variant": false,
+  "file": "covers/sumimi/Here, the world!.png"
+ },
+ {
+  "id": "mugendai-mewtype-hi-vision",
+  "title": "Hi-Vision",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Hi-Vision.webp"
+ },
+ {
+  "id": "mygo-kaisou",
+  "title": "Kaisou",
+  "jp": "",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Kaisou.webp"
+ },
+ {
+  "id": "ave-mujica-kamisama-baka",
+  "title": "Kamisama, Baka",
+  "jp": "",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Kamisama, Baka.webp"
+ },
+ {
+  "id": "poppin-party-kimi-ga-hajimaru",
+  "title": "Kimi ga Hajimaru!",
+  "jp": "",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Kimi ga Hajimaru!.webp"
+ },
+ {
+  "id": "poppin-party-kirakira-star",
+  "title": "Kirakira Star!",
+  "jp": "",
+  "band": "popipa",
+  "variant": false,
+  "file": "covers/Poppin'Party/Kirakira Star!.webp"
+ },
+ {
+  "id": "mugendai-mewtype-kohaku",
+  "title": "Kohaku",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Kohaku.webp"
+ },
+ {
+  "id": "mygo-kokoro",
+  "title": "Kokoro",
+  "jp": "",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Kokoro.webp"
+ },
+ {
+  "id": "mugendai-mewtype-komyu-chakka-fire",
+  "title": "Komyu Chakka Fire!",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Komyu Chakka Fire!.webp"
+ },
+ {
+  "id": "morfonica-kyou-mo-merry-go-round",
+  "title": "Kyou mo Merry go rounD",
+  "jp": "",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Kyou mo Merry go rounD.webp"
+ },
+ {
+  "id": "mugendai-mewtype-let-s-achichi-training",
+  "title": "LET'S Achichi Training!",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/LET'S Achichi Training!.webp"
+ },
+ {
+  "id": "morfonica-mugen-reverberate",
+  "title": "MUGEN Reverberate!",
+  "jp": "",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/MUGEN Reverberate!.webp"
+ },
+ {
+  "id": "mugendai-mewtype-mayonaka-yuenchi",
+  "title": "Mayonaka Yuenchi",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Mayonaka Yuenchi.webp"
+ },
+ {
+  "id": "mygo-mist",
+  "title": "Mist",
+  "jp": "",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Mist.webp"
+ },
+ {
+  "id": "mugendai-mewtype-mugen-my-world",
+  "title": "Mugen My World",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Mugen My World.webp"
+ },
+ {
+  "id": "mugendai-mewtype-newtype-wa-virtual-no-yume-wo-miru-ka",
+  "title": "Newtype wa Virtual no Yume wo Miru ka?",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Newtype wa Virtual no Yume wo Miru ka_.webp"
+ },
+ {
+  "id": "crychic-ningen-ni-naritai-uta",
+  "title": "Ningen ni Naritai Uta",
+  "jp": "",
+  "band": "crychic",
+  "variant": false,
+  "file": "covers/CRYCHIC/Ningen ni Naritai Uta.webp"
+ },
+ {
+  "id": "raise-a-suilen-polaris",
+  "title": "POLARIS",
+  "jp": "",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/POLARIS.webp"
+ },
+ {
+  "id": "morfonica-phrasing-mirage",
+  "title": "Phrasing Mirage",
+  "jp": "",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Phrasing Mirage.webp"
+ },
+ {
+  "id": "raise-a-suilen-stray-cerberus",
+  "title": "STRAY CERBERUS",
+  "jp": "",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/STRAY CERBERUS.webp"
+ },
+ {
+  "id": "mygo-sasurai",
+  "title": "Sasurai",
+  "jp": "",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Sasurai.webp"
+ },
+ {
+  "id": "mygo-shoushinshoumei",
+  "title": "Shoushinshoumei",
+  "jp": "",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Shoushinshoumei.webp"
+ },
+ {
+  "id": "ave-mujica-sora-no-m-sica",
+  "title": "Sora no Música",
+  "jp": "",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Sora no Música.webp"
+ },
+ {
+  "id": "ave-mujica-subarashiki-sekai-demo-dokonimonai-basho",
+  "title": "Subarashiki Sekai demo Dokonimonai Basho",
+  "jp": "",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Subarashiki Sekai demo Dokonimonai Basho.webp"
+ },
+ {
+  "id": "sumimi-sweet-escape",
+  "title": "Sweet Escape",
+  "jp": "",
+  "band": "sumimi",
+  "variant": false,
+  "file": "covers/sumimi/Sweet Escape.png"
+ },
+ {
+  "id": "ave-mujica-symbol-i",
+  "title": "Symbol I: △",
+  "jp": "",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Symbol I_ △.webp"
+ },
+ {
+  "id": "ave-mujica-symbol-ii",
+  "title": "Symbol II: 🜁",
+  "jp": "",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Symbol II_ 🜁.webp"
+ },
+ {
+  "id": "ave-mujica-symbol-iii",
+  "title": "Symbol III: ▽",
+  "jp": "",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Symbol III_ ▽.webp"
+ },
+ {
+  "id": "ave-mujica-symbol-iv",
+  "title": "Symbol IV: 🜃",
+  "jp": "",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Symbol IV_ 🜃.webp"
+ },
+ {
+  "id": "mugendai-mewtype-trash-life",
+  "title": "TRASH LIFE",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/TRASH LIFE.webp"
+ },
+ {
+  "id": "raise-a-suilen-twin-tale",
+  "title": "TWIN TALE",
+  "jp": "",
+  "band": "ras",
+  "variant": false,
+  "file": "covers/RAISE A SUILEN/TWIN TALE.webp"
+ },
+ {
+  "id": "mugendai-mewtype-telepathy",
+  "title": "Telepathy",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Telepathy.webp"
+ },
+ {
+  "id": "morfonica-watashi-machigai-sagashi",
+  "title": "Watashi Machigai Sagashi",
+  "jp": "",
+  "band": "morfonica",
+  "variant": false,
+  "file": "covers/Morfonica/Watashi Machigai Sagashi.webp"
+ },
+ {
+  "id": "mugendai-mewtype-you-know-the-overture",
+  "title": "YoU kNOw the overture",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/YoU kNOw the overture.webp"
+ },
+ {
+  "id": "mygo-yokaze",
+  "title": "Yokaze",
+  "jp": "",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Yokaze.webp"
+ },
+ {
+  "id": "mugendai-mewtype-animal-party-kaisaichuu",
+  "title": "✞animal Party✞Kaisaichuu✞",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/✞animal Party✞Kaisaichuu✞.webp"
+ },
+ {
+  "id": "mugendai-mewtype-ai-no-mugen",
+  "title": "Ai no Mugen",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Ai no Mugen.webp"
+ },
+ {
+  "id": "ave-mujica-aoi-hitomi-no-naka-ni",
+  "title": "Aoi Hitomi no Naka ni",
+  "jp": "",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Aoi Hitomi no Naka ni.webp"
+ },
+ {
+  "id": "mugendai-mewtype-calling",
+  "title": "Calling",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Calling.webp"
+ },
+ {
+  "id": "millsage-carnation-no-saku-hi-ni",
+  "title": "Carnation no Saku Hi ni",
+  "jp": "",
+  "band": "millsage",
+  "variant": false,
+  "file": "covers/millsage/Carnation no Saku Hi ni.webp"
+ },
+ {
+  "id": "mugendai-mewtype-chou-wakusei-x-e-no-tabi",
+  "title": "Chou Wakusei X e no Tabi",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Chou Wakusei X e no Tabi.webp"
+ },
+ {
+  "id": "mugendai-mewtype-dongaragasshan",
+  "title": "Dongaragasshan",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Dongaragasshan.webp"
+ },
+ {
+  "id": "mugendai-mewtype-dream-voyage",
+  "title": "Dream Voyage",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Dream Voyage.webp"
+ },
+ {
+  "id": "ikka-dumb-rock-giant-killer-tune",
+  "title": "Giant Killer Tune",
+  "jp": "",
+  "band": "ikka",
+  "variant": false,
+  "file": "covers/Ikka Dumb Rock!/Giant Killer Tune.webp"
+ },
+ {
+  "id": "ikka-dumb-rock-homie-s-tie",
+  "title": "Homie's Tie!!",
+  "jp": "",
+  "band": "ikka",
+  "variant": false,
+  "file": "covers/Ikka Dumb Rock!/Homie's Tie!!.webp"
+ },
+ {
+  "id": "ikka-dumb-rock-keep-on-riddim",
+  "title": "Keep on Riddim",
+  "jp": "",
+  "band": "ikka",
+  "variant": false,
+  "file": "covers/Ikka Dumb Rock!/Keep on Riddim.webp"
+ },
+ {
+  "id": "millsage-kishi-kaisen",
+  "title": "Kishi Kaisen",
+  "jp": "",
+  "band": "millsage",
+  "variant": false,
+  "file": "covers/millsage/Kishi Kaisen.webp"
+ },
+ {
+  "id": "mugendai-mewtype-mewtan-to-mutant",
+  "title": "Mewtan to Mutant",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Mewtan to Mutant.webp"
+ },
+ {
+  "id": "millsage-narasu",
+  "title": "Narasu",
+  "jp": "",
+  "band": "millsage",
+  "variant": false,
+  "file": "covers/millsage/Narasu.webp"
+ },
+ {
+  "id": "ikka-dumb-rock-peaceful-pieces",
+  "title": "Peaceful Pieces!",
+  "jp": "",
+  "band": "ikka",
+  "variant": false,
+  "file": "covers/Ikka Dumb Rock!/Peaceful Pieces!.webp"
+ },
+ {
+  "id": "mygo-shoumeisanka",
+  "title": "Shoumeisanka",
+  "jp": "",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Shoumeisanka.webp"
+ },
+ {
+  "id": "mygo-silent",
+  "title": "Silent",
+  "jp": "",
+  "band": "mygo",
+  "variant": false,
+  "file": "covers/MyGO!!!!!/Silent.webp"
+ },
+ {
+  "id": "ave-mujica-sophie",
+  "title": "Sophie",
+  "jp": "",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/Sophie.webp"
+ },
+ {
+  "id": "ave-mujica-the-whole-blue-world",
+  "title": "The Whole Blue World",
+  "jp": "",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/The Whole Blue World.webp"
+ },
+ {
+  "id": "mugendai-mewtype-tuning",
+  "title": "Tuning",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Tuning.webp"
+ },
+ {
+  "id": "mugendai-mewtype-yawayawa-nerd-chou-frequency",
+  "title": "Yawayawa NERD Chou FreQuency",
+  "jp": "",
+  "band": "mewtype",
+  "variant": false,
+  "file": "covers/Mugendai Mewtype/Yawayawa NERD Chou FreQuency.webp"
+ },
+ {
+  "id": "ave-mujica-s-the-way",
+  "title": "‘S/’ The Way",
+  "jp": "",
+  "band": "ave",
+  "variant": false,
+  "file": "covers/Ave Mujica/‘S_’ The Way.webp"
+ }
+]
