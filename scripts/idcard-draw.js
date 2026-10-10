@@ -394,10 +394,9 @@ export function drawIdCard(ctx, data, pics) {
     ctx.fillStyle = INK;
     ctx.textAlign = 'left';
     const lines = wrap(ctx, data.song.title, tw, 2);
-    lines.forEach((line, i) => ctx.fillText(line, tx, cy0 + 330 + i * 33));
-    ctx.font = `500 18px ${FONT}`;
-    ctx.fillStyle = MUTED;
-    ctx.fillText(ellipsize(ctx, data.song.bandName, tw), tx, cy0 + 330 + lines.length * 33 + 2);
+    // the band is not printed here (it is shown in My band); the title is centred beside the cover
+    const firstLine = coverY + coverSize / 2 + 10 - (lines.length - 1) * 16;
+    lines.forEach((line, i) => ctx.fillText(line, tx, firstLine + i * 33));
   } else {
     ctx.strokeStyle = '#e8bfd2';
     ctx.lineWidth = 2;
