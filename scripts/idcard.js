@@ -1,6 +1,6 @@
-import { CANVAS_SIZE, CARD_BOX, PICTURE_COLUMN, defaultPictureFit, drawIdCard, pictureBaseScale, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-57';
+import { CANVAS_SIZE, CARD_BOX, PICTURE_COLUMN, defaultPictureFit, drawIdCard, pictureBaseScale, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-58';
 
-const V = '20261005-57';
+const V = '20261005-58';
 const STORAGE_KEY = 'bandori-idcard-v1';
 const PIC_KEY = 'bandori-idcard-pic-v1';
 const PIC_FIT_KEY = 'bandori-idcard-pic-fit-v1'; // where the uploaded picture sits: { s, cx, cy }
@@ -24,6 +24,7 @@ const STEPS = [
   { id: 'main', label: 'My main', title: 'My favorite character (my main)', hint: 'Open a band, then tap your favorite character. Then upload a picture of your main, the one you love most, so it stands on your card.' },
   { id: 'band', label: 'My band', title: 'My favorite band', hint: 'Tap the band you like the most.' },
   { id: 'song', label: 'My song', title: 'My favorite song', hint: 'Open a band folder, then tap your favorite song.' },
+  { id: 'since', label: 'Joined since', title: 'Joined since', hint: 'Tell people when you joined this fandom: a date, an event, or the anime that made you a fan.' },
   { id: 'games', label: 'Games I play', title: 'Games I play', hint: 'Tap the servers you play on (Japan, Global or Both), or "Don\'t play" if you skip a game. Add your player ID for each server in the same box. IDs are shown inside each game box on the card.' },
 ];
 const GAMES = [
@@ -38,7 +39,7 @@ const SERVERS = [
 // ---------- state ----------
 const emptyGames = () => Object.fromEntries(GAMES.map((g) => [g.id, { ...Object.fromEntries(SERVERS.map((s) => [s.id, false])), none: false }]));
 const state = {
-  step: 'name', name: '', main: null, band: null, song: null, games: emptyGames(), ids: {}, picture: null, pictureFit: null,
+  step: 'name', name: '', main: null, band: null, song: null, since: '', games: emptyGames(), ids: {}, picture: null, pictureFit: null,
   charBand: null, charQuery: '', songBand: null, songQuery: '',
 };
 
@@ -77,6 +78,7 @@ function parseIds(text) {
   }
   return ids;
 }
+const cleanSince = (text) => String(text ?? '').replace(/[\u0000-\u001f]/g, ' ').replace(/\s+/g, ' ').slice(0, 80);
 const idsParam = () => idKeys.filter((k) => state.ids[k]).map((k) => `${k}:${state.ids[k]}`).join(',');
 const gamesParam = () => GAMES
   .map((g) => [g.id, SERVERS.filter((s) => state.games[g.id][s.id]).map((s) => s.id)])
@@ -90,14 +92,15 @@ function load() {
   let saved = {};
   try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { saved = {}; }
   const hash = new URLSearchParams(location.hash.slice(1));
-  const fromLink = ['n', 'c', 'b', 's', 'g', 'i'].some((k) => hash.has(k));
+  const fromLink = ['n', 'c', 'b', 's', 'j', 'g', 'i'].some((k) => hash.has(k));
   const src = fromLink
-    ? { name: hash.get('n') || '', main: hash.get('c'), band: hash.get('b'), song: hash.get('s'), games: parseGames(hash.get('g')), ids: parseIds(hash.get('i')) }
+    ? { name: hash.get('n') || '', main: hash.get('c'), band: hash.get('b'), song: hash.get('s'), since: hash.get('j') || '', games: parseGames(hash.get('g')), ids: parseIds(hash.get('i')) }
     : saved;
   state.name = typeof src.name === 'string' ? src.name.slice(0, 24) : '';
   state.main = charById[src.main] ? src.main : null;
   state.band = mainBands.some((b) => b.id === src.band) ? src.band : null;
   state.song = songById[src.song] ? src.song : null;
+  state.since = cleanSince(src.since).trim();
   state.games = normalizeGames(src.games);
   state.ids = normalizeIds(src.ids);
   if (!fromLink && STEPS.some((s) => s.id === saved.step)) state.step = saved.step;
@@ -109,7 +112,7 @@ function load() {
 }
 function persist() {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ name: state.name, main: state.main, band: state.band, song: state.song, games: state.games, ids: state.ids, step: state.step }));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ name: state.name, main: state.main, band: state.band, song: state.song, since: state.since, games: state.games, ids: state.ids, step: state.step }));
   } catch { /* storage unavailable */ }
 }
 function persistPicture() {
@@ -170,6 +173,7 @@ const gameSummary = () => GAMES
 // ---------- what each section currently holds ----------
 function summary(id) {
   if (id === 'name') return state.name.trim() || null;
+  if (id === 'since') return state.since.trim() || null;
   if (id === 'main') return state.main ? charById[state.main].name : null;
   if (id === 'band') return state.band ? bandById[state.band].name : null;
   if (id === 'song') return state.song ? songById[state.song].title : null;
@@ -189,6 +193,7 @@ function cardData() {
   const mainBand = ch ? bandById[ch.band] : null;
   return {
     name: state.name.trim(),
+    since: state.since.trim(),
     mainName: ch ? ch.name : '',
     mainBand: mainBand ? mainBand.name : '',
     mainColor: ch ? ch.color : null,
@@ -785,6 +790,26 @@ $('#idc-name').addEventListener('input', (event) => {
   refreshPreview();
 });
 
+// ---------- joined since: a date, an event or an anime ----------
+$('#idc-since').addEventListener('input', (event) => {
+  const value = cleanSince(event.target.value);
+  if (value !== event.target.value) event.target.value = value;
+  state.since = value;
+  $('#idc-since-count').textContent = `${value.length} / 80`;
+  persist();
+  renderSteps();
+  refreshPreview();
+});
+$('#since-ideas').addEventListener('click', (event) => {
+  const chip = event.target.closest('button[data-idea]');
+  if (!chip) return;
+  const field = $('#idc-since');
+  const next = cleanSince(field.value.trim() ? `${field.value.trim()}, ${chip.dataset.idea}` : chip.dataset.idea);
+  field.value = next;
+  field.dispatchEvent(new Event('input', { bubbles: true }));
+  field.focus();
+});
+
 // ---------- steps ----------
 function renderCurrent() {
   if (state.step === 'main') { renderChars(); renderPictureNote(); }
@@ -841,6 +866,7 @@ $('#btn-share').addEventListener('click', async () => {
   if (state.main) params.set('c', state.main);
   if (state.band) params.set('b', state.band);
   if (state.song) params.set('s', state.song);
+  if (state.since.trim()) params.set('j', state.since.trim());
   if (gamesParam()) params.set('g', gamesParam());
   if (idsParam()) params.set('i', idsParam());
   const link = `${location.origin}${location.pathname}#${params}`;
@@ -850,9 +876,11 @@ $('#btn-share').addEventListener('click', async () => {
 $('#btn-clear').addEventListener('click', () => {
   if (!doneCount() && !state.picture) return;
   if (!window.confirm('Clear everything on your ID card?')) return;
-  Object.assign(state, { name: '', main: null, band: null, song: null, games: emptyGames(), ids: {}, picture: null, pictureFit: null, charBand: null, charQuery: '', songBand: null, songQuery: '' });
+  Object.assign(state, { name: '', main: null, band: null, song: null, since: '', games: emptyGames(), ids: {}, picture: null, pictureFit: null, charBand: null, charQuery: '', songBand: null, songQuery: '' });
   $('#idc-name').value = '';
   $('#idc-name-count').textContent = '0 / 24';
+  $('#idc-since').value = '';
+  $('#idc-since-count').textContent = '0 / 80';
   $('#char-search').value = '';
   $('#song-search').value = '';
   persistPicture();
@@ -869,5 +897,7 @@ function commit() {
 load();
 $('#idc-name').value = state.name;
 $('#idc-name-count').textContent = `${state.name.length} / 24`;
+$('#idc-since').value = state.since;
+$('#idc-since-count').textContent = `${state.since.length} / 80`;
 showStep(state.step);
 refreshPreview();

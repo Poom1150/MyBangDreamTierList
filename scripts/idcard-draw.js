@@ -408,8 +408,17 @@ export function drawIdCard(ctx, data, pics) {
     placeholder(ctx, 'Pick a song', sx + coverSize + 20, cy0 + 352, 24);
   }
 
-  label(ctx, 'Games I play', fx, cy0 + 420);
-  drawGames(ctx, data.games, fx, cy0 + 432, fw, accent, data.noGames);
+  // row 3: joined since (a date, an event or an anime)
+  label(ctx, 'Joined since', fx, cy0 + 412);
+  if (data.since) {
+    ctx.font = `700 25px ${FONT}`;
+    ctx.fillStyle = INK;
+    ctx.textAlign = 'left';
+    wrap(ctx, data.since, fw, 2).forEach((line, i) => ctx.fillText(line, fx, cy0 + 446 + i * 30));
+  } else placeholder(ctx, 'When did you join?', fx, cy0 + 446, 24);
+
+  label(ctx, 'Games I play', fx, cy0 + 512);
+  drawGames(ctx, data.games, fx, cy0 + 524, fw, accent, data.noGames);
   // ---- title: one big, tight line across the header; the picture is drawn later, so it can stand in front ----
   const titleColor = luminance(accent) > 0.62 ? INK : '#ffffff';
   const titleRight = cx0 + w - 96 - 20; // right-aligned, next to the star; it grows to the left

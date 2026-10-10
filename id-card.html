@@ -6,15 +6,15 @@
   <meta name="theme-color" content="#ff3377" />
   <meta name="description" content="Make your own BanG Dream! fan ID card: your name, main character, band, song and the games you play." />
   <title>My BanG Dream! ID card</title>
-  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg?v=20261005-57" />
-  <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48.png?v=20261005-57" />
-  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png?v=20261005-57" />
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg?v=20261005-58" />
+  <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48.png?v=20261005-58" />
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png?v=20261005-58" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles/main.css?v=20261005-57" />
-  <link rel="stylesheet" href="./styles/idcard.css?v=20261005-57" />
-  <script src="./scripts/idcard.js?v=20261005-57" type="module"></script>
+  <link rel="stylesheet" href="./styles/main.css?v=20261005-58" />
+  <link rel="stylesheet" href="./styles/idcard.css?v=20261005-58" />
+  <script src="./scripts/idcard.js?v=20261005-58" type="module"></script>
 </head>
 <body>
   <header class="masthead">
@@ -34,7 +34,7 @@
   <main class="layout">
     <section class="library" id="editor" aria-labelledby="step-title">
       <div class="lib-head">
-        <h2 id="step-title">Your name <small id="step-count">Step 1 of 5</small></h2>
+        <h2 id="step-title">Your name <small id="step-count">Step 1 of 6</small></h2>
       </div>
       <p class="lib-hint" id="step-hint"></p>
 
@@ -101,7 +101,23 @@
         <p class="empty" id="song-empty" hidden>No songs match that search.</p>
       </div>
 
-      <!-- 5. Games -->
+      <!-- 5. Joined since -->
+      <div class="step" id="step-since" data-step="since" hidden>
+        <label class="idc-field">
+          <span>When did you join this fandom?</span>
+          <input id="idc-since" type="text" maxlength="80" placeholder="A date, an event or an anime, for example: 2017, after the anime" autocomplete="off" />
+          <small id="idc-since-count">0 / 80</small>
+        </label>
+        <div class="since-ideas" id="since-ideas">
+          <span>Tap to add:</span>
+          <button type="button" class="btn" data-idea="Because of the anime">Because of the anime</button>
+          <button type="button" class="btn" data-idea="A live event">A live event</button>
+          <button type="button" class="btn" data-idea="Playing the game">Playing the game</button>
+          <button type="button" class="btn" data-idea="A friend showed me">A friend showed me</button>
+        </div>
+      </div>
+
+      <!-- 6. Games -->
       <div class="step" id="step-games" data-step="games" hidden>
         <div class="game-list" id="game-list"></div>
         <p class="id-note">Player IDs are shown on the card and are included in share links. Leave a box empty to keep that ID off the card.</p>
@@ -117,7 +133,7 @@
       <div class="ranking-card">
         <div class="ranking-head">
           <h2 id="card-title">My ID card</h2>
-          <small id="idc-count">0 / 5</small>
+          <small id="idc-count">0 / 6</small>
         </div>
         <canvas id="idc-canvas" class="idc-canvas" width="1000" height="669" role="button" tabindex="0" title="Click to see it larger" aria-label="Preview of your fan ID card. Press to see it larger."></canvas>
         <p class="target">Tap a section to fill it in.</p>
