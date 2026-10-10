@@ -1,6 +1,6 @@
-import { CANVAS_SIZE, drawIdCard, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-22';
+import { CANVAS_SIZE, drawIdCard, loadImage, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-23';
 
-const V = '20261005-22';
+const V = '20261005-23';
 const STORAGE_KEY = 'bandori-idcard-v1';
 const PIC_KEY = 'bandori-idcard-pic-v1';
 
@@ -37,7 +37,7 @@ const SERVERS = [
 // ---------- state ----------
 const emptyGames = () => Object.fromEntries(GAMES.map((g) => [g.id, Object.fromEntries(SERVERS.map((s) => [s.id, false]))]));
 const state = {
-  step: 'name', name: '', main: null, band: null, song: null, games: emptyGames(), picture: null,
+  step: 'name', name: '', main: null, band: null, song: null, games: emptyGames(), picture: null, autoPicture: null,
   charBand: null, charQuery: '', songBand: null, songQuery: '',
 };
 
@@ -152,7 +152,7 @@ function cardData() {
     song: song ? { title: song.title, bandName: bandById[song.band].name, color: bandById[song.band].color } : null,
     games: GAMES.map((g) => ({ short: g.short, servers: SERVERS.filter((s) => state.games[g.id][s.id]).map((s) => s.label) })).filter((g) => g.servers.length),
     accent: (band || mainBand)?.color || '#ff3377',
-    pictureUrl: state.picture,
+    pictureUrl: state.picture || state.autoPicture,
     logoUrl: band?.logo ? encodePath(band.logo) : null,
     coverUrl: song ? encodePath(song.file) : null,
   };
@@ -306,12 +306,31 @@ $('#char-grid').addEventListener('click', (event) => {
 
 // picture upload (stays on this device)
 function renderPictureNote() {
-  const has = Boolean(state.picture);
   const ch = charById[state.main];
-  $('#pic-note').textContent = has
-    ? 'Your picture is on the card. It stays on this device and is never uploaded.'
-    : `Shows a star mascot until you add your own picture${ch ? ` of ${ch.name}` : ' of your main'}. A PNG with a transparent background looks best, with no frame.`;
-  $('#pic-remove').hidden = !has;
+  let note;
+  if (state.picture) note = 'Your picture is on the card. It stays on this device and is never uploaded.';
+  else if (state.autoPicture) note = `Using the picture saved for ${ch.name}. Upload your own to replace it.`;
+  else note = `Shows a star mascot until you add your own picture${ch ? ` of ${ch.name}` : ' of your main'}. A PNG with a transparent background looks best, with no frame.`;
+  $('#pic-note').textContent = note;
+  $('#pic-remove').hidden = !state.picture;
+}
+
+// A picture can also be provided as a file in assets/characters/<character id>.webp (or .png).
+// It is used automatically when that character is your main and you have not uploaded a picture.
+let autoPictureToken = 0;
+async function updateAutoPicture() {
+  const token = ++autoPictureToken;
+  let found = null;
+  if (state.main) {
+    for (const ext of ['webp', 'png']) {
+      const url = `${encodePath(`assets/characters/${state.main}`)}.${ext}?v=${V}`;
+      if (await loadImage(url)) { found = url; break; }
+    }
+  }
+  if (token !== autoPictureToken || found === state.autoPicture) return;
+  state.autoPicture = found;
+  renderPictureNote();
+  refreshPreview();
 }
 async function downscale(file) {
   const bitmap = await createImageBitmap(file);
@@ -619,6 +638,7 @@ function commit() {
   renderSteps();
   renderCurrent();
   refreshPreview();
+  updateAutoPicture();
 }
 
 load();
@@ -626,3 +646,4 @@ $('#idc-name').value = state.name;
 $('#idc-name-count').textContent = `${state.name.length} / 24`;
 showStep(state.step);
 refreshPreview();
+updateAutoPicture();

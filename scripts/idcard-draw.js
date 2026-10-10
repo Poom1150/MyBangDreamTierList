@@ -100,12 +100,6 @@ function placeholder(ctx, text, x, y, size = 30) {
   ctx.fillText(text, x, y);
 }
 
-function hash(text) {
-  let h = 2166136261;
-  for (const ch of text) h = Math.imul(h ^ ch.codePointAt(0), 16777619) >>> 0;
-  return h;
-}
-
 // ---------- the original star mascot (shown until you add your own picture) ----------
 function drawMascot(ctx, cx, bottom, size, accent) {
   const k = size / 24;
@@ -273,18 +267,9 @@ export function drawIdCard(ctx, data, pics) {
   ctx.stroke();
   ctx.restore();
 
-  // footer strip with a decorative bar pattern
+  // footer strip
   ctx.fillStyle = rgba(accent, 0.1);
   ctx.fillRect(cx0, cy0 + h - 54, w, 54);
-  let seed = hash(`${data.name || ''}|${data.mainName || ''}|${data.song?.title || ''}`);
-  ctx.fillStyle = INK;
-  let bx = cx0 + 500;
-  for (let i = 0; i < 46; i++) {
-    seed = (Math.imul(seed, 1103515245) + 12345) >>> 0;
-    const bw = 2 + (seed >> 16) % 5;
-    ctx.fillRect(bx, cy0 + h - 40, bw, 26);
-    bx += bw + 3;
-  }
   ctx.font = `700 15px ${FONT}`;
   ctx.fillStyle = MUTED;
   ctx.textAlign = 'right';
