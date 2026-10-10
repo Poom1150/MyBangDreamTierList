@@ -324,12 +324,15 @@ export function drawIdCard(ctx, data, pics) {
   const fx = cx0 + INFO_X;
   const fw = w - INFO_X - 48;
 
+  // row 1: your name on the left, your main (same size as before) on the right
+  const colW = (fw - 30) / 2;
+  const bx2 = fx + colW + 30;
   label(ctx, 'Name', fx, cy0 + 168);
   if (data.name) {
-    const size = fitFont(ctx, data.name, fw, 64, 32);
+    const size = fitFont(ctx, data.name, colW, 64, 32);
     ctx.fillStyle = INK;
     ctx.textAlign = 'left';
-    ctx.fillText(ellipsize(ctx, data.name, fw), fx, cy0 + 168 + 10 + size * 0.9);
+    ctx.fillText(ellipsize(ctx, data.name, colW), fx, cy0 + 168 + 10 + size * 0.9);
   } else {
     placeholder(ctx, 'Your name', fx, cy0 + 224, 48);
   }
@@ -337,31 +340,30 @@ export function drawIdCard(ctx, data, pics) {
   roundRect(ctx, fx, cy0 + 250, 120, 6, 3);
   ctx.fill();
 
-  const colW = (fw - 30) / 2;
-  label(ctx, 'My main', fx, cy0 + 284);
+  label(ctx, 'My main', bx2, cy0 + 168);
   if (data.mainName) {
     const size = fitFont(ctx, data.mainName, colW, 30, 20);
     ctx.fillStyle = INK;
-    ctx.fillText(ellipsize(ctx, data.mainName, colW), fx, cy0 + 284 + 12 + size * 0.95);
+    ctx.fillText(ellipsize(ctx, data.mainName, colW), bx2, cy0 + 168 + 12 + size * 0.95);
     if (data.mainBand) {
       ctx.font = `500 18px ${FONT}`;
       ctx.fillStyle = MUTED;
-      ctx.fillText(ellipsize(ctx, data.mainBand, colW), fx, cy0 + 353);
+      ctx.fillText(ellipsize(ctx, data.mainBand, colW), bx2, cy0 + 237);
     }
-  } else placeholder(ctx, 'Pick a character', fx, cy0 + 322, 24);
+  } else placeholder(ctx, 'Pick a character', bx2, cy0 + 206, 24);
 
-  const bx2 = fx + colW + 30;
-  label(ctx, 'My band', bx2, cy0 + 284);
+  // row 2: your band
+  label(ctx, 'My band', fx, cy0 + 284);
   if (data.band) {
     if (pics.logo) {
       const s = Math.min(colW / pics.logo.width, 64 / pics.logo.height);
-      ctx.drawImage(pics.logo, bx2, cy0 + 296, pics.logo.width * s, pics.logo.height * s);
+      ctx.drawImage(pics.logo, fx, cy0 + 296, pics.logo.width * s, pics.logo.height * s);
     } else {
       const size = fitFont(ctx, data.band.name, colW, 30, 20);
       ctx.fillStyle = data.band.color;
-      ctx.fillText(ellipsize(ctx, data.band.name, colW), bx2, cy0 + 284 + 12 + size * 0.95);
+      ctx.fillText(ellipsize(ctx, data.band.name, colW), fx, cy0 + 284 + 12 + size * 0.95);
     }
-  } else placeholder(ctx, 'Pick a band', bx2, cy0 + 322, 24);
+  } else placeholder(ctx, 'Pick a band', fx, cy0 + 322, 24);
 
   label(ctx, 'My song', fx, cy0 + 378);
   const coverSize = 92;
