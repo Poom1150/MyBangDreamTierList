@@ -404,6 +404,24 @@ export function drawIdCard(ctx, data, pics) {
 
   label(ctx, 'Games I play', fx, cy0 + 506);
   drawGames(ctx, data.games, fx, cy0 + 518, fw, accent, data.noGames);
+  // ---- title: one big, tight line across the header; the picture is drawn later, so it can stand in front ----
+  const titleColor = luminance(accent) > 0.62 ? INK : '#ffffff';
+  const titleRight = cx0 + w - 96 - 20; // right-aligned, next to the star; it grows to the left
+  const titleMax = titleRight - (cx0 + 44);
+  ctx.textAlign = 'right';
+  ctx.textBaseline = 'alphabetic';
+  ctx.fillStyle = titleColor;
+  ctx.letterSpacing = '-2px';
+  const titleSize = fitFont(ctx, 'BanG Dream! FanClub ID Card', titleMax, 66, 30);
+  ctx.fillText('BanG Dream! FanClub ID Card', titleRight, cy0 + 72);
+  ctx.letterSpacing = '5px';
+  ctx.font = `700 16px ${FONT}`;
+  ctx.globalAlpha = 0.85;
+  ctx.fillText('UNOFFICIAL', titleRight + 5, cy0 + 72 + Math.round(titleSize * 0.18) + 18);
+  ctx.globalAlpha = 1;
+  ctx.letterSpacing = '0px';
+  ctx.textAlign = 'left';
+
   ctx.restore(); // end of the scaled-down card parts
 
   // ---- picture: sits on top of everything on the left, with no frame ----
@@ -424,28 +442,6 @@ export function drawIdCard(ctx, data, pics) {
   } else {
     drawPicturePlaceholder(ctx, cx0, cy0, PICTURE_COLUMN, CARD.h, accent);
   }
-  ctx.restore();
-
-  // ---- title: one big, tight line across the header, on top of everything (even over the picture) ----
-  ctx.save();
-  ctx.translate(cx0, cy0);
-  ctx.scale(SCALE, SCALE);
-  ctx.translate(-cx0, -cy0);
-  const titleColor = luminance(accent) > 0.62 ? INK : '#ffffff';
-  const titleRight = cx0 + w - 96 - 20; // the title is right-aligned, next to the star, and grows to the left
-  const titleMax = titleRight - (cx0 + 44);
-  ctx.textAlign = 'right';
-  ctx.textBaseline = 'alphabetic';
-  ctx.fillStyle = titleColor;
-  ctx.letterSpacing = '-2px';
-  const titleSize = fitFont(ctx, 'BanG Dream! FanClub ID Card', titleMax, 66, 30);
-  ctx.fillText('BanG Dream! FanClub ID Card', titleRight, cy0 + 72);
-  ctx.letterSpacing = '5px';
-  ctx.font = `700 16px ${FONT}`;
-  ctx.globalAlpha = 0.85;
-  ctx.fillText('UNOFFICIAL', titleRight + 5, cy0 + 72 + Math.round(titleSize * 0.18) + 18);
-  ctx.globalAlpha = 1;
-  ctx.letterSpacing = '0px';
   ctx.restore();
 }
 
