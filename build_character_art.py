@@ -55,21 +55,23 @@ def head_top(alpha, centre):
     return 0
 
 
+HEAD_ROOM = 0.16  # space kept above the head, as a fraction of the figure's height (must match HEAD_ROOM in scripts/idcard-draw.js)
+
+
 def centre_on_body(image):
-    """Lines every picture up the same way: the top of the head at the very top, the middle of the head and
+    """Lines every picture up the same way: the top of the head at a fixed height, the middle of the head and
     shoulders exactly in the middle.  A big instrument or a raised arm would otherwise push the figure sideways
-    (it widens one side) or down (it makes the picture taller than the figure)."""
+    (it widens one side) or down (it makes the picture taller than the figure).  Whatever sticks out above the
+    head (a raised bass neck, a hat feather) is kept in the room above the head, not cut off."""
     alpha = image.getchannel('A')
     centre = middle_of(alpha, 0.06, 0.28)
     top = head_top(alpha, centre)
-    if top:
-        image = image.crop((0, top, image.width, image.height))
-        alpha = image.getchannel('A')
-    centre = middle_of(alpha, 0.0, 0.22)
-    width, height = image.size
-    half = max(centre, width - centre)
-    padded = Image.new('RGBA', (round(half * 2), height), (0, 0, 0, 0))
-    padded.paste(image, (round(half - centre), 0))
+    body = image.height - top
+    room = round(body * HEAD_ROOM)
+    centre = middle_of(alpha.crop((0, top, image.width, image.height)), 0.0, 0.22)
+    half = max(centre, image.width - centre)
+    padded = Image.new('RGBA', (round(half * 2), room + body), (0, 0, 0, 0))
+    padded.paste(image, (round(half - centre), room - top))
     return padded
 
 

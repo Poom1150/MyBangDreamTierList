@@ -442,15 +442,19 @@ export function drawIdCard(ctx, data, pics) {
     // Half-body framing: the picture is scaled up so that its upper part (about HALF_BODY of its height)
     // fills the space from just inside the header down to the bottom edge of the card. The legs are cut off by the
     // card edge, and anything wider than the picture column is cropped so it never runs into the text.
+    // The saved pictures keep HEAD_ROOM (a fraction of the figure's height) above the head for anything that sticks
+    // out up there, such as a raised bass neck; the head itself always lands at `top`.
     const HALF_BODY = 0.56;
+    const HEAD_ROOM = 0.16; // must match HEAD_ROOM in build_character_art.py
     const top = cy0 + 60;
-    const scale = (cy0 + h - top) / (pics.picture.height * HALF_BODY);
+    const body = pics.picture.height / (1 + HEAD_ROOM);
+    const scale = (cy0 + h - top) / (body * HALF_BODY);
     const pw = pics.picture.width * scale;
     const ph = pics.picture.height * scale;
     ctx.beginPath();
     ctx.rect(cx0, cy0, 500, h);
     ctx.clip();
-    ctx.drawImage(pics.picture, baseX - pw / 2, top, pw, ph);
+    ctx.drawImage(pics.picture, baseX - pw / 2, top - body * HEAD_ROOM * scale, pw, ph);
   } else {
     drawMascot(ctx, baseX, baseY, 380, data.mainColor || accent, data.mainInitial);
   }
