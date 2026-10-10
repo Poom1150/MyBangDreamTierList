@@ -2,10 +2,11 @@
 // The card is drawn on a 1200 x 756 grid (BASE) and shrunk to SCALE; the character picture is NOT shrunk
 // (it keeps the size it had on the bigger card), so it fills more of the smaller card.
 const BASE = { w: 1200, h: 756 };
-const SCALE = 0.5625; // 75% of the 0.75 card
-const CARD = { x: 40, y: 40, w: Math.round(BASE.w * SCALE), h: Math.round(BASE.h * SCALE), r: 31 };
-const W = CARD.w + 80;
-const H = CARD.h + 80;
+const SCALE = 0.745; // the 755 x 505 card scaled up to a picture 1000 px wide (same proportions)
+const MARGIN = 53;
+const CARD = { x: MARGIN, y: MARGIN, w: Math.round(BASE.w * SCALE), h: Math.round(BASE.h * SCALE), r: 41 };
+const W = CARD.w + MARGIN * 2;
+const H = CARD.h + MARGIN * 2;
 const FONT = '"Space Grotesk", "Noto Sans JP", system-ui, sans-serif';
 const INK = '#2a2347';
 const MUTED = '#7a7298';
