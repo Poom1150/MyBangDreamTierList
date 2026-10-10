@@ -1,6 +1,6 @@
 import { CANVAS_SIZE, drawIdCard, loadImage, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-23';
 
-const V = '20261005-23';
+const V = '20261005-24';
 const STORAGE_KEY = 'bandori-idcard-v1';
 const PIC_KEY = 'bandori-idcard-pic-v1';
 
@@ -99,6 +99,11 @@ function toast(message) {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => { el.hidden = true; }, 2800);
 }
+// text color that stays readable on top of a given background color
+function onColor(hex) {
+  const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.62 ? '#2a2347' : '#ffffff';
+}
 const initial = (name) => {
   const parts = name.split(/\s+/);
   return [...(parts.length > 1 ? parts[parts.length - 1] : parts[0])][0].toUpperCase();
@@ -148,6 +153,8 @@ function cardData() {
     name: state.name.trim(),
     mainName: ch ? ch.name : '',
     mainBand: mainBand ? mainBand.name : '',
+    mainColor: ch ? ch.color : null,
+    mainInitial: ch ? initial(ch.name) : '',
     band: band ? { name: band.name, color: band.color } : null,
     song: song ? { title: song.title, bandName: bandById[song.band].name, color: bandById[song.band].color } : null,
     games: GAMES.map((g) => ({ short: g.short, servers: SERVERS.filter((s) => state.games[g.id][s.id]).map((s) => s.label) })).filter((g) => g.servers.length),
@@ -229,6 +236,8 @@ function renderChars() {
       list.slice(0, 3).forEach((c) => {
         const m = document.createElement('span');
         m.textContent = initial(c.name);
+        m.style.background = c.color;
+        m.style.color = onColor(c.color);
         stack.append(m);
       });
       const head = document.createElement('span');
@@ -274,7 +283,8 @@ function renderChars() {
     card.type = 'button';
     card.className = `char-card${state.main === c.id ? ' chosen' : ''}`;
     card.dataset.id = c.id;
-    card.style.setProperty('--c', band.color);
+    card.style.setProperty('--c', c.color);
+    card.style.setProperty('--on', onColor(c.color));
     card.setAttribute('aria-pressed', String(state.main === c.id));
     card.innerHTML = '<span class="avatar"></span><span class="nm"></span><span class="bd"></span><span class="tick" aria-hidden="true">✓</span>';
     card.querySelector('.avatar').textContent = initial(c.name);

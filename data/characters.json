@@ -2,301 +2,361 @@
  {
   "id": "popipa-toyama-kasumi",
   "name": "Toyama Kasumi",
-  "band": "popipa"
+  "band": "popipa",
+  "color": "#ff5522"
  },
  {
   "id": "popipa-hanazono-tae",
   "name": "Hanazono Tae",
-  "band": "popipa"
+  "band": "popipa",
+  "color": "#0077dd"
  },
  {
   "id": "popipa-ushigome-rimi",
   "name": "Ushigome Rimi",
-  "band": "popipa"
+  "band": "popipa",
+  "color": "#ff55bb"
  },
  {
   "id": "popipa-yamabuki-saaya",
   "name": "Yamabuki Saaya",
-  "band": "popipa"
+  "band": "popipa",
+  "color": "#ffcc11"
  },
  {
   "id": "popipa-ichigaya-arisa",
   "name": "Ichigaya Arisa",
-  "band": "popipa"
+  "band": "popipa",
+  "color": "#aa66dd"
  },
  {
   "id": "afterglow-mitake-ran",
   "name": "Mitake Ran",
-  "band": "afterglow"
+  "band": "afterglow",
+  "color": "#ee0022"
  },
  {
   "id": "afterglow-aoba-moca",
   "name": "Aoba Moca",
-  "band": "afterglow"
+  "band": "afterglow",
+  "color": "#00ccaa"
  },
  {
   "id": "afterglow-uehara-himari",
   "name": "Uehara Himari",
-  "band": "afterglow"
+  "band": "afterglow",
+  "color": "#ff9999"
  },
  {
   "id": "afterglow-udagawa-tomoe",
   "name": "Udagawa Tomoe",
-  "band": "afterglow"
+  "band": "afterglow",
+  "color": "#bb0033"
  },
  {
   "id": "afterglow-hazawa-tsugumi",
   "name": "Hazawa Tsugumi",
-  "band": "afterglow"
+  "band": "afterglow",
+  "color": "#ffee88"
  },
  {
   "id": "pasupare-maruyama-aya",
   "name": "Maruyama Aya",
-  "band": "pasupare"
+  "band": "pasupare",
+  "color": "#ff88bb"
  },
  {
   "id": "pasupare-hikawa-hina",
   "name": "Hikawa Hina",
-  "band": "pasupare"
+  "band": "pasupare",
+  "color": "#55ddee"
  },
  {
   "id": "pasupare-shirasagi-chisato",
   "name": "Shirasagi Chisato",
-  "band": "pasupare"
+  "band": "pasupare",
+  "color": "#ffeeaa"
  },
  {
   "id": "pasupare-yamato-maya",
   "name": "Yamato Maya",
-  "band": "pasupare"
+  "band": "pasupare",
+  "color": "#99dd88"
  },
  {
   "id": "pasupare-wakamiya-eve",
   "name": "Wakamiya Eve",
-  "band": "pasupare"
+  "band": "pasupare",
+  "color": "#ddbbff"
  },
  {
   "id": "roselia-minato-yukina",
   "name": "Minato Yukina",
-  "band": "roselia"
+  "band": "roselia",
+  "color": "#881188"
  },
  {
   "id": "roselia-hikawa-sayo",
   "name": "Hikawa Sayo",
-  "band": "roselia"
+  "band": "roselia",
+  "color": "#00aabb"
  },
  {
   "id": "roselia-imai-lisa",
   "name": "Imai Lisa",
-  "band": "roselia"
+  "band": "roselia",
+  "color": "#dd2200"
  },
  {
   "id": "roselia-udagawa-ako",
   "name": "Udagawa Ako",
-  "band": "roselia"
+  "band": "roselia",
+  "color": "#dd0088"
  },
  {
   "id": "roselia-shirokane-rinko",
   "name": "Shirokane Rinko",
-  "band": "roselia"
+  "band": "roselia",
+  "color": "#bbbbbb"
  },
  {
   "id": "harohapi-tsurumaki-kokoro",
   "name": "Tsurumaki Kokoro",
-  "band": "harohapi"
+  "band": "harohapi",
+  "color": "#ffee22"
  },
  {
   "id": "harohapi-seta-kaoru",
   "name": "Seta Kaoru",
-  "band": "harohapi"
+  "band": "harohapi",
+  "color": "#aa33cc"
  },
  {
   "id": "harohapi-kitazawa-hagumi",
   "name": "Kitazawa Hagumi",
-  "band": "harohapi"
+  "band": "harohapi",
+  "color": "#ff9922"
  },
  {
   "id": "harohapi-matsubara-kanon",
   "name": "Matsubara Kanon",
-  "band": "harohapi"
+  "band": "harohapi",
+  "color": "#44ddff"
  },
  {
   "id": "harohapi-okusawa-misaki",
   "name": "Okusawa Misaki",
-  "band": "harohapi"
+  "band": "harohapi",
+  "color": "#006699"
  },
  {
   "id": "morfonica-kurata-mashiro",
   "name": "Kurata Mashiro",
-  "band": "morfonica"
+  "band": "morfonica",
+  "color": "#6677cc"
  },
  {
   "id": "morfonica-kirigaya-touko",
   "name": "Kirigaya Touko",
-  "band": "morfonica"
+  "band": "morfonica",
+  "color": "#ee6666"
  },
  {
   "id": "morfonica-hiromachi-nanami",
   "name": "Hiromachi Nanami",
-  "band": "morfonica"
+  "band": "morfonica",
+  "color": "#ee7744"
  },
  {
   "id": "morfonica-futaba-tsukushi",
   "name": "Futaba Tsukushi",
-  "band": "morfonica"
+  "band": "morfonica",
+  "color": "#ee7788"
  },
  {
   "id": "morfonica-yashio-rui",
   "name": "Yashio Rui",
-  "band": "morfonica"
+  "band": "morfonica",
+  "color": "#669988"
  },
  {
   "id": "ras-layer",
   "name": "LAYER",
-  "band": "ras"
+  "band": "ras",
+  "color": "#cc0000"
  },
  {
   "id": "ras-lock",
   "name": "LOCK",
-  "band": "ras"
+  "band": "ras",
+  "color": "#aaee22"
  },
  {
   "id": "ras-masking",
   "name": "MASKING",
-  "band": "ras"
+  "band": "ras",
+  "color": "#eebb44"
  },
  {
   "id": "ras-pareo",
   "name": "PAREO",
-  "band": "ras"
+  "band": "ras",
+  "color": "#ff99bb"
  },
  {
   "id": "ras-chu2",
   "name": "CHU²",
-  "band": "ras"
+  "band": "ras",
+  "color": "#00bbff"
  },
  {
   "id": "mygo-takamatsu-tomori",
   "name": "Takamatsu Tomori",
-  "band": "mygo"
+  "band": "mygo",
+  "color": "#77bbdd"
  },
  {
   "id": "mygo-chihaya-anon",
   "name": "Chihaya Anon",
-  "band": "mygo"
+  "band": "mygo",
+  "color": "#ff8899"
  },
  {
   "id": "mygo-kaname-raana",
   "name": "Kaname Raana",
-  "band": "mygo"
+  "band": "mygo",
+  "color": "#77dd77"
  },
  {
   "id": "mygo-nagasaki-soyo",
   "name": "Nagasaki Soyo",
-  "band": "mygo"
+  "band": "mygo",
+  "color": "#ffdd88"
  },
  {
   "id": "mygo-shiina-taki",
   "name": "Shiina Taki",
-  "band": "mygo"
+  "band": "mygo",
+  "color": "#7777aa"
  },
  {
   "id": "ave-misumi-uika",
   "name": "Misumi Uika",
-  "band": "ave"
+  "band": "ave",
+  "color": "#bb9955"
  },
  {
   "id": "ave-wakaba-mutsumi",
   "name": "Wakaba Mutsumi",
-  "band": "ave"
+  "band": "ave",
+  "color": "#779977"
  },
  {
   "id": "ave-yahata-umiri",
   "name": "Yahata Umiri",
-  "band": "ave"
+  "band": "ave",
+  "color": "#335566"
  },
  {
   "id": "ave-yuutenji-nyamu",
   "name": "Yuutenji Nyamu",
-  "band": "ave"
+  "band": "ave",
+  "color": "#aa4477"
  },
  {
   "id": "ave-togawa-sakiko",
   "name": "Togawa Sakiko",
-  "band": "ave"
+  "band": "ave",
+  "color": "#7799cc"
  },
  {
   "id": "mewtype-nakamachi-arale",
   "name": "Nakamachi Arale",
-  "band": "mewtype"
+  "band": "mewtype",
+  "color": "#ffdd33"
  },
  {
   "id": "mewtype-miyanaga-nonoka",
   "name": "Miyanaga Nonoka",
-  "band": "mewtype"
+  "band": "mewtype",
+  "color": "#ffbbcc"
  },
  {
   "id": "mewtype-minetsuki-ritsu",
   "name": "Minetsuki Ritsu",
-  "band": "mewtype"
+  "band": "mewtype",
+  "color": "#5588dd"
  },
  {
   "id": "mewtype-fuji-miyako",
   "name": "Fuji Miyako",
-  "band": "mewtype"
+  "band": "mewtype",
+  "color": "#9977cc"
  },
  {
   "id": "mewtype-sengoku-yuno",
   "name": "Sengoku Yuno",
-  "band": "mewtype"
+  "band": "mewtype",
+  "color": "#ff6688"
  },
  {
   "id": "millsage-shiomi-hotaru",
   "name": "Shiomi Hotaru",
-  "band": "millsage"
+  "band": "millsage",
+  "color": "#9aff99"
  },
  {
   "id": "millsage-izawa-natsume",
   "name": "Izawa Natsume",
-  "band": "millsage"
+  "band": "millsage",
+  "color": "#ff4446"
  },
  {
   "id": "millsage-kotohira-nagi",
   "name": "Kotohira Nagi",
-  "band": "millsage"
+  "band": "millsage",
+  "color": "#5355ff"
  },
  {
   "id": "millsage-hamasaki-mahoro",
   "name": "Hamasaki Mahoro",
-  "band": "millsage"
+  "band": "millsage",
+  "color": "#76ffff"
  },
  {
   "id": "millsage-izumi-houka",
   "name": "Izumi Houka",
-  "band": "millsage"
+  "band": "millsage",
+  "color": "#ee9aef"
  },
  {
   "id": "ikka-suga-raika",
   "name": "Suga Raika",
-  "band": "ikka"
+  "band": "ikka",
+  "color": "#ff7801"
  },
  {
   "id": "ikka-mahashi-miku",
   "name": "Mahashi Miku",
-  "band": "ikka"
+  "band": "ikka",
+  "color": "#23ccff"
  },
  {
   "id": "ikka-yakura-yomogi",
   "name": "Yakura Yomogi",
-  "band": "ikka"
+  "band": "ikka",
+  "color": "#438789"
  },
  {
   "id": "ikka-umezato-chieri",
   "name": "Umezato Chieri",
-  "band": "ikka"
+  "band": "ikka",
+  "color": "#fe55ac"
  },
  {
   "id": "ikka-shinomiya-shizuku",
   "name": "Shinomiya Shizuku",
-  "band": "ikka"
+  "band": "ikka",
+  "color": "#9a99ff"
  }
 ]

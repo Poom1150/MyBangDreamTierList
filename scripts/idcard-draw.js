@@ -101,7 +101,7 @@ function placeholder(ctx, text, x, y, size = 30) {
 }
 
 // ---------- the original star mascot (shown until you add your own picture) ----------
-function drawMascot(ctx, cx, bottom, size, accent) {
+function drawMascot(ctx, cx, bottom, size, color, initial) {
   const k = size / 24;
   const cy = bottom - size * 0.55;
   const pts = STAR.map(([x, y]) => [cx + (x - 16) * k, cy + (y - 16.2) * k]);
@@ -117,10 +117,10 @@ function drawMascot(ctx, cx, bottom, size, accent) {
   ctx.lineWidth = size * 0.1;
   ctx.strokeStyle = '#ffffff';
   ctx.stroke();
-  ctx.fillStyle = accent;
+  ctx.fillStyle = color;
   ctx.fill();
   ctx.lineWidth = size * 0.03;
-  ctx.strokeStyle = accent;
+  ctx.strokeStyle = shade(color, -0.18);
   ctx.stroke();
   // face
   const fx = cx - size * 0.02;
@@ -143,6 +143,18 @@ function drawMascot(ctx, cx, bottom, size, accent) {
   ctx.beginPath();
   ctx.arc(fx, fy + size * 0.045, size * 0.07, 0.15 * Math.PI, 0.85 * Math.PI);
   ctx.stroke();
+  if (initial) {
+    // the main character's initial on a small badge, below the face
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(fx, cy + size * 0.285, size * 0.082, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = INK;
+    ctx.font = `700 ${Math.round(size * 0.1)}px ${FONT}`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(initial, fx, cy + size * 0.29);
+  }
   ctx.restore();
 }
 
@@ -385,7 +397,7 @@ export function drawIdCard(ctx, data, pics) {
     const ph = pics.picture.height * s;
     ctx.drawImage(pics.picture, baseX - pw / 2, baseY - ph, pw, ph);
   } else {
-    drawMascot(ctx, baseX, baseY, 380, accent);
+    drawMascot(ctx, baseX, baseY, 380, data.mainColor || accent, data.mainInitial);
   }
   ctx.restore();
 }
