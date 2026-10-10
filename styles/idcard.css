@@ -120,3 +120,7 @@ label.btn { display: inline-flex; align-items: center; cursor: pointer; }
 .id-field-row input { width: 100%; font-size: 17px; font-weight: 700; letter-spacing: 0.02em; padding: 10px 12px; background: var(--bg); border: 2px solid var(--line); border-radius: 10px; color: var(--text); }
 .id-field-row input:focus { outline: none; border-color: var(--pink); box-shadow: 0 0 0 4px rgba(255, 51, 119, 0.15); }
 @media (max-width: 560px) { .id-field-row { grid-template-columns: 1fr; gap: 6px; } }
+
+.srv.none { border-style: dotted; }
+.srv.none[aria-pressed="true"] { border-style: solid; background: var(--muted); border-color: var(--muted); }
+.srv.none[aria-pressed="true"]::before { box-shadow: inset 0 0 0 3px var(--muted); }

@@ -188,7 +188,15 @@ function drawBackdrop(ctx) {
 }
 
 // Draws the games as pills. Returns the y of the bottom of the last row.
-function drawGames(ctx, games, x, y, maxW, accent) {
+function drawGames(ctx, games, x, y, maxW, accent, noGames = false) {
+  if (!games.length && noGames) {
+    ctx.font = `700 21px ${FONT}`;
+    ctx.fillStyle = MUTED;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic';
+    ctx.fillText("Didn't play any game", x, y + 32);
+    return y + 40;
+  }
   if (!games.length) { placeholder(ctx, 'Pick your games', x, y + 30, 26); return y + 40; }
   let px = x;
   let py = y;
@@ -420,8 +428,8 @@ export function drawIdCard(ctx, data, pics) {
   }
 
   label(ctx, 'Games I play', fx, cy0 + 506);
-  const gamesBottom = drawGames(ctx, data.games, fx, cy0 + 518, fw, accent);
-  drawPlayerIds(ctx, data.ids || [], fx, gamesBottom + 30, fw, cy0 + h - 44);
+  const gamesBottom = drawGames(ctx, data.games, fx, cy0 + 518, fw, accent, data.noGames);
+  if (!data.noGames) drawPlayerIds(ctx, data.ids || [], fx, gamesBottom + 30, fw, cy0 + h - 44);
 
   // ---- picture: sits on top of everything on the left, with no frame ----
   const baseX = cx0 + 250;

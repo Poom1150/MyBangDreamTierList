@@ -1,6 +1,6 @@
 import { CANVAS_SIZE, CARD_BOX, PICTURE_COLUMN, defaultPictureFit, drawIdCard, pictureBaseScale, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-23';
 
-const V = '20261005-40';
+const V = '20261005-41';
 const STORAGE_KEY = 'bandori-idcard-v1';
 const PIC_KEY = 'bandori-idcard-pic-v1';
 const PIC_FIT_KEY = 'bandori-idcard-pic-fit-v1'; // where the uploaded picture sits: { s, cx, cy }
@@ -26,7 +26,7 @@ const STEPS = [
   { id: 'main', label: 'My main', title: 'My favorite character (my main)', hint: 'Open a band, then tap your favorite character. You can add your own picture of them for the card.' },
   { id: 'band', label: 'My band', title: 'My favorite band', hint: 'Tap the band you like the most.' },
   { id: 'song', label: 'My song', title: 'My favorite song', hint: 'Open a band folder, then tap your favorite song.' },
-  { id: 'games', label: 'Games I play', title: 'Games I play', hint: 'Tap the servers you play on (Japan, Global or Both), then add your player ID for each one in the same box. IDs are shown on the card, below the games.' },
+  { id: 'games', label: 'Games I play', title: 'Games I play', hint: 'Tap the servers you play on (Japan, Global or Both), or "Don\'t play" if you skip a game. Add your player ID for each server in the same box. IDs are shown on the card, below the games.' },
 ];
 const GAMES = [
   { id: 'gbp', name: 'BanG Dream! Girls Band Party!', short: 'Girls Band Party!' },
@@ -38,7 +38,7 @@ const SERVERS = [
 ];
 
 // ---------- state ----------
-const emptyGames = () => Object.fromEntries(GAMES.map((g) => [g.id, Object.fromEntries(SERVERS.map((s) => [s.id, false]))]));
+const emptyGames = () => Object.fromEntries(GAMES.map((g) => [g.id, { ...Object.fromEntries(SERVERS.map((s) => [s.id, false])), none: false }]));
 const state = {
   step: 'name', name: '', main: null, band: null, song: null, games: emptyGames(), ids: {}, picture: null, pictureFit: null,
   charBand: null, charQuery: '', songBand: null, songQuery: '',
@@ -46,7 +46,10 @@ const state = {
 
 function normalizeGames(raw) {
   const games = emptyGames();
-  for (const g of GAMES) for (const s of SERVERS) games[g.id][s.id] = Boolean(raw?.[g.id]?.[s.id]);
+  for (const g of GAMES) {
+    for (const s of SERVERS) games[g.id][s.id] = Boolean(raw?.[g.id]?.[s.id]);
+    games[g.id].none = Boolean(raw?.[g.id]?.none) && !SERVERS.some((s) => games[g.id][s.id]);
+  }
   return games;
 }
 function parseGames(text) {
@@ -56,6 +59,7 @@ function parseGames(text) {
     if (!games[id]) continue;
     // a raw "+" in a link arrives as a space, so accept either one
     for (const s of servers.split(/[+ ]/)) if (s in games[id]) games[id][s] = true;
+    if (!SERVERS.some((s) => games[id][s.id])) games[id].none = servers === 'none';
   }
   return games;
 }
@@ -78,9 +82,11 @@ function parseIds(text) {
 const idsParam = () => idKeys.filter((k) => state.ids[k]).map((k) => `${k}:${state.ids[k]}`).join(',');
 const gamesParam = () => GAMES
   .map((g) => [g.id, SERVERS.filter((s) => state.games[g.id][s.id]).map((s) => s.id)])
-  .filter(([, list]) => list.length)
-  .map(([id, list]) => `${id}:${list.join('+')}`)
+  .map(([id, list]) => (list.length ? `${id}:${list.join('+')}` : state.games[id].none ? `${id}:none` : ''))
+  .filter(Boolean)
   .join(',');
+// "I don't play" for every game: the card says so instead of listing games
+const playsNothing = () => GAMES.every((g) => state.games[g.id].none);
 
 function load() {
   let saved = {};
@@ -170,7 +176,7 @@ function summary(id) {
   if (id === 'band') return state.band ? bandById[state.band].name : null;
   if (id === 'song') return state.song ? songById[state.song].title : null;
   const list = gameSummary();
-  if (!list.length) return null;
+  if (!list.length) return playsNothing() ? "Didn't play" : null;
   const ids = shownIds().length;
   return list.join(' \u00b7 ') + (ids ? ` \u00b7 ${ids} player ID${ids > 1 ? 's' : ''}` : '');
 }
@@ -194,6 +200,7 @@ function cardData() {
     mainInitial: ch ? initial(ch.name) : '',
     band: band ? { name: band.name, color: band.color } : null,
     song: song ? { title: song.title, bandName: bandById[song.band].name, color: bandById[song.band].color } : null,
+    noGames: playsNothing(),
     games: GAMES.map((g) => ({ short: g.short, servers: SERVERS.filter((s) => state.games[g.id][s.id]).map((s) => s.label) })).filter((g) => g.servers.length),
     ids: shownIds().map((e) => ({ label: `${e.short} \u00b7 ${e.server}`, value: e.value })),
     accent: (band || mainBand)?.color || '#ff3377',
@@ -667,7 +674,7 @@ function renderGames() {
     const title = document.createElement('h3');
     title.textContent = game.name;
     const note = document.createElement('p');
-    note.textContent = 'Which server do you play on? Add your player ID once you pick one.';
+    note.textContent = 'Which server do you play on? Add your player ID once you pick one. Or tap "Don\'t play".';
     const row = document.createElement('div');
     row.className = 'srv-row';
     for (const server of SERVERS) {
@@ -688,6 +695,14 @@ function renderGames() {
     both.textContent = 'Both';
     both.setAttribute('aria-pressed', String(SERVERS.every((srv) => state.games[game.id][srv.id])));
     row.append(both);
+    const none = document.createElement('button');
+    none.type = 'button';
+    none.className = 'srv none';
+    none.dataset.game = game.id;
+    none.dataset.server = 'none';
+    none.textContent = "Don't play";
+    none.setAttribute('aria-pressed', String(state.games[game.id].none));
+    row.append(none);
     card.append(title, note, row);
     const picked = SERVERS.filter((srv) => state.games[game.id][srv.id]);
     if (picked.length) {
@@ -724,12 +739,19 @@ $('#game-list').addEventListener('click', (event) => {
   const button = event.target.closest('.srv');
   if (!button) return;
   const { game, server } = button.dataset;
-  if (server === 'both') {
+  if (server === 'none') {
+    // "Don't play" turns the servers (and their IDs) off; tapping it again clears the choice
+    const on = !state.games[game].none;
+    for (const srv of SERVERS) state.games[game][srv.id] = false;
+    state.games[game].none = on;
+  } else if (server === 'both') {
     // Both = Japan and Global together; pressing it again turns both off
     const on = !SERVERS.every((srv) => state.games[game][srv.id]);
     for (const srv of SERVERS) state.games[game][srv.id] = on;
+    if (on) state.games[game].none = false;
   } else {
     state.games[game][server] = !state.games[game][server];
+    if (state.games[game][server]) state.games[game].none = false;
   }
   commit();
 });
