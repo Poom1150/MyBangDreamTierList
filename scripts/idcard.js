@@ -1,6 +1,6 @@
 import { CANVAS_SIZE, drawIdCard, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-23';
 
-const V = '20261005-29';
+const V = '20261005-28';
 const STORAGE_KEY = 'bandori-idcard-v1';
 const PIC_KEY = 'bandori-idcard-pic-v1';
 
@@ -241,27 +241,6 @@ $('#idc-steps').addEventListener('click', (event) => {
   if (button) showStep(button.dataset.step, true);
 });
 
-// ---------- character icons: an original little star mascot in the character's own color ----------
-const STAR_POINTS = '13.37,3.64 19.00,10.78 27.82,8.61 22.77,16.17 27.56,23.89 18.81,21.43 12.94,28.36 12.59,19.28 4.18,15.84 12.70,12.70';
-function darker(hex, amount = 0.2) {
-  const [r, g, b] = [1, 3, 5].map((i) => Math.round(parseInt(hex.slice(i, i + 2), 16) * (1 - amount)));
-  return `rgb(${r},${g},${b})`;
-}
-function mascotIcon(color) {
-  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg.setAttribute('viewBox', '0 0 100 100');
-  svg.setAttribute('aria-hidden', 'true');
-  svg.innerHTML = `<g transform="translate(50 53) scale(3.2) translate(-16 -16.2)">
-      <polygon points="${STAR_POINTS}" fill="#fff" stroke="#fff" stroke-width="3.4" stroke-linejoin="round"/>
-      <polygon points="${STAR_POINTS}" fill="${color}" stroke="${darker(color)}" stroke-width="1" stroke-linejoin="round"/>
-    </g>
-    <ellipse cx="43" cy="50" rx="3" ry="4.2" fill="#2a2347"/>
-    <ellipse cx="57" cy="50" rx="3" ry="4.2" fill="#2a2347"/>
-    <path d="M44 58 Q50 64.5 56 58" fill="none" stroke="#2a2347" stroke-width="2.2" stroke-linecap="round"/>`;
-  return svg;
-}
-const tint = (hex) => `color-mix(in srgb, ${hex} 16%, #ffffff)`;
-
 // ---------- left panel: step 2, characters ----------
 function renderChars() {
   const q = state.charQuery.trim().toLowerCase();
@@ -291,8 +270,9 @@ function renderChars() {
       stack.className = 'folder-stack mono';
       list.slice(0, 3).forEach((c) => {
         const m = document.createElement('span');
-        m.append(mascotIcon(c.color));
-        m.style.background = tint(c.color);
+        m.textContent = initial(c.name);
+        m.style.background = c.color;
+        m.style.color = onColor(c.color);
         stack.append(m);
       });
       const head = document.createElement('span');
@@ -342,7 +322,7 @@ function renderChars() {
     card.style.setProperty('--on', onColor(c.color));
     card.setAttribute('aria-pressed', String(state.main === c.id));
     card.innerHTML = '<span class="avatar"></span><span class="nm"></span><span class="bd"></span><span class="tick" aria-hidden="true">✓</span>';
-    card.querySelector('.avatar').append(mascotIcon(c.color));
+    card.querySelector('.avatar').textContent = initial(c.name);
     card.querySelector('.nm').textContent = c.name;
     card.querySelector('.bd').append(dot(band), band.name);
     fragment.append(card);
