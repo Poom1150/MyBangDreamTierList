@@ -1,0 +1,302 @@
+[
+ {
+  "id": "popipa-toyama-kasumi",
+  "name": "Toyama Kasumi",
+  "band": "popipa"
+ },
+ {
+  "id": "popipa-hanazono-tae",
+  "name": "Hanazono Tae",
+  "band": "popipa"
+ },
+ {
+  "id": "popipa-ushigome-rimi",
+  "name": "Ushigome Rimi",
+  "band": "popipa"
+ },
+ {
+  "id": "popipa-yamabuki-saaya",
+  "name": "Yamabuki Saaya",
+  "band": "popipa"
+ },
+ {
+  "id": "popipa-ichigaya-arisa",
+  "name": "Ichigaya Arisa",
+  "band": "popipa"
+ },
+ {
+  "id": "afterglow-mitake-ran",
+  "name": "Mitake Ran",
+  "band": "afterglow"
+ },
+ {
+  "id": "afterglow-aoba-moca",
+  "name": "Aoba Moca",
+  "band": "afterglow"
+ },
+ {
+  "id": "afterglow-uehara-himari",
+  "name": "Uehara Himari",
+  "band": "afterglow"
+ },
+ {
+  "id": "afterglow-udagawa-tomoe",
+  "name": "Udagawa Tomoe",
+  "band": "afterglow"
+ },
+ {
+  "id": "afterglow-hazawa-tsugumi",
+  "name": "Hazawa Tsugumi",
+  "band": "afterglow"
+ },
+ {
+  "id": "pasupare-maruyama-aya",
+  "name": "Maruyama Aya",
+  "band": "pasupare"
+ },
+ {
+  "id": "pasupare-hikawa-hina",
+  "name": "Hikawa Hina",
+  "band": "pasupare"
+ },
+ {
+  "id": "pasupare-shirasagi-chisato",
+  "name": "Shirasagi Chisato",
+  "band": "pasupare"
+ },
+ {
+  "id": "pasupare-yamato-maya",
+  "name": "Yamato Maya",
+  "band": "pasupare"
+ },
+ {
+  "id": "pasupare-wakamiya-eve",
+  "name": "Wakamiya Eve",
+  "band": "pasupare"
+ },
+ {
+  "id": "roselia-minato-yukina",
+  "name": "Minato Yukina",
+  "band": "roselia"
+ },
+ {
+  "id": "roselia-hikawa-sayo",
+  "name": "Hikawa Sayo",
+  "band": "roselia"
+ },
+ {
+  "id": "roselia-imai-lisa",
+  "name": "Imai Lisa",
+  "band": "roselia"
+ },
+ {
+  "id": "roselia-udagawa-ako",
+  "name": "Udagawa Ako",
+  "band": "roselia"
+ },
+ {
+  "id": "roselia-shirokane-rinko",
+  "name": "Shirokane Rinko",
+  "band": "roselia"
+ },
+ {
+  "id": "harohapi-tsurumaki-kokoro",
+  "name": "Tsurumaki Kokoro",
+  "band": "harohapi"
+ },
+ {
+  "id": "harohapi-seta-kaoru",
+  "name": "Seta Kaoru",
+  "band": "harohapi"
+ },
+ {
+  "id": "harohapi-kitazawa-hagumi",
+  "name": "Kitazawa Hagumi",
+  "band": "harohapi"
+ },
+ {
+  "id": "harohapi-matsubara-kanon",
+  "name": "Matsubara Kanon",
+  "band": "harohapi"
+ },
+ {
+  "id": "harohapi-okusawa-misaki",
+  "name": "Okusawa Misaki",
+  "band": "harohapi"
+ },
+ {
+  "id": "morfonica-kurata-mashiro",
+  "name": "Kurata Mashiro",
+  "band": "morfonica"
+ },
+ {
+  "id": "morfonica-kirigaya-touko",
+  "name": "Kirigaya Touko",
+  "band": "morfonica"
+ },
+ {
+  "id": "morfonica-hiromachi-nanami",
+  "name": "Hiromachi Nanami",
+  "band": "morfonica"
+ },
+ {
+  "id": "morfonica-futaba-tsukushi",
+  "name": "Futaba Tsukushi",
+  "band": "morfonica"
+ },
+ {
+  "id": "morfonica-yashio-rui",
+  "name": "Yashio Rui",
+  "band": "morfonica"
+ },
+ {
+  "id": "ras-layer",
+  "name": "LAYER",
+  "band": "ras"
+ },
+ {
+  "id": "ras-lock",
+  "name": "LOCK",
+  "band": "ras"
+ },
+ {
+  "id": "ras-masking",
+  "name": "MASKING",
+  "band": "ras"
+ },
+ {
+  "id": "ras-pareo",
+  "name": "PAREO",
+  "band": "ras"
+ },
+ {
+  "id": "ras-chu2",
+  "name": "CHU²",
+  "band": "ras"
+ },
+ {
+  "id": "mygo-takamatsu-tomori",
+  "name": "Takamatsu Tomori",
+  "band": "mygo"
+ },
+ {
+  "id": "mygo-chihaya-anon",
+  "name": "Chihaya Anon",
+  "band": "mygo"
+ },
+ {
+  "id": "mygo-kaname-raana",
+  "name": "Kaname Raana",
+  "band": "mygo"
+ },
+ {
+  "id": "mygo-nagasaki-soyo",
+  "name": "Nagasaki Soyo",
+  "band": "mygo"
+ },
+ {
+  "id": "mygo-shiina-taki",
+  "name": "Shiina Taki",
+  "band": "mygo"
+ },
+ {
+  "id": "ave-misumi-uika",
+  "name": "Misumi Uika",
+  "band": "ave"
+ },
+ {
+  "id": "ave-wakaba-mutsumi",
+  "name": "Wakaba Mutsumi",
+  "band": "ave"
+ },
+ {
+  "id": "ave-yahata-umiri",
+  "name": "Yahata Umiri",
+  "band": "ave"
+ },
+ {
+  "id": "ave-yuutenji-nyamu",
+  "name": "Yuutenji Nyamu",
+  "band": "ave"
+ },
+ {
+  "id": "ave-togawa-sakiko",
+  "name": "Togawa Sakiko",
+  "band": "ave"
+ },
+ {
+  "id": "mewtype-nakamachi-arale",
+  "name": "Nakamachi Arale",
+  "band": "mewtype"
+ },
+ {
+  "id": "mewtype-miyanaga-nonoka",
+  "name": "Miyanaga Nonoka",
+  "band": "mewtype"
+ },
+ {
+  "id": "mewtype-minetsuki-ritsu",
+  "name": "Minetsuki Ritsu",
+  "band": "mewtype"
+ },
+ {
+  "id": "mewtype-fuji-miyako",
+  "name": "Fuji Miyako",
+  "band": "mewtype"
+ },
+ {
+  "id": "mewtype-sengoku-yuno",
+  "name": "Sengoku Yuno",
+  "band": "mewtype"
+ },
+ {
+  "id": "millsage-shiomi-hotaru",
+  "name": "Shiomi Hotaru",
+  "band": "millsage"
+ },
+ {
+  "id": "millsage-izawa-natsume",
+  "name": "Izawa Natsume",
+  "band": "millsage"
+ },
+ {
+  "id": "millsage-kotohira-nagi",
+  "name": "Kotohira Nagi",
+  "band": "millsage"
+ },
+ {
+  "id": "millsage-hamasaki-mahoro",
+  "name": "Hamasaki Mahoro",
+  "band": "millsage"
+ },
+ {
+  "id": "millsage-izumi-houka",
+  "name": "Izumi Houka",
+  "band": "millsage"
+ },
+ {
+  "id": "ikka-suga-raika",
+  "name": "Suga Raika",
+  "band": "ikka"
+ },
+ {
+  "id": "ikka-mahashi-miku",
+  "name": "Mahashi Miku",
+  "band": "ikka"
+ },
+ {
+  "id": "ikka-yakura-yomogi",
+  "name": "Yakura Yomogi",
+  "band": "ikka"
+ },
+ {
+  "id": "ikka-umezato-chieri",
+  "name": "Umezato Chieri",
+  "band": "ikka"
+ },
+ {
+  "id": "ikka-shinomiya-shizuku",
+  "name": "Shinomiya Shizuku",
+  "band": "ikka"
+ }
+]

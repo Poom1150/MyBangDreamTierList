@@ -4,15 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#ff3377" />
-  <meta name="description" content="My BanG Dream! ID card: coming soon." />
+  <meta name="description" content="Make your own BanG Dream! fan ID card: your name, main character, band, song and the games you play." />
   <title>My BanG Dream! ID card</title>
-  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg?v=20261005-20" />
-  <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48.png?v=20261005-20" />
-  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png?v=20261005-20" />
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg?v=20261005-21" />
+  <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48.png?v=20261005-21" />
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png?v=20261005-21" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles/main.css?v=20261005-20" />
+  <link rel="stylesheet" href="./styles/main.css?v=20261005-21" />
+  <link rel="stylesheet" href="./styles/idcard.css?v=20261005-21" />
+  <script src="./scripts/idcard.js?v=20261005-21" type="module"></script>
 </head>
 <body>
   <header class="masthead">
@@ -21,14 +23,121 @@
         <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="30" height="30"><polygon points="13.37,3.64 19.00,10.78 27.82,8.61 22.77,16.17 27.56,23.89 18.81,21.43 12.94,28.36 12.59,19.28 4.18,15.84 12.70,12.70" fill="#fff" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/></svg></span>
         <div>
           <h1>My BanG Dream! ID card</h1>
+          <p>Fill in five things and get your own fan ID card to save and share.</p>
         </div>
       </div>
+      <a class="menu-link" href="./index.html">&larr; Main menu</a>
     </div>
     <div class="stripe" aria-hidden="true"></div>
   </header>
 
-  <main class="id-card-main">
-    <a class="btn primary menu-return" href="./index.html">&larr; Return to main menu</a>
+  <main class="layout">
+    <section class="library" id="editor" aria-labelledby="step-title">
+      <div class="lib-head">
+        <h2 id="step-title">Your name <small id="step-count">Step 1 of 5</small></h2>
+      </div>
+      <p class="lib-hint" id="step-hint"></p>
+
+      <!-- 1. Name -->
+      <div class="step" id="step-name" data-step="name">
+        <label class="idc-field">
+          <span>Name or nickname on your card</span>
+          <input id="idc-name" type="text" maxlength="24" placeholder="Type your name" autocomplete="nickname" />
+          <small id="idc-name-count">0 / 24</small>
+        </label>
+      </div>
+
+      <!-- 2. My main (favorite character) -->
+      <div class="step" id="step-main" data-step="main" hidden>
+        <div class="pic-tools">
+          <div class="pic-text">
+            <strong>Card picture</strong>
+            <span id="pic-note">Shows a star mascot until you add your own picture of your main. A PNG with a transparent background looks best, with no frame.</span>
+          </div>
+          <div class="pic-buttons">
+            <label class="btn" for="pic-file">Upload picture</label>
+            <input id="pic-file" type="file" accept="image/*" hidden />
+            <button id="pic-remove" class="btn ghost" type="button" hidden>Use the mascot</button>
+          </div>
+        </div>
+        <div class="lib-head">
+          <h3 class="sub-title">Characters <small id="char-count"></small></h3>
+          <label class="search">
+            <span class="sr-only">Search characters</span>
+            <input id="char-search" type="search" placeholder="Search characters" autocomplete="off" />
+          </label>
+        </div>
+        <div class="crumb" id="char-crumb" hidden>
+          <button id="char-back" class="btn" type="button">&larr; All bands</button>
+          <span class="crumb-name" id="char-crumb-name"></span>
+        </div>
+        <div class="folders" id="char-folders" role="list" aria-label="Bands"></div>
+        <div class="grid char-grid" id="char-grid" hidden></div>
+        <p class="empty" id="char-empty" hidden>No characters match that search.</p>
+      </div>
+
+      <!-- 3. My band -->
+      <div class="step" id="step-band" data-step="band" hidden>
+        <div class="band-pick" id="band-pick" role="group" aria-label="Pick your favorite band"></div>
+      </div>
+
+      <!-- 4. My song -->
+      <div class="step" id="step-song" data-step="song" hidden>
+        <div class="lib-head">
+          <h3 class="sub-title">Songs <small id="song-count"></small></h3>
+          <label class="search">
+            <span class="sr-only">Search songs</span>
+            <input id="song-search" type="search" placeholder="Search by title" autocomplete="off" />
+          </label>
+        </div>
+        <div class="crumb" id="song-crumb" hidden>
+          <button id="song-back" class="btn" type="button">&larr; All folders</button>
+          <span class="crumb-name" id="song-crumb-name"></span>
+        </div>
+        <div class="folders" id="song-folders" role="list" aria-label="Band folders"></div>
+        <div class="grid" id="song-grid" hidden></div>
+        <p class="empty" id="song-empty" hidden>No songs match that search.</p>
+      </div>
+
+      <!-- 5. Games -->
+      <div class="step" id="step-games" data-step="games" hidden>
+        <div class="game-list" id="game-list"></div>
+      </div>
+
+      <div class="step-nav">
+        <button id="btn-prev" class="btn" type="button">&larr; Back</button>
+        <button id="btn-next" class="btn primary" type="button">Next &rarr;</button>
+      </div>
+    </section>
+
+    <aside class="ranking" aria-labelledby="card-title">
+      <div class="ranking-card">
+        <div class="ranking-head">
+          <h2 id="card-title">My ID card</h2>
+          <small id="idc-count">0 / 5</small>
+        </div>
+        <canvas id="idc-canvas" class="idc-canvas" width="1280" height="836" role="button" tabindex="0" title="Click to see it larger" aria-label="Preview of your fan ID card. Press to see it larger."></canvas>
+        <p class="target">Tap a section to fill it in.</p>
+        <ol class="idc-steps" id="idc-steps"></ol>
+        <div class="actions">
+          <button id="btn-save" class="btn primary" type="button" disabled>Save as image</button>
+          <button id="btn-share" class="btn" type="button">Copy share link</button>
+          <button id="btn-clear" class="btn ghost" type="button">Clear all</button>
+        </div>
+        <p class="idc-note">Share links keep your answers but not an uploaded picture.</p>
+      </div>
+    </aside>
   </main>
+
+  <footer class="foot">
+    <p>Unofficial fan project. BanG Dream! and all related artwork are &copy; Bushiroad / BanG Dream! Project. Cover images and band icons are used for personal, non-commercial fan purposes. This is not a real ID.</p>
+  </footer>
+
+  <dialog id="idc-zoom" class="idc-zoom" aria-label="Your ID card, larger">
+    <img id="idc-zoom-img" alt="Your fan ID card" />
+    <button id="idc-zoom-close" class="btn" type="button">Close</button>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 </body>
 </html>
