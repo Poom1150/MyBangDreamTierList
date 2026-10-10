@@ -326,13 +326,15 @@ export function drawIdCard(ctx, data, pics) {
 
   // row 1: your name on the left, your main (same size as before) on the right
   const colW = (fw - 30) / 2;
-  const bx2 = fx + colW + 30;
+  const nameW = (fw - 30) * 0.65; // the name gets 65% of the row, your main 35%
+  const mainW = (fw - 30) * 0.35;
+  const bx2 = fx + nameW + 30;
   label(ctx, 'Name', fx, cy0 + 168);
   if (data.name) {
-    const size = fitFont(ctx, data.name, colW, 64, 32);
+    const size = fitFont(ctx, data.name, nameW, 64, 32);
     ctx.fillStyle = INK;
     ctx.textAlign = 'left';
-    ctx.fillText(ellipsize(ctx, data.name, colW), fx, cy0 + 168 + 10 + size * 0.9);
+    ctx.fillText(ellipsize(ctx, data.name, nameW), fx, cy0 + 168 + 10 + size * 0.9);
   } else {
     placeholder(ctx, 'Your name', fx, cy0 + 224, 48);
   }
@@ -342,13 +344,13 @@ export function drawIdCard(ctx, data, pics) {
 
   label(ctx, 'My main', bx2, cy0 + 168);
   if (data.mainName) {
-    const size = fitFont(ctx, data.mainName, colW, 30, 20);
+    const size = fitFont(ctx, data.mainName, mainW, 30, 20);
     ctx.fillStyle = INK;
-    ctx.fillText(ellipsize(ctx, data.mainName, colW), bx2, cy0 + 168 + 12 + size * 0.95);
+    ctx.fillText(ellipsize(ctx, data.mainName, mainW), bx2, cy0 + 168 + 12 + size * 0.95);
     if (data.mainBand) {
       ctx.font = `500 18px ${FONT}`;
       ctx.fillStyle = MUTED;
-      ctx.fillText(ellipsize(ctx, data.mainBand, colW), bx2, cy0 + 237);
+      ctx.fillText(ellipsize(ctx, data.mainBand, mainW), bx2, cy0 + 237);
     }
   } else placeholder(ctx, 'Pick a character', bx2, cy0 + 206, 24);
 
