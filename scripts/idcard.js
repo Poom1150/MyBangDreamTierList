@@ -1,6 +1,6 @@
 import { CANVAS_SIZE, CARD_BOX, PICTURE_COLUMN, defaultPictureFit, drawIdCard, pictureBaseScale, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-23';
 
-const V = '20261005-32';
+const V = '20261005-34';
 const STORAGE_KEY = 'bandori-idcard-v1';
 const PIC_KEY = 'bandori-idcard-pic-v1';
 const PIC_FIT_KEY = 'bandori-idcard-pic-fit-v1'; // where the uploaded picture sits: { s, cx, cy }
@@ -26,8 +26,7 @@ const STEPS = [
   { id: 'main', label: 'My main', title: 'My favorite character (my main)', hint: 'Open a band, then tap your favorite character. You can add your own picture of them for the card.' },
   { id: 'band', label: 'My band', title: 'My favorite band', hint: 'Tap the band you like the most.' },
   { id: 'song', label: 'My song', title: 'My favorite song', hint: 'Open a band folder, then tap your favorite song.' },
-  { id: 'games', label: 'Games I play', title: 'Games I play', hint: 'Tap the servers you play on. Pick Japan, Global or Both for each game.' },
-  { id: 'ids', label: 'Player IDs', title: 'Player IDs', hint: 'Add your player ID for each game and server you picked. They are shown on the card, below the games.' },
+  { id: 'games', label: 'Games I play', title: 'Games I play', hint: 'Tap the servers you play on (Japan, Global or Both), then add your player ID for each one in the same box. IDs are shown on the card, below the games.' },
 ];
 const GAMES = [
   { id: 'gbp', name: 'BanG Dream! Girls Band Party!', short: 'Girls Band Party!' },
@@ -170,12 +169,10 @@ function summary(id) {
   if (id === 'main') return state.main ? charById[state.main].name : null;
   if (id === 'band') return state.band ? bandById[state.band].name : null;
   if (id === 'song') return state.song ? songById[state.song].title : null;
-  if (id === 'ids') {
-    const filled = shownIds();
-    return filled.length ? filled.map((e) => `${e.short} ${e.server}: ${e.value}`).join(' \u00b7 ') : null;
-  }
   const list = gameSummary();
-  return list.length ? list.join(' \u00b7 ') : null;
+  if (!list.length) return null;
+  const ids = shownIds().length;
+  return list.join(' \u00b7 ') + (ids ? ` \u00b7 ${ids} player ID${ids > 1 ? 's' : ''}` : '');
 }
 const doneCount = () => STEPS.filter((s) => summary(s.id)).length;
 
@@ -670,7 +667,7 @@ function renderGames() {
     const title = document.createElement('h3');
     title.textContent = game.name;
     const note = document.createElement('p');
-    note.textContent = 'Which server do you play on?';
+    note.textContent = 'Which server do you play on? Add your player ID once you pick one.';
     const row = document.createElement('div');
     row.className = 'srv-row';
     for (const server of SERVERS) {
@@ -692,6 +689,33 @@ function renderGames() {
     both.setAttribute('aria-pressed', String(SERVERS.every((srv) => state.games[game.id][srv.id])));
     row.append(both);
     card.append(title, note, row);
+    const picked = SERVERS.filter((srv) => state.games[game.id][srv.id]);
+    if (picked.length) {
+      const ids = document.createElement('div');
+      ids.className = 'game-ids';
+      const heading = document.createElement('p');
+      heading.className = 'game-ids-title';
+      heading.textContent = 'Player ID';
+      ids.append(heading);
+      for (const srv of picked) {
+        const key = `${game.id}:${srv.id}`;
+        const field = document.createElement('label');
+        field.className = 'id-field-row';
+        const caption = document.createElement('span');
+        caption.textContent = `${srv.label} server`;
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.inputMode = 'text';
+        input.maxLength = 24;
+        input.placeholder = 'Your player ID';
+        input.autocomplete = 'off';
+        input.dataset.key = key;
+        input.value = state.ids[key] || '';
+        field.append(caption, input);
+        ids.append(field);
+      }
+      card.append(ids);
+    }
     fragment.append(card);
   }
   $('#game-list').replaceChildren(fragment);
@@ -710,45 +734,8 @@ $('#game-list').addEventListener('click', (event) => {
   commit();
 });
 
-// ---------- left panel: step 6, player IDs ----------
-function renderIds() {
-  const list = $('#id-list');
-  const rows = GAMES.flatMap((g) => SERVERS.filter((s) => state.games[g.id][s.id]).map((s) => ({ g, s })));
-  list.replaceChildren();
-  if (!rows.length) {
-    const empty = document.createElement('div');
-    empty.className = 'id-empty';
-    empty.innerHTML = '<p>Pick the games you play first, then add your player ID for each one here.</p>';
-    const go = document.createElement('button');
-    go.type = 'button';
-    go.className = 'btn primary';
-    go.dataset.go = 'games';
-    go.textContent = 'Choose my games';
-    empty.append(go);
-    list.append(empty);
-    return;
-  }
-  for (const { g, s } of rows) {
-    const key = `${g.id}:${s.id}`;
-    const row = document.createElement('label');
-    row.className = 'id-row';
-    const caption = document.createElement('span');
-    caption.innerHTML = '<b></b><small></small>';
-    caption.querySelector('b').textContent = g.name;
-    caption.querySelector('small').textContent = `${s.label} server`;
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.inputMode = 'text';
-    input.maxLength = 24;
-    input.placeholder = 'Player ID';
-    input.autocomplete = 'off';
-    input.dataset.key = key;
-    input.value = state.ids[key] || '';
-    row.append(caption, input);
-    list.append(row);
-  }
-}
-$('#id-list').addEventListener('input', (event) => {
+// player IDs are typed inside each game's box
+$('#game-list').addEventListener('input', (event) => {
   const input = event.target.closest('input[data-key]');
   if (!input) return;
   const value = cleanId(input.value);
@@ -758,9 +745,6 @@ $('#id-list').addEventListener('input', (event) => {
   persist();
   renderSteps();
   refreshPreview();
-});
-$('#id-list').addEventListener('click', (event) => {
-  if (event.target.closest('[data-go=games]')) showStep('games', true);
 });
 
 // ---------- name ----------
@@ -778,7 +762,6 @@ function renderCurrent() {
   else if (state.step === 'band') renderBandPick();
   else if (state.step === 'song') renderSongs();
   else if (state.step === 'games') renderGames();
-  else if (state.step === 'ids') renderIds();
 }
 function showStep(id, scroll = false) {
   state.step = id;

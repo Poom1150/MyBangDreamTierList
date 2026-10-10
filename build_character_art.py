@@ -23,6 +23,39 @@ SRC = os.path.join(ROOT, 'character_art')
 OUT = os.path.join(ROOT, 'assets', 'characters')
 MAX_HEIGHT = 1100  # the card shows the upper half of the picture about 1.2x larger than this, so keep it sharp
 
+def centre_on_body(image):
+    """Pads the picture sideways so the middle of the head and shoulders sits exactly in the middle.
+
+    A big instrument sticking out to one side makes the picture wider on that side, so centring by the whole
+    width pushes the character off-centre. The head and shoulders (the top part of the picture) are a steadier
+    anchor: we take the middle of where they are (the weighted median of their opaque pixels) and make that the centre.
+    """
+    width, height = image.size
+    alpha = image.getchannel('A')
+    zone = alpha.crop((0, int(height * 0.06), width, int(height * 0.28)))
+    zone_w, zone_h = zone.size
+    data = zone.tobytes()
+    columns = [0] * zone_w
+    for row in range(zone_h):
+        offset = row * zone_w
+        for col in range(zone_w):
+            columns[col] += data[offset + col]
+    total = sum(columns)
+    if not total:
+        return image
+    running = 0
+    centre = width / 2
+    for col, weight in enumerate(columns):
+        running += weight
+        if running >= total / 2:
+            centre = col + 0.5
+            break
+    half = max(centre, width - centre)
+    padded = Image.new('RGBA', (round(half * 2), height), (0, 0, 0, 0))
+    padded.paste(image, (round(half - centre), 0))
+    return padded
+
+
 characters = json.load(open(os.path.join(ROOT, 'data', 'characters.json'), encoding='utf-8'))
 bands = json.load(open(os.path.join(ROOT, 'data', 'bands.json'), encoding='utf-8'))
 
@@ -110,8 +143,9 @@ for cid, (_priority, _kind, rel) in best.items():
         image = image.crop(box)
     if image.height > MAX_HEIGHT:
         image = image.resize((round(image.width * MAX_HEIGHT / image.height), MAX_HEIGHT), Image.LANCZOS)
+    image = centre_on_body(image)
     os.makedirs(OUT, exist_ok=True)
-    image.save(os.path.join(OUT, f'{cid}.webp'), 'WEBP', quality=86, method=6)
+    image.save(os.path.join(OUT, f'{cid}.webp'), 'WEBP', quality=86, method=4)
 
 # forget pictures whose source file was removed
 for old in os.listdir(OUT) if os.path.isdir(OUT) else []:
