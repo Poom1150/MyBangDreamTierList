@@ -1,16 +1,18 @@
-import { CANVAS_SIZE, drawIdCard, loadImage, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-23';
+import { CANVAS_SIZE, drawIdCard, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-23';
 
-const V = '20261005-24';
+const V = '20261005-25';
 const STORAGE_KEY = 'bandori-idcard-v1';
-const PIC_KEY = 'bandori-idcard-pic-v1';
+const OLD_PIC_KEY = 'bandori-idcard-pic-v1'; // an earlier version let visitors upload a picture; that is removed
 
 const $ = (selector) => document.querySelector(selector);
 const encodePath = (path) => path.split('/').map(encodeURIComponent).join('/');
 
-const [bands, songs, characters] = await Promise.all([
+const [bands, songs, characters, characterArt] = await Promise.all([
   fetch(`./data/bands.json?v=${V}`).then((r) => r.json()),
   fetch(`./data/songs.json?v=${V}`).then((r) => r.json()),
   fetch(`./data/characters.json?v=${V}`).then((r) => r.json()),
+  // character id -> picture file, made by build_character_art.py from your character_art folder
+  fetch(`./data/character-art.json?v=${V}`).then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
 ]);
 const bandById = Object.fromEntries(bands.map((b) => [b.id, b]));
 const songById = Object.fromEntries(songs.map((s) => [s.id, s]));
@@ -37,7 +39,7 @@ const SERVERS = [
 // ---------- state ----------
 const emptyGames = () => Object.fromEntries(GAMES.map((g) => [g.id, Object.fromEntries(SERVERS.map((s) => [s.id, false]))]));
 const state = {
-  step: 'name', name: '', main: null, band: null, song: null, games: emptyGames(), picture: null, autoPicture: null,
+  step: 'name', name: '', main: null, band: null, song: null, games: emptyGames(),
   charBand: null, charQuery: '', songBand: null, songQuery: '',
 };
 
@@ -76,20 +78,13 @@ function load() {
   state.song = songById[src.song] ? src.song : null;
   state.games = normalizeGames(src.games);
   if (!fromLink && STEPS.some((s) => s.id === saved.step)) state.step = saved.step;
-  try { state.picture = localStorage.getItem(PIC_KEY) || null; } catch { state.picture = null; }
+  try { localStorage.removeItem(OLD_PIC_KEY); } catch { /* storage unavailable */ }
 }
 function persist() {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ name: state.name, main: state.main, band: state.band, song: state.song, games: state.games, step: state.step }));
   } catch { /* storage unavailable */ }
 }
-function persistPicture() {
-  try {
-    if (state.picture) localStorage.setItem(PIC_KEY, state.picture);
-    else localStorage.removeItem(PIC_KEY);
-  } catch { /* too big or storage unavailable: the picture then lasts until the page is closed */ }
-}
-
 // ---------- helpers ----------
 let toastTimer;
 function toast(message) {
@@ -144,6 +139,9 @@ function summary(id) {
 const doneCount = () => STEPS.filter((s) => summary(s.id)).length;
 
 // ---------- the card ----------
+// the picture for a character, if build_character_art.py found one for them
+const pictureFor = (id) => (id && characterArt[id] ? `${encodePath(characterArt[id])}?v=${V}` : null);
+
 function cardData() {
   const ch = charById[state.main];
   const band = bandById[state.band];
@@ -159,7 +157,7 @@ function cardData() {
     song: song ? { title: song.title, bandName: bandById[song.band].name, color: bandById[song.band].color } : null,
     games: GAMES.map((g) => ({ short: g.short, servers: SERVERS.filter((s) => state.games[g.id][s.id]).map((s) => s.label) })).filter((g) => g.servers.length),
     accent: (band || mainBand)?.color || '#ff3377',
-    pictureUrl: state.picture || state.autoPicture,
+    pictureUrl: pictureFor(state.main),
     logoUrl: band?.logo ? encodePath(band.logo) : null,
     coverUrl: song ? encodePath(song.file) : null,
   };
@@ -314,63 +312,15 @@ $('#char-grid').addEventListener('click', (event) => {
   commit();
 });
 
-// picture upload (stays on this device)
+// what the card shows on the left: the character's picture if there is one, otherwise a star mascot in their color
 function renderPictureNote() {
   const ch = charById[state.main];
   let note;
-  if (state.picture) note = 'Your picture is on the card. It stays on this device and is never uploaded.';
-  else if (state.autoPicture) note = `Using the picture saved for ${ch.name}. Upload your own to replace it.`;
-  else note = `Shows a star mascot until you add your own picture${ch ? ` of ${ch.name}` : ' of your main'}. A PNG with a transparent background looks best, with no frame.`;
+  if (!ch) note = 'Pick your main character and their picture appears on the card. Until then a star mascot stands in.';
+  else if (characterArt[ch.id]) note = `${ch.name}'s picture is on your card, standing in front with no frame.`;
+  else note = `There is no picture for ${ch.name} yet, so a star mascot in their color stands in.`;
   $('#pic-note').textContent = note;
-  $('#pic-remove').hidden = !state.picture;
 }
-
-// A picture can also be provided as a file in assets/characters/<character id>.webp (or .png).
-// It is used automatically when that character is your main and you have not uploaded a picture.
-let autoPictureToken = 0;
-async function updateAutoPicture() {
-  const token = ++autoPictureToken;
-  let found = null;
-  if (state.main) {
-    for (const ext of ['webp', 'png']) {
-      const url = `${encodePath(`assets/characters/${state.main}`)}.${ext}?v=${V}`;
-      if (await loadImage(url)) { found = url; break; }
-    }
-  }
-  if (token !== autoPictureToken || found === state.autoPicture) return;
-  state.autoPicture = found;
-  renderPictureNote();
-  refreshPreview();
-}
-async function downscale(file) {
-  const bitmap = await createImageBitmap(file);
-  const scale = Math.min(1, 900 / bitmap.height, 700 / bitmap.width);
-  const canvas = document.createElement('canvas');
-  canvas.width = Math.max(1, Math.round(bitmap.width * scale));
-  canvas.height = Math.max(1, Math.round(bitmap.height * scale));
-  canvas.getContext('2d').drawImage(bitmap, 0, 0, canvas.width, canvas.height);
-  bitmap.close?.();
-  return canvas.toDataURL('image/webp', 0.92); // browsers without WebP encoding fall back to PNG
-}
-$('#pic-file').addEventListener('change', async (event) => {
-  const file = event.target.files[0];
-  event.target.value = '';
-  if (!file) return;
-  if (!file.type.startsWith('image/')) { toast('Please choose an image file.'); return; }
-  try {
-    state.picture = await downscale(file);
-    persistPicture();
-    commit();
-    toast('Picture added to your card.');
-  } catch {
-    toast('Could not read that picture.');
-  }
-});
-$('#pic-remove').addEventListener('click', () => {
-  state.picture = null;
-  persistPicture();
-  commit();
-});
 
 // ---------- left panel: step 3, band ----------
 function renderBandPick() {
@@ -632,14 +582,13 @@ $('#btn-share').addEventListener('click', async () => {
   catch { window.prompt('Copy this link:', link); }
 });
 $('#btn-clear').addEventListener('click', () => {
-  if (!doneCount() && !state.picture) return;
+  if (!doneCount()) return;
   if (!window.confirm('Clear everything on your ID card?')) return;
-  Object.assign(state, { name: '', main: null, band: null, song: null, games: emptyGames(), picture: null, charBand: null, charQuery: '', songBand: null, songQuery: '' });
+  Object.assign(state, { name: '', main: null, band: null, song: null, games: emptyGames(), charBand: null, charQuery: '', songBand: null, songQuery: '' });
   $('#idc-name').value = '';
   $('#idc-name-count').textContent = '0 / 24';
   $('#char-search').value = '';
   $('#song-search').value = '';
-  persistPicture();
   commit();
 });
 
@@ -648,7 +597,6 @@ function commit() {
   renderSteps();
   renderCurrent();
   refreshPreview();
-  updateAutoPicture();
 }
 
 load();
@@ -656,4 +604,3 @@ $('#idc-name').value = state.name;
 $('#idc-name-count').textContent = `${state.name.length} / 24`;
 showStep(state.step);
 refreshPreview();
-updateAutoPicture();

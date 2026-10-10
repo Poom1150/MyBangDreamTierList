@@ -6,15 +6,15 @@
   <meta name="theme-color" content="#ff3377" />
   <meta name="description" content="Make your own BanG Dream! fan ID card: your name, main character, band, song and the games you play." />
   <title>My BanG Dream! ID card</title>
-  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg?v=20261005-24" />
-  <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48.png?v=20261005-24" />
-  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png?v=20261005-24" />
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg?v=20261005-25" />
+  <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48.png?v=20261005-25" />
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png?v=20261005-25" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles/main.css?v=20261005-24" />
-  <link rel="stylesheet" href="./styles/idcard.css?v=20261005-24" />
-  <script src="./scripts/idcard.js?v=20261005-24" type="module"></script>
+  <link rel="stylesheet" href="./styles/main.css?v=20261005-25" />
+  <link rel="stylesheet" href="./styles/idcard.css?v=20261005-25" />
+  <script src="./scripts/idcard.js?v=20261005-25" type="module"></script>
 </head>
 <body>
   <header class="masthead">
@@ -52,12 +52,7 @@
         <div class="pic-tools">
           <div class="pic-text">
             <strong>Card picture</strong>
-            <span id="pic-note">Shows a star mascot until you add your own picture of your main. A PNG with a transparent background looks best, with no frame.</span>
-          </div>
-          <div class="pic-buttons">
-            <label class="btn" for="pic-file">Upload picture</label>
-            <input id="pic-file" type="file" accept="image/*" hidden />
-            <button id="pic-remove" class="btn ghost" type="button" hidden>Use the mascot</button>
+            <span id="pic-note"></span>
           </div>
         </div>
         <div class="lib-head">
@@ -124,7 +119,6 @@
           <button id="btn-share" class="btn" type="button">Copy share link</button>
           <button id="btn-clear" class="btn ghost" type="button">Clear all</button>
         </div>
-        <p class="idc-note">Share links keep your answers but not an uploaded picture.</p>
       </div>
     </aside>
   </main>

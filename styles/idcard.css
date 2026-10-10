@@ -15,8 +15,6 @@
 .pic-tools { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 14px 16px; margin-bottom: 18px; background: var(--panel); border: 1px dashed #e8bfd2; border-radius: 16px; }
 .pic-text { display: grid; gap: 3px; min-width: 0; flex: 1 1 320px; font-size: 13px; color: var(--muted); line-height: 1.45; }
 .pic-text strong { color: var(--text); font-size: 15px; }
-.pic-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
-label.btn { display: inline-flex; align-items: center; cursor: pointer; }
 
 .folder-stack.mono { width: 120px; }
 /* each circle gets its character's own color from the script */
@@ -85,7 +83,6 @@ label.btn { display: inline-flex; align-items: center; cursor: pointer; }
 .idc-step .val.none { color: #c3aab9; font-weight: 500; }
 .idc-step .chk { font-size: 14px; color: var(--pink); opacity: 0; }
 .idc-step.done .chk { opacity: 1; }
-.idc-note { margin: 12px 0 0; font-size: 11.5px; color: var(--muted); line-height: 1.45; }
 
 @media (max-width: 560px) {
   .idc-field input { font-size: 22px; }

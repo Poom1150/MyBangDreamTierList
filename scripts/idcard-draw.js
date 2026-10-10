@@ -384,7 +384,7 @@ export function drawIdCard(ctx, data, pics) {
   drawGames(ctx, data.games, fx, cy0 + 608, fw, accent);
 
   // ---- picture: sits on top of everything on the left, with no frame ----
-  const boxW = 440;
+  const boxW = 470;
   const boxH = 650;
   const baseX = cx0 + 250;
   const baseY = cy0 + h - 20;
