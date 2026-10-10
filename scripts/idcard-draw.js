@@ -367,47 +367,49 @@ export function drawIdCard(ctx, data, pics) {
     }
   } else placeholder(ctx, 'Pick a band', fx, cy0 + 322, 24);
 
-  label(ctx, 'My song', fx, cy0 + 378);
+  // row 2, right half: your song, next to your band
+  const sx = fx + colW + 30;
+  label(ctx, 'My song', sx, cy0 + 284);
   const coverSize = 92;
-  const coverY = cy0 + 390;
+  const coverY = cy0 + 296;
   if (data.song) {
     ctx.save();
-    roundRect(ctx, fx, coverY, coverSize, coverSize, 14);
+    roundRect(ctx, sx, coverY, coverSize, coverSize, 14);
     ctx.clip();
     if (pics.cover) {
       const side = Math.min(pics.cover.width, pics.cover.height);
-      ctx.drawImage(pics.cover, (pics.cover.width - side) / 2, (pics.cover.height - side) / 2, side, side, fx, coverY, coverSize, coverSize);
+      ctx.drawImage(pics.cover, (pics.cover.width - side) / 2, (pics.cover.height - side) / 2, side, side, sx, coverY, coverSize, coverSize);
     } else {
       ctx.fillStyle = rgba(accent, 0.2);
-      ctx.fillRect(fx, coverY, coverSize, coverSize);
+      ctx.fillRect(sx, coverY, coverSize, coverSize);
     }
     ctx.restore();
     ctx.strokeStyle = data.song.color || accent;
     ctx.lineWidth = 3;
-    roundRect(ctx, fx, coverY, coverSize, coverSize, 14);
+    roundRect(ctx, sx, coverY, coverSize, coverSize, 14);
     ctx.stroke();
-    const tx = fx + coverSize + 20;
-    const tw = fw - coverSize - 20;
+    const tx = sx + coverSize + 20;
+    const tw = colW - coverSize - 20;
     ctx.font = `700 29px ${FONT}`;
     ctx.fillStyle = INK;
     ctx.textAlign = 'left';
     const lines = wrap(ctx, data.song.title, tw, 2);
-    lines.forEach((line, i) => ctx.fillText(line, tx, cy0 + 424 + i * 33));
+    lines.forEach((line, i) => ctx.fillText(line, tx, cy0 + 330 + i * 33));
     ctx.font = `500 18px ${FONT}`;
     ctx.fillStyle = MUTED;
-    ctx.fillText(ellipsize(ctx, data.song.bandName, tw), tx, cy0 + 424 + lines.length * 33 + 2);
+    ctx.fillText(ellipsize(ctx, data.song.bandName, tw), tx, cy0 + 330 + lines.length * 33 + 2);
   } else {
     ctx.strokeStyle = '#e8bfd2';
     ctx.lineWidth = 2;
     ctx.setLineDash([8, 6]);
-    roundRect(ctx, fx, coverY, coverSize, coverSize, 14);
+    roundRect(ctx, sx, coverY, coverSize, coverSize, 14);
     ctx.stroke();
     ctx.setLineDash([]);
-    placeholder(ctx, 'Pick a song', fx + coverSize + 20, cy0 + 446, 24);
+    placeholder(ctx, 'Pick a song', sx + coverSize + 20, cy0 + 352, 24);
   }
 
-  label(ctx, 'Games I play', fx, cy0 + 506);
-  drawGames(ctx, data.games, fx, cy0 + 518, fw, accent, data.noGames);
+  label(ctx, 'Games I play', fx, cy0 + 420);
+  drawGames(ctx, data.games, fx, cy0 + 432, fw, accent, data.noGames);
   // ---- title: one big, tight line across the header; the picture is drawn later, so it can stand in front ----
   const titleColor = luminance(accent) > 0.62 ? INK : '#ffffff';
   const titleRight = cx0 + w - 96 - 20; // right-aligned, next to the star; it grows to the left
