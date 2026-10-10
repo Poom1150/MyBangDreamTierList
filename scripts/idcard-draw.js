@@ -228,8 +228,8 @@ function drawGames(ctx, games, x, y, maxW, accent, noGames = false) {
       const ey = y + 14 + 34 + 24 + 8 + row * 28 + 20;
       ctx.font = `500 13px ${FONT}`;
       ctx.fillStyle = MUTED;
-      ctx.fillText(entry.server.toUpperCase(), bx + 18, ey);
-      const labelW = ctx.measureText(entry.server.toUpperCase()).width + 12;
+      ctx.fillText(`ID ${entry.server}`.toUpperCase(), bx + 18, ey);
+      const labelW = ctx.measureText(`ID ${entry.server}`.toUpperCase()).width + 12;
       ctx.font = `700 20px ${FONT}`;
       ctx.fillStyle = INK;
       ctx.fillText(ellipsize(ctx, entry.value, boxW - 36 - labelW), bx + 18 + labelW, ey);
