@@ -1,5 +1,2 @@
-# Your own source pictures for the ID card, and the web-sized copies made from them, stay on your computer.
-# Run build_character_art.py to (re)make them. To publish them, delete these lines, run the script, then commit.
+# Your own source pictures; they stay on your computer.
 character_art/
-assets/characters/*.webp
-data/character-art.json

@@ -6,15 +6,15 @@
   <meta name="theme-color" content="#ff3377" />
   <meta name="description" content="Make your own BanG Dream! fan ID card: your name, main character, band, song and the games you play." />
   <title>My BanG Dream! ID card</title>
-  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg?v=20261005-42" />
-  <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48.png?v=20261005-42" />
-  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png?v=20261005-42" />
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg?v=20261005-43" />
+  <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48.png?v=20261005-43" />
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png?v=20261005-43" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles/main.css?v=20261005-42" />
-  <link rel="stylesheet" href="./styles/idcard.css?v=20261005-42" />
-  <script src="./scripts/idcard.js?v=20261005-42" type="module"></script>
+  <link rel="stylesheet" href="./styles/main.css?v=20261005-43" />
+  <link rel="stylesheet" href="./styles/idcard.css?v=20261005-43" />
+  <script src="./scripts/idcard.js?v=20261005-43" type="module"></script>
 </head>
 <body>
   <header class="masthead">
@@ -49,16 +49,17 @@
 
       <!-- 2. My main (favorite character) -->
       <div class="step" id="step-main" data-step="main" hidden>
-        <div class="pic-tools">
+        <div class="pic-box" id="pic-box" data-has="no">
+          <div class="pic-thumb" id="pic-thumb" aria-hidden="true"><span>+</span></div>
           <div class="pic-text">
-            <strong>Card picture</strong>
+            <strong id="pic-title">Upload your card picture</strong>
             <span id="pic-note"></span>
-          </div>
-          <div class="pic-buttons">
-            <label class="btn" for="pic-file">Upload picture</label>
-            <input id="pic-file" type="file" accept="image/*" hidden />
-            <button id="pic-adjust" class="btn" type="button" hidden>Adjust picture</button>
-            <button id="pic-remove" class="btn ghost" type="button" hidden>Use the default</button>
+            <div class="pic-buttons">
+              <label class="btn primary big" id="pic-choose" for="pic-file">Upload picture</label>
+              <input id="pic-file" type="file" accept="image/*" hidden />
+              <button id="pic-adjust" class="btn" type="button" hidden>Adjust picture</button>
+              <button id="pic-remove" class="btn ghost" type="button" hidden>Remove picture</button>
+            </div>
           </div>
         </div>
         <div class="lib-head">

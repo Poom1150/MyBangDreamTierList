@@ -114,61 +114,44 @@ function placeholder(ctx, text, x, y, size = 30) {
   ctx.fillText(text, x, y);
 }
 
-// ---------- the original star mascot (shown until you add your own picture) ----------
-function drawMascot(ctx, cx, bottom, size, color, initial) {
-  const k = size / 24;
-  const cy = bottom - size * 0.55;
-  const pts = STAR.map(([x, y]) => [cx + (x - 16) * k, cy + (y - 16.2) * k]);
+// ---------- the empty picture area (shown until you upload your own picture) ----------
+function drawPicturePlaceholder(ctx, x, y, w, h, color) {
+  const bx = x + 26;
+  const by = y + 150;
+  const bw = w - 52;
+  const bh = h - 150 - 70;
   ctx.save();
-  ctx.fillStyle = 'rgba(42, 35, 71, 0.12)';
-  ctx.beginPath();
-  ctx.ellipse(cx, bottom + 2, size * 0.34, size * 0.045, 0, 0, Math.PI * 2);
+  ctx.fillStyle = rgba(color, 0.08);
+  roundRect(ctx, bx, by, bw, bh, 26);
   ctx.fill();
+  ctx.setLineDash([14, 10]);
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = rgba(color, 0.55);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  const cx = bx + bw / 2;
+  const cy = by + bh / 2 - 22;
+  ctx.fillStyle = rgba(color, 0.9);
   ctx.beginPath();
-  pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
-  ctx.closePath();
-  ctx.lineJoin = 'round';
-  ctx.lineWidth = size * 0.1;
+  ctx.arc(cx, cy, 38, 0, Math.PI * 2);
+  ctx.fill();
   ctx.strokeStyle = '#ffffff';
-  ctx.stroke();
-  ctx.fillStyle = color;
-  ctx.fill();
-  ctx.lineWidth = size * 0.03;
-  ctx.strokeStyle = shade(color, -0.18);
-  ctx.stroke();
-  // face
-  const fx = cx - size * 0.02;
-  const fy = cy + size * 0.03;
-  ctx.fillStyle = INK;
-  for (const dx of [-0.13, 0.13]) {
-    ctx.beginPath();
-    ctx.ellipse(fx + dx * size, fy - size * 0.02, size * 0.032, size * 0.045, 0, 0, Math.PI * 2);
-    ctx.fill();
-  }
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.55)';
-  for (const dx of [-0.2, 0.2]) {
-    ctx.beginPath();
-    ctx.ellipse(fx + dx * size, fy + size * 0.07, size * 0.045, size * 0.028, 0, 0, Math.PI * 2);
-    ctx.fill();
-  }
-  ctx.strokeStyle = INK;
-  ctx.lineWidth = size * 0.018;
+  ctx.lineWidth = 7;
   ctx.lineCap = 'round';
   ctx.beginPath();
-  ctx.arc(fx, fy + size * 0.045, size * 0.07, 0.15 * Math.PI, 0.85 * Math.PI);
+  ctx.moveTo(cx - 16, cy);
+  ctx.lineTo(cx + 16, cy);
+  ctx.moveTo(cx, cy - 16);
+  ctx.lineTo(cx, cy + 16);
   ctx.stroke();
-  if (initial) {
-    // the main character's initial on a small badge, below the face
-    ctx.fillStyle = '#ffffff';
-    ctx.beginPath();
-    ctx.arc(fx, cy + size * 0.285, size * 0.082, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = INK;
-    ctx.font = `700 ${Math.round(size * 0.1)}px ${FONT}`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(initial, fx, cy + size * 0.29);
-  }
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'alphabetic';
+  ctx.font = `700 22px ${FONT}`;
+  ctx.fillStyle = INK;
+  ctx.fillText('Add your picture', cx, cy + 82);
+  ctx.font = `500 15px ${FONT}`;
+  ctx.fillStyle = MUTED;
+  ctx.fillText('Use Upload picture on the page', cx, cy + 108);
   ctx.restore();
 }
 
@@ -442,25 +425,8 @@ export function drawIdCard(ctx, data, pics) {
     ctx.rect(cx0, cy0, PICTURE_COLUMN, CARD.h);
     ctx.clip();
     ctx.drawImage(pics.picture, cx0 + fit.cx - pw / 2, cy0 + fit.cy - ph / 2, pw, ph);
-  } else if (pics.picture) {
-    // Half-body framing: the picture is scaled up so that its upper part (about HALF_BODY of its height)
-    // fills the space from just inside the header down to the bottom edge of the card. The legs are cut off by the
-    // card edge, and anything wider than the picture column is cropped so it never runs into the text.
-    // The saved pictures keep HEAD_ROOM (a fraction of the figure's height) above the head for anything that sticks
-    // out up there, such as a raised bass neck; the head itself always lands at `top`.
-    const HALF_BODY = 0.56;
-    const HEAD_ROOM = 0.16; // must match HEAD_ROOM in build_character_art.py
-    const top = cy0 + 60;
-    const body = pics.picture.height / (1 + HEAD_ROOM);
-    const scale = (BASE.h - 60) / (body * HALF_BODY); // the same size as on the bigger card
-    const pw = pics.picture.width * scale;
-    const ph = pics.picture.height * scale;
-    ctx.beginPath();
-    ctx.rect(cx0, cy0, PICTURE_COLUMN, CARD.h);
-    ctx.clip();
-    ctx.drawImage(pics.picture, baseX - pw / 2, top - body * HEAD_ROOM * scale, pw, ph);
   } else {
-    drawMascot(ctx, baseX, baseY, 380 * SCALE, data.mainColor || accent, data.mainInitial);
+    drawPicturePlaceholder(ctx, cx0, cy0, PICTURE_COLUMN, CARD.h, accent);
   }
   ctx.restore();
 }

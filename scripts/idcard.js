@@ -1,6 +1,6 @@
-import { CANVAS_SIZE, CARD_BOX, PICTURE_COLUMN, defaultPictureFit, drawIdCard, pictureBaseScale, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-42';
+import { CANVAS_SIZE, CARD_BOX, PICTURE_COLUMN, defaultPictureFit, drawIdCard, pictureBaseScale, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-43';
 
-const V = '20261005-42';
+const V = '20261005-43';
 const STORAGE_KEY = 'bandori-idcard-v1';
 const PIC_KEY = 'bandori-idcard-pic-v1';
 const PIC_FIT_KEY = 'bandori-idcard-pic-fit-v1'; // where the uploaded picture sits: { s, cx, cy }
@@ -8,12 +8,10 @@ const PIC_FIT_KEY = 'bandori-idcard-pic-fit-v1'; // where the uploaded picture s
 const $ = (selector) => document.querySelector(selector);
 const encodePath = (path) => path.split('/').map(encodeURIComponent).join('/');
 
-const [bands, songs, characters, characterArt] = await Promise.all([
+const [bands, songs, characters] = await Promise.all([
   fetch(`./data/bands.json?v=${V}`).then((r) => r.json()),
   fetch(`./data/songs.json?v=${V}`).then((r) => r.json()),
   fetch(`./data/characters.json?v=${V}`).then((r) => r.json()),
-  // character id -> picture file, made by build_character_art.py from your character_art folder
-  fetch(`./data/character-art.json?v=${V}`).then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
 ]);
 const bandById = Object.fromEntries(bands.map((b) => [b.id, b]));
 const songById = Object.fromEntries(songs.map((s) => [s.id, s]));
@@ -183,9 +181,6 @@ function summary(id) {
 const doneCount = () => STEPS.filter((s) => summary(s.id)).length;
 
 // ---------- the card ----------
-// pictures made by build_character_art.py: the full picture (for the card) and a small icon (for the picker)
-const artOf = (id) => { const e = id && characterArt[id]; return !e ? null : (typeof e === 'string' ? e : e.art || null); };
-const pictureFor = (id) => (artOf(id) ? `${encodePath(artOf(id))}?v=${V}` : null);
 
 function cardData() {
   const ch = charById[state.main];
@@ -208,7 +203,7 @@ function cardData() {
     })).filter((g) => g.servers.length),
     ids: shownIds().map((e) => ({ label: `${e.short} \u00b7 ${e.server}`, value: e.value })),
     accent: (band || mainBand)?.color || '#ff3377',
-    pictureUrl: state.picture || pictureFor(state.main),
+    pictureUrl: state.picture,
     pictureIsUpload: Boolean(state.picture),
     pictureFit: state.picture ? state.pictureFit : null,
     logoUrl: band?.logo ? encodePath(band.logo) : null,
@@ -365,17 +360,18 @@ $('#char-grid').addEventListener('click', (event) => {
   commit();
 });
 
-// what the card shows on the left: your own picture, else the character's picture, else a star mascot in their color
+// the picture box above the characters: empty, or showing the picture you uploaded
 function renderPictureNote() {
-  const ch = charById[state.main];
-  let note;
-  if (state.picture) note = 'Your own picture is on the card. It stays on this device and is never uploaded.';
-  else if (!ch) note = 'Pick your main character and their picture appears on the card. Until then a star mascot stands in. You can also upload your own picture.';
-  else if (artOf(ch.id)) note = `${ch.name}'s picture is on your card, standing in front with no frame. You can upload your own picture instead.`;
-  else note = `There is no picture for ${ch.name} yet, so a star mascot in their color stands in. You can upload your own picture.`;
-  $('#pic-note').textContent = note;
+  const box = $('#pic-box');
+  box.dataset.has = state.picture ? 'yes' : 'no';
+  $('#pic-title').textContent = state.picture ? 'Your picture is on the card' : 'Upload your card picture';
+  $('#pic-note').textContent = state.picture
+    ? 'It stays on this device and is never uploaded. Use Adjust picture to crop, resize and move it.'
+    : 'Drop an image here or choose a file. The card shows only the picture you add yourself.';
+  $('#pic-thumb').style.backgroundImage = state.picture ? `url(${state.picture})` : '';
   $('#pic-remove').hidden = !state.picture;
   $('#pic-adjust').hidden = !state.picture;
+  $('#pic-choose').textContent = state.picture ? 'Change picture' : 'Upload picture';
 }
 async function downscale(file) {
   const bitmap = await createImageBitmap(file);
@@ -387,9 +383,16 @@ async function downscale(file) {
   bitmap.close?.();
   return canvas.toDataURL('image/webp', 0.92); // browsers without WebP encoding fall back to PNG
 }
-$('#pic-file').addEventListener('change', async (event) => {
+$('#pic-file').addEventListener('change', (event) => {
   const file = event.target.files[0];
   event.target.value = '';
+  takePicture(file);
+});
+const picBox = $('#pic-box');
+for (const type of ['dragenter', 'dragover']) picBox.addEventListener(type, (event) => { event.preventDefault(); picBox.classList.add('drag'); });
+for (const type of ['dragleave', 'drop']) picBox.addEventListener(type, () => picBox.classList.remove('drag'));
+picBox.addEventListener('drop', (event) => { event.preventDefault(); takePicture(event.dataTransfer?.files?.[0]); });
+async function takePicture(file) {
   if (!file) return;
   if (!file.type.startsWith('image/')) { toast('Please choose an image file.'); return; }
   try {
@@ -401,7 +404,7 @@ $('#pic-file').addEventListener('change', async (event) => {
   } catch {
     toast('Could not read that picture.');
   }
-});
+}
 $('#pic-remove').addEventListener('click', () => {
   state.picture = null;
   state.pictureFit = null;
