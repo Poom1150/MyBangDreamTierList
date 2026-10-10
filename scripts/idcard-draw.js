@@ -1,7 +1,7 @@
 // Draws the fan ID card on a canvas. The same drawing code makes the live preview and the saved PNG.
 // The card is drawn on a 1200 x 756 grid (BASE) and shrunk to SCALE; the character picture is NOT shrunk
 // (it keeps the size it had on the bigger card), so it fills more of the smaller card.
-const BASE = { w: 1200, h: 756 };
+const BASE = { w: 1778, h: 756 }; // 1778 x 0.5625 = a card about 1000 px wide
 const SCALE = 0.5625; // 75% of the 0.75 card
 const CARD = { x: 40, y: 40, w: Math.round(BASE.w * SCALE), h: Math.round(BASE.h * SCALE), r: 31 };
 const W = CARD.w + 80;
@@ -186,7 +186,7 @@ function drawGames(ctx, games, x, y, maxW, accent, noGames = false) {
   }
   if (!games.length) { placeholder(ctx, 'Pick your games', x, y + 30, 26); return y + 40; }
   const gap = 14;
-  const boxW = Math.min((maxW - gap) / 2, 330);
+  const boxW = Math.min((maxW - gap) / 2, 460);
   let bottom = y;
   games.forEach((game, i) => {
     const bx = x + i * (boxW + gap);
