@@ -1,6 +1,6 @@
-import { CANVAS_SIZE, CARD_BOX, PICTURE_COLUMN, defaultPictureFit, drawIdCard, pictureBaseScale, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-59';
+import { CANVAS_SIZE, CARD_BOX, PICTURE_COLUMN, defaultPictureFit, drawIdCard, pictureBaseScale, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-61';
 
-const V = '20261005-59';
+const V = '20261005-61';
 const STORAGE_KEY = 'bandori-idcard-v1';
 const PIC_KEY = 'bandori-idcard-pic-v1';
 const PIC_FIT_KEY = 'bandori-idcard-pic-fit-v1'; // where the uploaded picture sits: { s, cx, cy }
@@ -24,7 +24,7 @@ const STEPS = [
   { id: 'main', label: 'My main', title: 'My favorite character (my main)', hint: 'Open a band, then tap your favorite character. Then upload a picture of your main, the one you love most, so it stands on your card.' },
   { id: 'band', label: 'My band', title: 'My favorite band', hint: 'Tap the band you like the most.' },
   { id: 'song', label: 'My song', title: 'My favorite song', hint: 'Open a band folder, then tap your favorite song.' },
-  { id: 'since', label: 'Joined since', title: 'Joined since', hint: 'Tell people when you joined this fandom. Choose a date, a live event, a game event or an anime, then write it in.' },
+  { id: 'since', label: 'Joined since', title: 'Joined since', hint: 'Tell people when you joined this fandom. Choose a date, a live event, a game event, an anime or other, then write it in.' },
   { id: 'games', label: 'Games I play', title: 'Games I play', hint: 'Tap the servers you play on (Japan, Global or Both), or "Don\'t play" if you skip a game. Add your player ID for each server in the same box. IDs are shown inside each game box on the card.' },
 ];
 // what made you a fan: pick one, then write it in
@@ -33,6 +33,7 @@ const SINCE_TYPES = [
   { id: 'live', label: 'Live event', placeholder: 'For example: the name of the live or concert, and the year' },
   { id: 'game', label: 'Game event', placeholder: 'For example: the game event you first played' },
   { id: 'anime', label: 'Anime', placeholder: 'For example: the anime or season that got you in' },
+  { id: 'other', label: 'Other', placeholder: 'For example: a song, a friend, a video, anything that made you a fan' },
 ];
 const sinceTypeById = Object.fromEntries(SINCE_TYPES.map((t) => [t.id, t]));
 const GAMES = [
@@ -816,7 +817,7 @@ function renderSince() {
   const type = sinceTypeById[state.sinceType];
   field.disabled = !type;
   field.placeholder = type ? type.placeholder : 'Pick one of the choices above first';
-  $('#since-label').textContent = type ? `Tell us about your ${type.label.toLowerCase()}` : 'What made you join this fandom?';
+  $('#since-label').textContent = type ? (type.id === 'other' ? 'Tell us what made you join' : `Tell us about your ${type.label.toLowerCase()}`) : 'What made you join this fandom?';
 }
 $('#since-types').addEventListener('click', (event) => {
   const button = event.target.closest('.srv');
