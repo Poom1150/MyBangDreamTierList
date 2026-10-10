@@ -147,6 +147,13 @@ function drawCover(ctx, { song, image, band, index, x, y, row }) {
   ctx.textBaseline = 'alphabetic';
 }
 
+// Waits for the web fonts, but never longer than 2.5 s, so a slow font host cannot stall "Save as image".
+async function fontsReady() {
+  if (!document.fonts?.load) return;
+  const loading = Promise.allSettled([document.fonts.load(`700 24px ${FONT}`), document.fonts.load(`500 16px ${FONT}`)]);
+  await Promise.race([loading, new Promise((resolve) => setTimeout(resolve, 2500))]);
+}
+
 function paintBackground(ctx) {
   const bg = ctx.createLinearGradient(0, 0, 0, HEIGHT);
   bg.addColorStop(0, '#fff0f6');
@@ -199,9 +206,7 @@ async function downloadCanvas(canvas, filename) {
 }
 
 export async function savePoster({ ranks, bandById, nickname }) {
-  if (document.fonts?.load) {
-    await Promise.allSettled([document.fonts.load(`700 24px ${FONT}`), document.fonts.load(`500 16px ${FONT}`)]);
-  }
+  await fontsReady();
   const images = await Promise.all(ranks.map((song) => (song ? loadImage(encodePath(song.file)) : null)));
 
   const canvas = document.createElement('canvas');
@@ -310,9 +315,7 @@ function drawBandCard(ctx, { band, song, cover, logo, x, y, w, h }) {
 }
 
 export async function savePosterBands({ picks, nickname }) {
-  if (document.fonts?.load) {
-    await Promise.allSettled([document.fonts.load(`700 24px ${FONT}`), document.fonts.load(`500 16px ${FONT}`)]);
-  }
+  await fontsReady();
   // a missing logo is not fatal: the card falls back to the band name
   const loadLogo = (band) => (band.logo ? loadImage(encodePath(band.logo)).catch(() => null) : Promise.resolve(null));
   const [covers, logos] = await Promise.all([

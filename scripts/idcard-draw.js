@@ -406,14 +406,16 @@ export function drawIdCard(ctx, data, pics) {
 }
 
 // ---------- loading + export ----------
+// Waits for the web fonts, but never longer than 2.5 s: a slow font host must not stall the preview or the save button.
 async function loadFonts(data) {
   if (!document.fonts?.load) return;
   const text = `${data.name || ''}${data.mainName || ''}${data.song?.title || ''}`;
-  await Promise.allSettled([
+  const loading = Promise.allSettled([
     document.fonts.load(`700 30px "Space Grotesk"`),
     document.fonts.load(`500 20px "Space Grotesk"`),
     ...(text ? [document.fonts.load(`700 30px "Noto Sans JP"`, text), document.fonts.load(`500 20px "Noto Sans JP"`, text)] : []),
   ]);
+  await Promise.race([loading, new Promise((resolve) => setTimeout(resolve, 2500))]);
 }
 
 // Loads the pictures and fonts a card needs. Drawing itself (drawIdCard) is then synchronous.
