@@ -1,6 +1,6 @@
-import { CANVAS_SIZE, CARD_BOX, PICTURE_COLUMN, defaultPictureFit, drawIdCard, pictureBaseScale, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-61';
+import { CANVAS_SIZE, CARD_BOX, PICTURE_COLUMN, defaultPictureFit, drawIdCard, pictureBaseScale, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-62';
 
-const V = '20261005-61';
+const V = '20261005-62';
 const STORAGE_KEY = 'bandori-idcard-v1';
 const PIC_KEY = 'bandori-idcard-pic-v1';
 const PIC_FIT_KEY = 'bandori-idcard-pic-fit-v1'; // where the uploaded picture sits: { s, cx, cy }
@@ -25,6 +25,7 @@ const STEPS = [
   { id: 'band', label: 'My band', title: 'My favorite band', hint: 'Tap the band you like the most.' },
   { id: 'song', label: 'My song', title: 'My favorite song', hint: 'Open a band folder, then tap your favorite song.' },
   { id: 'since', label: 'Joined since', title: 'Joined since', hint: 'Tell people when you joined this fandom. Choose a date, a live event, a game event, an anime or other, then write it in.' },
+  { id: 'ship', label: 'My ship', title: 'My ship', hint: 'Write your favorite ship, for example YukiLisa or KasuAri. Tap an example to fill it in, or type your own.' },
   { id: 'games', label: 'Games I play', title: 'Games I play', hint: 'Tap the servers you play on (Japan, Global or Both), or "Don\'t play" if you skip a game. Add your player ID for each server in the same box. IDs are shown inside each game box on the card.' },
 ];
 // what made you a fan: pick one, then write it in
@@ -48,7 +49,7 @@ const SERVERS = [
 // ---------- state ----------
 const emptyGames = () => Object.fromEntries(GAMES.map((g) => [g.id, { ...Object.fromEntries(SERVERS.map((s) => [s.id, false])), none: false }]));
 const state = {
-  step: 'name', name: '', main: null, band: null, song: null, since: '', sinceType: null, games: emptyGames(), ids: {}, picture: null, pictureFit: null,
+  step: 'name', name: '', main: null, band: null, song: null, since: '', sinceType: null, ship: '', games: emptyGames(), ids: {}, picture: null, pictureFit: null,
   charBand: null, charQuery: '', songBand: null, songQuery: '',
 };
 
@@ -88,6 +89,7 @@ function parseIds(text) {
   return ids;
 }
 const cleanSince = (text) => String(text ?? '').replace(/[\u0000-\u001f]/g, ' ').replace(/\s+/g, ' ').slice(0, 80);
+const cleanShip = (text) => String(text ?? '').replace(/[\u0000-\u001f]/g, ' ').replace(/\s+/g, ' ').slice(0, 40);
 const idsParam = () => idKeys.filter((k) => state.ids[k]).map((k) => `${k}:${state.ids[k]}`).join(',');
 const gamesParam = () => GAMES
   .map((g) => [g.id, SERVERS.filter((s) => state.games[g.id][s.id]).map((s) => s.id)])
@@ -101,9 +103,9 @@ function load() {
   let saved = {};
   try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { saved = {}; }
   const hash = new URLSearchParams(location.hash.slice(1));
-  const fromLink = ['n', 'c', 'b', 's', 'jt', 'j', 'g', 'i'].some((k) => hash.has(k));
+  const fromLink = ['n', 'c', 'b', 's', 'jt', 'j', 'sh', 'g', 'i'].some((k) => hash.has(k));
   const src = fromLink
-    ? { name: hash.get('n') || '', main: hash.get('c'), band: hash.get('b'), song: hash.get('s'), since: hash.get('j') || '', sinceType: hash.get('jt'), games: parseGames(hash.get('g')), ids: parseIds(hash.get('i')) }
+    ? { name: hash.get('n') || '', main: hash.get('c'), band: hash.get('b'), song: hash.get('s'), since: hash.get('j') || '', sinceType: hash.get('jt'), ship: hash.get('sh') || '', games: parseGames(hash.get('g')), ids: parseIds(hash.get('i')) }
     : saved;
   state.name = typeof src.name === 'string' ? src.name.slice(0, 24) : '';
   state.main = charById[src.main] ? src.main : null;
@@ -111,6 +113,7 @@ function load() {
   state.song = songById[src.song] ? src.song : null;
   state.since = cleanSince(src.since).trim();
   state.sinceType = sinceTypeById[src.sinceType] ? src.sinceType : null;
+  state.ship = cleanShip(src.ship).trim();
   state.games = normalizeGames(src.games);
   state.ids = normalizeIds(src.ids);
   if (!fromLink && STEPS.some((s) => s.id === saved.step)) state.step = saved.step;
@@ -122,7 +125,7 @@ function load() {
 }
 function persist() {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ name: state.name, main: state.main, band: state.band, song: state.song, since: state.since, sinceType: state.sinceType, games: state.games, ids: state.ids, step: state.step }));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ name: state.name, main: state.main, band: state.band, song: state.song, since: state.since, sinceType: state.sinceType, ship: state.ship, games: state.games, ids: state.ids, step: state.step }));
   } catch { /* storage unavailable */ }
 }
 function persistPicture() {
@@ -183,6 +186,7 @@ const gameSummary = () => GAMES
 // ---------- what each section currently holds ----------
 function summary(id) {
   if (id === 'name') return state.name.trim() || null;
+  if (id === 'ship') return state.ship.trim() || null;
   if (id === 'since') return state.since.trim() ? `${state.sinceType ? `${sinceTypeById[state.sinceType].label}: ` : ''}${state.since.trim()}` : null;
   if (id === 'main') return state.main ? charById[state.main].name : null;
   if (id === 'band') return state.band ? bandById[state.band].name : null;
@@ -204,6 +208,7 @@ function cardData() {
   return {
     name: state.name.trim(),
     since: state.since.trim(),
+    ship: state.ship.trim(),
     sinceType: state.sinceType ? sinceTypeById[state.sinceType].label : '',
     mainName: ch ? ch.name : '',
     mainBand: mainBand ? mainBand.name : '',
@@ -830,6 +835,23 @@ $('#since-types').addEventListener('click', (event) => {
   if (state.sinceType) $('#idc-since').focus();
 });
 
+// ---------- my ship ----------
+function setShip(value) {
+  state.ship = cleanShip(value);
+  $('#idc-ship').value = state.ship;
+  $('#idc-ship-count').textContent = `${state.ship.length} / 40`;
+  persist();
+  renderSteps();
+  refreshPreview();
+}
+$('#idc-ship').addEventListener('input', (event) => setShip(event.target.value));
+$('#ship-examples').addEventListener('click', (event) => {
+  const chip = event.target.closest('button[data-ship]');
+  if (!chip) return;
+  setShip(state.ship.trim() === chip.dataset.ship ? '' : chip.dataset.ship); // tap again to clear
+  $('#idc-ship').focus();
+});
+
 // ---------- steps ----------
 function renderCurrent() {
   if (state.step === 'main') { renderChars(); renderPictureNote(); }
@@ -887,6 +909,7 @@ $('#btn-share').addEventListener('click', async () => {
   if (state.band) params.set('b', state.band);
   if (state.song) params.set('s', state.song);
   if (state.since.trim()) params.set('j', state.since.trim());
+  if (state.ship.trim()) params.set('sh', state.ship.trim());
   if (state.since.trim() && state.sinceType) params.set('jt', state.sinceType);
   if (gamesParam()) params.set('g', gamesParam());
   if (idsParam()) params.set('i', idsParam());
@@ -897,12 +920,14 @@ $('#btn-share').addEventListener('click', async () => {
 $('#btn-clear').addEventListener('click', () => {
   if (!doneCount() && !state.picture) return;
   if (!window.confirm('Clear everything on your ID card?')) return;
-  Object.assign(state, { name: '', main: null, band: null, song: null, since: '', sinceType: null, games: emptyGames(), ids: {}, picture: null, pictureFit: null, charBand: null, charQuery: '', songBand: null, songQuery: '' });
+  Object.assign(state, { name: '', main: null, band: null, song: null, since: '', sinceType: null, ship: '', games: emptyGames(), ids: {}, picture: null, pictureFit: null, charBand: null, charQuery: '', songBand: null, songQuery: '' });
   $('#idc-name').value = '';
   $('#idc-name-count').textContent = '0 / 24';
   $('#idc-since').value = '';
   $('#idc-since-count').textContent = '0 / 80';
   renderSince();
+  $('#idc-ship').value = '';
+  $('#idc-ship-count').textContent = '0 / 40';
   $('#char-search').value = '';
   $('#song-search').value = '';
   persistPicture();
@@ -921,6 +946,8 @@ $('#idc-name').value = state.name;
 $('#idc-name-count').textContent = `${state.name.length} / 24`;
 $('#idc-since').value = state.since;
 renderSince();
+$('#idc-ship').value = state.ship;
+$('#idc-ship-count').textContent = `${state.ship.length} / 40`;
 $('#idc-since-count').textContent = `${state.since.length} / 80`;
 showStep(state.step);
 refreshPreview();

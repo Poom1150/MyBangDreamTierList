@@ -408,7 +408,7 @@ export function drawIdCard(ctx, data, pics) {
     placeholder(ctx, 'Pick a song', sx + coverSize + 20, cy0 + 352, 24);
   }
 
-  // row 3: joined since (a date, an event or an anime)
+  // row 3: joined since on the left, your ship on the right
   label(ctx, 'Joined since', fx, cy0 + 412);
   if (data.since) {
     // the kind (Date, Live event, Game event or Anime) as a small chip, then what you wrote
@@ -429,8 +429,16 @@ export function drawIdCard(ctx, data, pics) {
     ctx.font = `700 25px ${FONT}`;
     ctx.fillStyle = INK;
     ctx.textAlign = 'left';
-    wrap(ctx, data.since, fw - (tx - fx), 2).forEach((line, i) => ctx.fillText(line, tx, cy0 + 448 + i * 30));
+    wrap(ctx, data.since, colW - (tx - fx), 2).forEach((line, i) => ctx.fillText(line, tx, cy0 + 448 + i * 30));
   } else placeholder(ctx, 'When did you join?', fx, cy0 + 446, 24);
+
+  label(ctx, 'My ship', sx, cy0 + 412);
+  if (data.ship) {
+    const size = fitFont(ctx, data.ship, colW, 30, 18);
+    ctx.fillStyle = accent;
+    ctx.textAlign = 'left';
+    ctx.fillText(ellipsize(ctx, data.ship, colW), sx, cy0 + 446 + (30 - size) * 0.1);
+  } else placeholder(ctx, 'Your ship', sx, cy0 + 446, 24);
 
   label(ctx, 'Games I play', fx, cy0 + 512);
   drawGames(ctx, data.games, fx, cy0 + 524, fw, accent, data.noGames);
