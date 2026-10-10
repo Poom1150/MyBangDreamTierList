@@ -480,6 +480,15 @@ export function drawIdCard(ctx, data, pics) {
     drawPicturePlaceholder(ctx, cx0, cy0, PICTURE_COLUMN, CARD.h, accent);
   }
   ctx.restore();
+
+  // disclaimer under the card, the same line as on the song ranking image
+  ctx.save();
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'alphabetic';
+  ctx.fillStyle = MUTED;
+  ctx.font = `500 14px ${FONT}`;
+  ctx.fillText('Unofficial fan project. BanG Dream! © Bushiroad / BanG Dream! Project.', W / 2, H - 20);
+  ctx.restore();
 }
 
 // ---------- loading + export ----------
