@@ -429,7 +429,7 @@ export function drawIdCard(ctx, data, pics) {
   ctx.save();
   roundRect(ctx, cx0, cy0, w, h, CARD.r);
   ctx.clip();
-  if (pics.picture) {
+  if (pics.picture && data.pictureIsUpload) {
     // your own picture, placed by the "Adjust picture" tool (cropped to the picture column, resized, moved)
     const fit = data.pictureFit || defaultPictureFit(pics.picture);
     const pw = pics.picture.width * fit.s;
@@ -438,6 +438,19 @@ export function drawIdCard(ctx, data, pics) {
     ctx.rect(cx0, cy0, PICTURE_COLUMN, h);
     ctx.clip();
     ctx.drawImage(pics.picture, cx0 + fit.cx - pw / 2, cy0 + fit.cy - ph / 2, pw, ph);
+  } else if (pics.picture) {
+    // Half-body framing: the picture is scaled up so that its upper part (about HALF_BODY of its height)
+    // fills the space from just inside the header down to the bottom edge of the card. The legs are cut off by the
+    // card edge, and anything wider than the picture column is cropped so it never runs into the text.
+    const HALF_BODY = 0.56;
+    const top = cy0 + 60;
+    const scale = (cy0 + h - top) / (pics.picture.height * HALF_BODY);
+    const pw = pics.picture.width * scale;
+    const ph = pics.picture.height * scale;
+    ctx.beginPath();
+    ctx.rect(cx0, cy0, 500, h);
+    ctx.clip();
+    ctx.drawImage(pics.picture, baseX - pw / 2, top, pw, ph);
   } else {
     drawMascot(ctx, baseX, baseY, 380, data.mainColor || accent, data.mainInitial);
   }

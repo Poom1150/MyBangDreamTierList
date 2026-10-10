@@ -20,7 +20,7 @@ BANDS = [
     ("Ave Mujica", "ave", "#881144", "assets/bands/Ave_Logo_Alter.png", "AM"),
     ("Mugendai Mewtype", "mewtype", "#ee6699", "assets/bands/Mugendai_logo.png", "MM"),
     ("Ikka Dumb Rock!", "ikka", "#ff9933", "assets/bands/Ikka_Logo.png", "IDR"),
-    ("millsage", "millsage", "#99aa55", "assets/bands/Millsage_Logo.png", "ms"),
+    ("millsage", "millsage", "#aa22ee", "assets/bands/Millsage_Logo.png", "ms"),
     ("Other & Collaborations", "other", "#aa99dd", "", "★"),
 ]
 def logo_for(band_id):
