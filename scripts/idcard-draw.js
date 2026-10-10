@@ -370,7 +370,7 @@ export function drawIdCard(ctx, data, pics) {
   // row 2, right half: your song, next to your band
   const sx = fx + colW + 30;
   label(ctx, 'My song', sx, cy0 + 284);
-  const coverSize = 92;
+  const coverSize = 83; // 10% smaller than before (was 92)
   const coverY = cy0 + 296;
   if (data.song) {
     ctx.save();
