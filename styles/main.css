@@ -263,7 +263,7 @@ h2 small { color: var(--muted); font-weight: 500; font-size: 14px; margin-left: 
 .mc-body p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
 .mc-go { margin-top: auto; padding-top: 10px; font-weight: 700; color: var(--c); }
 
-.identity-main { min-height: 52vh; display: grid; place-items: center; padding: 40px 20px; }
+.id-card-main { min-height: 52vh; display: grid; place-items: center; padding: 40px 20px; }
 .menu-return { display: inline-flex; align-items: center; padding: 14px 26px; font-size: 16px; text-decoration: none; }
 .menu-return:hover { color: #fff; }
 
