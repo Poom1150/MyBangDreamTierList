@@ -1,7 +1,11 @@
 // Draws the fan ID card on a canvas. The same drawing code makes the live preview and the saved PNG.
-const W = 1280;
-const H = 836;
-const CARD = { x: 40, y: 40, w: 1200, h: 756, r: 36 };
+// The card is drawn on a 1200 x 756 grid (BASE) and shrunk to SCALE; the character picture is NOT shrunk
+// (it keeps the size it had on the bigger card), so it fills more of the smaller card.
+const BASE = { w: 1200, h: 756 };
+const SCALE = 0.85;
+const CARD = { x: 40, y: 40, w: Math.round(BASE.w * SCALE), h: Math.round(BASE.h * SCALE), r: 31 };
+const W = CARD.w + 80;
+const H = CARD.h + 80;
 const FONT = '"Space Grotesk", "Noto Sans JP", system-ui, sans-serif';
 const INK = '#2a2347';
 const MUTED = '#7a7298';
@@ -13,14 +17,14 @@ const STAR = '13.37,3.64 19.00,10.78 27.82,8.61 22.77,16.17 27.56,23.89 18.81,21
 
 export const CANVAS_SIZE = { width: W, height: H };
 export const CARD_BOX = CARD;
-export const PICTURE_COLUMN = 500; // width of the picture column; anything outside it is cropped
+export const PICTURE_COLUMN = Math.round(500 * SCALE); // width of the picture column; anything outside it is cropped
 
 // An uploaded picture starts whole, centred in the picture column and standing on the card's bottom edge.
 // A fit is { s: scale, cx, cy }: the picture's scale and the position of its centre, in card pixels.
-export const pictureBaseScale = (img) => Math.min(470 / img.width, 650 / img.height);
+export const pictureBaseScale = (img) => Math.min((PICTURE_COLUMN - 30) / img.width, (CARD.h - 106) / img.height);
 export function defaultPictureFit(img) {
   const s = pictureBaseScale(img);
-  return { s, cx: 250, cy: CARD.h - 20 - (img.height * s) / 2 };
+  return { s, cx: PICTURE_COLUMN / 2, cy: CARD.h - 20 - (img.height * s) / 2 };
 }
 
 // ---------- helpers ----------
@@ -187,80 +191,67 @@ function drawBackdrop(ctx) {
   ctx.fillRect(0, 0, W, 620);
 }
 
-// Draws the games as pills. Returns the y of the bottom of the last row.
+// Draws one box per game you play, with its servers and the player IDs inside. Returns the y of the bottom.
 function drawGames(ctx, games, x, y, maxW, accent, noGames = false) {
   if (!games.length && noGames) {
-    ctx.font = `700 21px ${FONT}`;
+    ctx.font = `700 22px ${FONT}`;
     ctx.fillStyle = MUTED;
     ctx.textAlign = 'left';
     ctx.textBaseline = 'alphabetic';
-    ctx.fillText("Didn't play any game", x, y + 32);
+    ctx.fillText("I don't play any games", x, y + 32);
     return y + 40;
   }
   if (!games.length) { placeholder(ctx, 'Pick your games', x, y + 30, 26); return y + 40; }
-  let px = x;
-  let py = y;
-  const h = 42;
-  for (const game of games) {
-    ctx.font = `700 21px ${FONT}`;
-    const nameW = ctx.measureText(game.short).width;
-    ctx.font = `700 15px ${FONT}`;
+  const gap = 14;
+  const boxW = Math.min((maxW - gap) / 2, 330);
+  let bottom = y;
+  games.forEach((game, i) => {
+    const bx = x + i * (boxW + gap);
     // Japan + Global is shown as one "Both" chip
     const servers = game.servers.includes('Japan') && game.servers.includes('Global') ? ['Both'] : game.servers;
-    const chips = servers.map((s) => ({ s, w: ctx.measureText(s).width + 20 }));
-    const pillW = 18 + nameW + 12 + chips.reduce((sum, c) => sum + c.w + 6, 0) + 8;
-    if (px > x && px + pillW > x + maxW) { px = x; py += h + 8; }
-    ctx.fillStyle = rgba(accent, 0.12);
-    roundRect(ctx, px, py, pillW, h, h / 2);
+    const ids = game.ids || [];
+    const boxH = 14 + 28 + 36 + (ids.length ? 8 + ids.length * 28 : 0) + 8;
+    ctx.fillStyle = rgba(accent, 0.1);
+    roundRect(ctx, bx, y, boxW, boxH, 18);
     ctx.fill();
-    ctx.strokeStyle = rgba(accent, 0.55);
+    ctx.strokeStyle = rgba(accent, 0.5);
     ctx.lineWidth = 2;
     ctx.stroke();
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic';
     ctx.font = `700 21px ${FONT}`;
     ctx.fillStyle = INK;
-    ctx.textAlign = 'left';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(game.short, px + 18, py + h / 2 + 1);
-    let cx = px + 18 + nameW + 12;
-    for (const chip of chips) {
+    ctx.fillText(ellipsize(ctx, game.short, boxW - 36), bx + 18, y + 14 + 22);
+    // server chips
+    ctx.font = `700 14px ${FONT}`;
+    let cx = bx + 18;
+    for (const name of servers) {
+      const cw = ctx.measureText(name).width + 20;
       ctx.fillStyle = accent;
-      roundRect(ctx, cx, py + 8, chip.w, h - 16, (h - 16) / 2);
+      roundRect(ctx, cx, y + 14 + 34, cw, 24, 12);
       ctx.fill();
-      ctx.font = `700 15px ${FONT}`;
       ctx.fillStyle = luminance(accent) > 0.62 ? INK : '#ffffff';
       ctx.textAlign = 'center';
-      ctx.fillText(chip.s, cx + chip.w / 2, py + h / 2 + 1);
-      cx += chip.w + 6;
+      ctx.textBaseline = 'middle';
+      ctx.fillText(name, cx + cw / 2, y + 14 + 34 + 13);
+      cx += cw + 6;
     }
+    // the IDs, one line per server
     ctx.textAlign = 'left';
     ctx.textBaseline = 'alphabetic';
-    px += pillW + 10;
-  }
-  return py + h;
-}
-
-// Draws the player IDs in two columns below the games. Returns nothing; stops before `limitY`.
-function drawPlayerIds(ctx, ids, x, y, maxW, limitY) {
-  label(ctx, 'Player ID', x, y);
-  if (!ids.length) { placeholder(ctx, 'Add your player IDs', x, y + 34, 24); return; }
-  const colW = (maxW - 24) / 2;
-  const rowH = 38;
-  ids.slice(0, 4).forEach((entry, i) => {
-    const col = i % 2;
-    const row = Math.floor(i / 2);
-    const ex = x + col * (colW + 24);
-    const ey = y + 14 + row * rowH;
-    if (ey + rowH > limitY) return;
-    ctx.textAlign = 'left';
-    ctx.textBaseline = 'alphabetic';
-    ctx.font = `700 21px ${FONT}`;
-    const valueW = Math.min(ctx.measureText(entry.value).width, colW * 0.55);
-    ctx.fillStyle = INK;
-    ctx.fillText(ellipsize(ctx, entry.value, colW * 0.55), ex, ey + 26);
-    ctx.font = `500 14px ${FONT}`;
-    ctx.fillStyle = MUTED;
-    ctx.fillText(ellipsize(ctx, entry.label, colW - valueW - 12), ex + valueW + 10, ey + 26);
+    ids.forEach((entry, row) => {
+      const ey = y + 14 + 34 + 24 + 8 + row * 28 + 20;
+      ctx.font = `500 13px ${FONT}`;
+      ctx.fillStyle = MUTED;
+      ctx.fillText(entry.server.toUpperCase(), bx + 18, ey);
+      const labelW = ctx.measureText(entry.server.toUpperCase()).width + 12;
+      ctx.font = `700 20px ${FONT}`;
+      ctx.fillStyle = INK;
+      ctx.fillText(ellipsize(ctx, entry.value, boxW - 36 - labelW), bx + 18 + labelW, ey);
+    });
+    bottom = Math.max(bottom, y + boxH);
   });
+  return bottom;
 }
 
 /**
@@ -268,7 +259,8 @@ function drawPlayerIds(ctx, ids, x, y, maxW, limitY) {
  * pics: { picture, logo, cover }  (already-loaded images or null)
  */
 export function drawIdCard(ctx, data, pics) {
-  const { x: cx0, y: cy0, w, h } = CARD;
+  const { x: cx0, y: cy0 } = CARD;
+  const { w, h } = BASE; // the grid the card parts are laid out on (they are drawn scaled down)
   const accent = data.accent || PINK;
   drawBackdrop(ctx);
 
@@ -278,12 +270,16 @@ export function drawIdCard(ctx, data, pics) {
   ctx.shadowBlur = 40;
   ctx.shadowOffsetY = 14;
   ctx.fillStyle = '#ffffff';
-  roundRect(ctx, cx0, cy0, w, h, CARD.r);
+  roundRect(ctx, cx0, cy0, CARD.w, CARD.h, CARD.r);
   ctx.fill();
   ctx.restore();
 
   ctx.save();
-  roundRect(ctx, cx0, cy0, w, h, CARD.r);
+  ctx.translate(cx0, cy0);
+  ctx.scale(SCALE, SCALE);
+  ctx.translate(-cx0, -cy0);
+  ctx.save();
+  roundRect(ctx, cx0, cy0, w, h, CARD.r / SCALE);
   ctx.clip();
 
   // card body
@@ -428,14 +424,14 @@ export function drawIdCard(ctx, data, pics) {
   }
 
   label(ctx, 'Games I play', fx, cy0 + 506);
-  const gamesBottom = drawGames(ctx, data.games, fx, cy0 + 518, fw, accent, data.noGames);
-  if (!data.noGames) drawPlayerIds(ctx, data.ids || [], fx, gamesBottom + 30, fw, cy0 + h - 44);
+  drawGames(ctx, data.games, fx, cy0 + 518, fw, accent, data.noGames);
+  ctx.restore(); // end of the scaled-down card parts
 
   // ---- picture: sits on top of everything on the left, with no frame ----
-  const baseX = cx0 + 250;
-  const baseY = cy0 + h - 20;
+  const baseX = cx0 + PICTURE_COLUMN / 2;
+  const baseY = cy0 + CARD.h - 20;
   ctx.save();
-  roundRect(ctx, cx0, cy0, w, h, CARD.r);
+  roundRect(ctx, cx0, cy0, CARD.w, CARD.h, CARD.r);
   ctx.clip();
   if (pics.picture && data.pictureIsUpload) {
     // your own picture, placed by the "Adjust picture" tool (cropped to the picture column, resized, moved)
@@ -443,7 +439,7 @@ export function drawIdCard(ctx, data, pics) {
     const pw = pics.picture.width * fit.s;
     const ph = pics.picture.height * fit.s;
     ctx.beginPath();
-    ctx.rect(cx0, cy0, PICTURE_COLUMN, h);
+    ctx.rect(cx0, cy0, PICTURE_COLUMN, CARD.h);
     ctx.clip();
     ctx.drawImage(pics.picture, cx0 + fit.cx - pw / 2, cy0 + fit.cy - ph / 2, pw, ph);
   } else if (pics.picture) {
@@ -456,15 +452,15 @@ export function drawIdCard(ctx, data, pics) {
     const HEAD_ROOM = 0.16; // must match HEAD_ROOM in build_character_art.py
     const top = cy0 + 60;
     const body = pics.picture.height / (1 + HEAD_ROOM);
-    const scale = (cy0 + h - top) / (body * HALF_BODY);
+    const scale = (BASE.h - 60) / (body * HALF_BODY); // the same size as on the bigger card
     const pw = pics.picture.width * scale;
     const ph = pics.picture.height * scale;
     ctx.beginPath();
-    ctx.rect(cx0, cy0, 500, h);
+    ctx.rect(cx0, cy0, PICTURE_COLUMN, CARD.h);
     ctx.clip();
     ctx.drawImage(pics.picture, baseX - pw / 2, top - body * HEAD_ROOM * scale, pw, ph);
   } else {
-    drawMascot(ctx, baseX, baseY, 380, data.mainColor || accent, data.mainInitial);
+    drawMascot(ctx, baseX, baseY, 380 * SCALE, data.mainColor || accent, data.mainInitial);
   }
   ctx.restore();
 }

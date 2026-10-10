@@ -1,6 +1,6 @@
-import { CANVAS_SIZE, CARD_BOX, PICTURE_COLUMN, defaultPictureFit, drawIdCard, pictureBaseScale, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-23';
+import { CANVAS_SIZE, CARD_BOX, PICTURE_COLUMN, defaultPictureFit, drawIdCard, pictureBaseScale, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-42';
 
-const V = '20261005-41';
+const V = '20261005-42';
 const STORAGE_KEY = 'bandori-idcard-v1';
 const PIC_KEY = 'bandori-idcard-pic-v1';
 const PIC_FIT_KEY = 'bandori-idcard-pic-fit-v1'; // where the uploaded picture sits: { s, cx, cy }
@@ -26,7 +26,7 @@ const STEPS = [
   { id: 'main', label: 'My main', title: 'My favorite character (my main)', hint: 'Open a band, then tap your favorite character. You can add your own picture of them for the card.' },
   { id: 'band', label: 'My band', title: 'My favorite band', hint: 'Tap the band you like the most.' },
   { id: 'song', label: 'My song', title: 'My favorite song', hint: 'Open a band folder, then tap your favorite song.' },
-  { id: 'games', label: 'Games I play', title: 'Games I play', hint: 'Tap the servers you play on (Japan, Global or Both), or "Don\'t play" if you skip a game. Add your player ID for each server in the same box. IDs are shown on the card, below the games.' },
+  { id: 'games', label: 'Games I play', title: 'Games I play', hint: 'Tap the servers you play on (Japan, Global or Both), or "Don\'t play" if you skip a game. Add your player ID for each server in the same box. IDs are shown inside each game box on the card.' },
 ];
 const GAMES = [
   { id: 'gbp', name: 'BanG Dream! Girls Band Party!', short: 'Girls Band Party!' },
@@ -176,7 +176,7 @@ function summary(id) {
   if (id === 'band') return state.band ? bandById[state.band].name : null;
   if (id === 'song') return state.song ? songById[state.song].title : null;
   const list = gameSummary();
-  if (!list.length) return playsNothing() ? "Didn't play" : null;
+  if (!list.length) return playsNothing() ? "I don't play any games" : null;
   const ids = shownIds().length;
   return list.join(' \u00b7 ') + (ids ? ` \u00b7 ${ids} player ID${ids > 1 ? 's' : ''}` : '');
 }
@@ -201,7 +201,11 @@ function cardData() {
     band: band ? { name: band.name, color: band.color } : null,
     song: song ? { title: song.title, bandName: bandById[song.band].name, color: bandById[song.band].color } : null,
     noGames: playsNothing(),
-    games: GAMES.map((g) => ({ short: g.short, servers: SERVERS.filter((s) => state.games[g.id][s.id]).map((s) => s.label) })).filter((g) => g.servers.length),
+    games: GAMES.map((g) => ({
+      short: g.short,
+      servers: SERVERS.filter((s) => state.games[g.id][s.id]).map((s) => s.label),
+      ids: SERVERS.filter((s) => state.games[g.id][s.id] && state.ids[`${g.id}:${s.id}`]).map((s) => ({ server: s.label, value: state.ids[`${g.id}:${s.id}`] })),
+    })).filter((g) => g.servers.length),
     ids: shownIds().map((e) => ({ label: `${e.short} \u00b7 ${e.server}`, value: e.value })),
     accent: (band || mainBand)?.color || '#ff3377',
     pictureUrl: state.picture || pictureFor(state.main),
