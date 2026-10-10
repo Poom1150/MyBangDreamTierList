@@ -285,20 +285,6 @@ export function drawIdCard(ctx, data, pics) {
   ctx.textBaseline = 'alphabetic';
   ctx.textAlign = 'left';
   ctx.fillStyle = onAccent;
-  // title: two big, tight lines; "UNOFFICIAL" sits small beside the first line
-  const titleMax = w - 96 - INFO_X - 14;
-  ctx.letterSpacing = '-1.5px';
-  const titleSize = Math.min(fitFont(ctx, 'BanG Dream!', titleMax, 50, 30), fitFont(ctx, 'FanClub ID Card', titleMax, 50, 30));
-  ctx.font = `700 ${titleSize}px ${FONT}`;
-  ctx.fillText('BanG Dream!', cx0 + INFO_X, cy0 + 52);
-  const firstW = ctx.measureText('BanG Dream!').width;
-  ctx.fillText('FanClub ID Card', cx0 + INFO_X, cy0 + 100);
-  ctx.letterSpacing = '4px';
-  ctx.font = `700 15px ${FONT}`;
-  ctx.globalAlpha = 0.85;
-  ctx.fillText('UNOFFICIAL', cx0 + INFO_X + firstW + 22, cy0 + 50);
-  ctx.globalAlpha = 1;
-  ctx.letterSpacing = '0px';
   // small star emblem on the right of the header
   ctx.save();
   ctx.translate(cx0 + w - 96, cy0 + 20);
@@ -438,6 +424,28 @@ export function drawIdCard(ctx, data, pics) {
   } else {
     drawPicturePlaceholder(ctx, cx0, cy0, PICTURE_COLUMN, CARD.h, accent);
   }
+  ctx.restore();
+
+  // ---- title: one big, tight line across the header, on top of everything (even over the picture) ----
+  ctx.save();
+  ctx.translate(cx0, cy0);
+  ctx.scale(SCALE, SCALE);
+  ctx.translate(-cx0, -cy0);
+  const titleColor = luminance(accent) > 0.62 ? INK : '#ffffff';
+  const titleX = cx0 + 44;
+  const titleMax = w - 96 - 44 - 18;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'alphabetic';
+  ctx.fillStyle = titleColor;
+  ctx.letterSpacing = '-2px';
+  const titleSize = fitFont(ctx, 'BanG Dream! FanClub ID Card', titleMax, 66, 30);
+  ctx.fillText('BanG Dream! FanClub ID Card', titleX, cy0 + 72);
+  ctx.letterSpacing = '5px';
+  ctx.font = `700 16px ${FONT}`;
+  ctx.globalAlpha = 0.85;
+  ctx.fillText('UNOFFICIAL', titleX + 3, cy0 + 72 + Math.round(titleSize * 0.18) + 18);
+  ctx.globalAlpha = 1;
+  ctx.letterSpacing = '0px';
   ctx.restore();
 }
 
