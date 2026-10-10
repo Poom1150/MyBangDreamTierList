@@ -4,6 +4,7 @@
 const BASE = { w: 1200, h: 756 };
 const SCALE = 0.745; // the 755 x 505 card scaled up to a picture 1000 px wide (same proportions)
 const MARGIN = 53;
+const INFO_X = 548; // where the information section starts, in card units (the picture column ends at 500)
 const CARD = { x: MARGIN, y: MARGIN, w: Math.round(BASE.w * SCALE), h: Math.round(BASE.h * SCALE), r: 41 };
 const W = CARD.w + MARGIN * 2;
 const H = CARD.h + MARGIN * 2;
@@ -285,10 +286,10 @@ export function drawIdCard(ctx, data, pics) {
   ctx.textAlign = 'left';
   ctx.fillStyle = onAccent;
   ctx.font = `700 40px ${FONT}`;
-  ctx.fillText('BANG DREAM! FAN ID CARD', cx0 + 500, cy0 + 72);
+  ctx.fillText('BANG DREAM! FAN ID CARD', cx0 + INFO_X, cy0 + 72);
   ctx.font = `500 17px ${FONT}`;
   ctx.globalAlpha = 0.85;
-  ctx.fillText('UNOFFICIAL · MADE BY A FAN', cx0 + 502, cy0 + 98);
+  ctx.fillText('UNOFFICIAL · MADE BY A FAN', cx0 + INFO_X + 2, cy0 + 98);
   ctx.globalAlpha = 1;
   // small star emblem on the right of the header
   ctx.save();
@@ -326,8 +327,8 @@ export function drawIdCard(ctx, data, pics) {
   ctx.restore();
 
   // ---- fields (right side) ----
-  const fx = cx0 + 500;
-  const fw = w - 500 - 48;
+  const fx = cx0 + INFO_X;
+  const fw = w - INFO_X - 48;
 
   label(ctx, 'Name', fx, cy0 + 168);
   if (data.name) {
