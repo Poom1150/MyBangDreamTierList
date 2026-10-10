@@ -39,17 +39,26 @@ for b in bands:
     band_of_folder[key(b['id'])] = b['id']
     band_of_folder[key(b['name'])] = b['id']
 band_of_folder.update({
-    'popipa': 'popipa', 'pasupare': 'pasupare', 'pastelpalettes': 'pasupare', 'harohapi': 'harohapi',
-    'helloHappyWorld'.lower(): 'harohapi', 'raiseasuilen': 'ras', 'yumemita': 'mewtype', 'mugendaimewtype': 'mewtype',
+    'popipa': 'popipa', 'pasupare': 'pasupare', 'pastelpalettes': 'pasupare', 'pastelpallettes': 'pasupare',
+    'harohapi': 'harohapi', 'hhw': 'harohapi', 'helloHappyWorld'.lower(): 'harohapi',
+    'raiseasuilen': 'ras', 'ras': 'ras', 'yumemita': 'mewtype', 'mugendaimewtype': 'mewtype',
 })
+
+# other names a picture's file may use for a character
+ALIASES = {
+    # RAISE A SUILEN members are listed by stage name, but their pictures are often named after the member
+    'ras-layer': {'rei', 'wakanarei'},
+    'ras-lock': {'rokka', 'asahirokka'},
+    'ras-masking': {'masuki', 'satoumasuki'},
+    'ras-pareo': {'reona', 'nyubarareona'},
+    'ras-chu2': {'chiyu', 'tamadechiyu', 'chu2', 'chuchu'},
+}
 
 
 def names_of(char):
-    """the spellings a file name may use for this character: given name, family name, or the whole name"""
+    """the spellings a file name may use for this character: given name, family name, the whole name, or an alias"""
     parts = char['name'].split()
-    found = {key(char['name']), key(parts[-1]), key(parts[0])}
-    if len(parts) == 1 and key(char['name']) == 'chu':  # CHU² loses its "²"
-        found |= {'chu2', 'chuchu'}
+    found = {key(char['name']), key(parts[-1]), key(parts[0])} | ALIASES.get(char['id'], set())
     return {f for f in found if f}
 
 
@@ -138,7 +147,7 @@ lines = ['Characters that still have no picture (they show a star mascot).', '',
 for b in bands:
     todo = [c for c in characters if c['band'] == b['id'] and c['id'] not in matched]
     if todo:
-        lines.append(f"{b['name']}  ->  folder: character_art/{b['name']}/   ({len(todo)} of 5 missing)")
+        lines.append(f"{b['name']}  ->  folder: character_art/{b['name']}/   ({len(todo)} of {sum(1 for c in characters if c['band'] == b['id'])} missing)")
         lines += [f"    {c['name']:<20} <Name> = {given(c)}" for c in todo]
         lines.append('')
 open(os.path.join(SRC, 'MISSING.txt'), 'w', encoding='utf-8').write('\n'.join(lines))
