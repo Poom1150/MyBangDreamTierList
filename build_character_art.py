@@ -23,33 +23,50 @@ SRC = os.path.join(ROOT, 'character_art')
 OUT = os.path.join(ROOT, 'assets', 'characters')
 MAX_HEIGHT = 1100  # the card shows the upper half of the picture about 1.2x larger than this, so keep it sharp
 
-def centre_on_body(image):
-    """Pads the picture sideways so the middle of the head and shoulders sits exactly in the middle.
-
-    A big instrument sticking out to one side makes the picture wider on that side, so centring by the whole
-    width pushes the character off-centre. The head and shoulders (the top part of the picture) are a steadier
-    anchor: we take the middle of where they are (the weighted median of their opaque pixels) and make that the centre.
-    """
-    width, height = image.size
-    alpha = image.getchannel('A')
-    zone = alpha.crop((0, int(height * 0.06), width, int(height * 0.28)))
+def middle_of(alpha, top_frac, bottom_frac):
+    """x of the weighted median of the opaque pixels in a horizontal slice of the picture"""
+    width, height = alpha.size
+    zone = alpha.crop((0, int(height * top_frac), width, max(int(height * top_frac) + 1, int(height * bottom_frac))))
     zone_w, zone_h = zone.size
     data = zone.tobytes()
-    columns = [0] * zone_w
-    for row in range(zone_h):
-        offset = row * zone_w
-        for col in range(zone_w):
-            columns[col] += data[offset + col]
+    columns = [sum(data[row * zone_w + col] for row in range(zone_h)) for col in range(zone_w)]
     total = sum(columns)
     if not total:
-        return image
+        return width / 2
     running = 0
-    centre = width / 2
     for col, weight in enumerate(columns):
         running += weight
         if running >= total / 2:
-            centre = col + 0.5
-            break
+            return col + 0.5
+    return width / 2
+
+
+def head_top(alpha, centre):
+    """first row where the head starts: looks only at a narrow strip around the body's middle, so a raised
+    guitar neck, a long ribbon or a hand held out to the side does not count as the top of the figure"""
+    width, height = alpha.size
+    half = int(height * 0.075)
+    strip = alpha.crop((max(0, int(centre) - half), 0, min(width, int(centre) + half), int(height * 0.4)))
+    strip_w, strip_h = strip.size
+    data = strip.tobytes()
+    for row in range(strip_h):
+        if sum(1 for v in data[row * strip_w:(row + 1) * strip_w] if v > 128) >= 6:
+            return row
+    return 0
+
+
+def centre_on_body(image):
+    """Lines every picture up the same way: the top of the head at the very top, the middle of the head and
+    shoulders exactly in the middle.  A big instrument or a raised arm would otherwise push the figure sideways
+    (it widens one side) or down (it makes the picture taller than the figure)."""
+    alpha = image.getchannel('A')
+    centre = middle_of(alpha, 0.06, 0.28)
+    top = head_top(alpha, centre)
+    if top:
+        image = image.crop((0, top, image.width, image.height))
+        alpha = image.getchannel('A')
+    centre = middle_of(alpha, 0.0, 0.22)
+    width, height = image.size
     half = max(centre, width - centre)
     padded = Image.new('RGBA', (round(half * 2), height), (0, 0, 0, 0))
     padded.paste(image, (round(half - centre), 0))
