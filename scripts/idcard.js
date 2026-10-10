@@ -1,6 +1,6 @@
 import { CANVAS_SIZE, CARD_BOX, PICTURE_COLUMN, defaultPictureFit, drawIdCard, pictureBaseScale, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-23';
 
-const V = '20261005-30';
+const V = '20261005-31';
 const STORAGE_KEY = 'bandori-idcard-v1';
 const PIC_KEY = 'bandori-idcard-pic-v1';
 const PIC_FIT_KEY = 'bandori-idcard-pic-fit-v1'; // where the uploaded picture sits: { s, cx, cy }
@@ -8,12 +8,10 @@ const PIC_FIT_KEY = 'bandori-idcard-pic-fit-v1'; // where the uploaded picture s
 const $ = (selector) => document.querySelector(selector);
 const encodePath = (path) => path.split('/').map(encodeURIComponent).join('/');
 
-const [bands, songs, characters, characterArt] = await Promise.all([
+const [bands, songs, characters] = await Promise.all([
   fetch(`./data/bands.json?v=${V}`).then((r) => r.json()),
   fetch(`./data/songs.json?v=${V}`).then((r) => r.json()),
   fetch(`./data/characters.json?v=${V}`).then((r) => r.json()),
-  // character id -> picture file, made by build_character_art.py from your character_art folder
-  fetch(`./data/character-art.json?v=${V}`).then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
 ]);
 const bandById = Object.fromEntries(bands.map((b) => [b.id, b]));
 const songById = Object.fromEntries(songs.map((s) => [s.id, s]));
@@ -180,10 +178,6 @@ function summary(id) {
 const doneCount = () => STEPS.filter((s) => summary(s.id)).length;
 
 // ---------- the card ----------
-// pictures made by build_character_art.py: the full picture (for the card) and a small icon (for the picker)
-const artOf = (id) => { const e = id && characterArt[id]; return !e ? null : (typeof e === 'string' ? e : e.art || null); };
-const pictureFor = (id) => (artOf(id) ? `${encodePath(artOf(id))}?v=${V}` : null);
-
 function cardData() {
   const ch = charById[state.main];
   const band = bandById[state.band];
@@ -200,8 +194,7 @@ function cardData() {
     games: GAMES.map((g) => ({ short: g.short, servers: SERVERS.filter((s) => state.games[g.id][s.id]).map((s) => s.label) })).filter((g) => g.servers.length),
     ids: shownIds().map((e) => ({ label: `${e.short} \u00b7 ${e.server}`, value: e.value })),
     accent: (band || mainBand)?.color || '#ff3377',
-    pictureUrl: state.picture || pictureFor(state.main),
-    pictureIsUpload: Boolean(state.picture),
+    pictureUrl: state.picture,
     pictureFit: state.picture ? state.pictureFit : null,
     logoUrl: band?.logo ? encodePath(band.logo) : null,
     coverUrl: song ? encodePath(song.file) : null,
@@ -357,14 +350,12 @@ $('#char-grid').addEventListener('click', (event) => {
   commit();
 });
 
-// what the card shows on the left: your own picture, else the character's picture, else a star mascot in their color
+// what the card shows on the left: the picture you uploaded, otherwise a star mascot in your main character's color
 function renderPictureNote() {
   const ch = charById[state.main];
-  let note;
-  if (state.picture) note = 'Your own picture is on the card. It stays on this device and is never uploaded.';
-  else if (!ch) note = 'Pick your main character and their picture appears on the card. Until then a star mascot stands in. You can also upload your own picture.';
-  else if (artOf(ch.id)) note = `${ch.name}'s picture is on your card, standing in front with no frame. You can upload your own picture instead.`;
-  else note = `There is no picture for ${ch.name} yet, so a star mascot in their color stands in. You can upload your own picture.`;
+  const note = state.picture
+    ? 'Your own picture is on the card. It stays on this device and is never uploaded.'
+    : `Upload your own picture${ch ? ` of ${ch.name}` : ' of your main'} and place it on the card. Until then a star mascot${ch ? ' in their color' : ''} stands in. A PNG with a transparent background looks best.`;
   $('#pic-note').textContent = note;
   $('#pic-remove').hidden = !state.picture;
   $('#pic-adjust').hidden = !state.picture;
