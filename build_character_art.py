@@ -65,7 +65,7 @@ NUDGE = {
     'roselia-imai-lisa': (-0.013, 0),
     'roselia-minato-yukina': (0.010, 0),
     'roselia-hikawa-sayo': (0.008, 0),
-    'ikka-umezato-chieri': (0.09, 0.045),
+    'ikka-umezato-chieri': (0.09, 0.032),
 }
 
 
