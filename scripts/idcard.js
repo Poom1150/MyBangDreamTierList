@@ -1,6 +1,6 @@
 import { CANVAS_SIZE, drawIdCard, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-23';
 
-const V = '20261005-27';
+const V = '20261005-28';
 const STORAGE_KEY = 'bandori-idcard-v1';
 const PIC_KEY = 'bandori-idcard-pic-v1';
 

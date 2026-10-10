@@ -341,7 +341,7 @@ export function drawIdCard(ctx, data, pics) {
     placeholder(ctx, 'Your name', fx, cy0 + 224, 48);
   }
   ctx.fillStyle = accent;
-  roundRect(ctx, fx, cy0 + 240, 120, 6, 3);
+  roundRect(ctx, fx, cy0 + 250, 120, 6, 3);
   ctx.fill();
 
   const colW = (fw - 30) / 2;
@@ -353,7 +353,7 @@ export function drawIdCard(ctx, data, pics) {
     if (data.mainBand) {
       ctx.font = `500 18px ${FONT}`;
       ctx.fillStyle = MUTED;
-      ctx.fillText(ellipsize(ctx, data.mainBand, colW), fx, cy0 + 346);
+      ctx.fillText(ellipsize(ctx, data.mainBand, colW), fx, cy0 + 353);
     }
   } else placeholder(ctx, 'Pick a character', fx, cy0 + 322, 24);
 
