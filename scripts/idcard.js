@@ -1,8 +1,9 @@
-import { CANVAS_SIZE, drawIdCard, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-23';
+import { CANVAS_SIZE, CARD_BOX, PICTURE_COLUMN, defaultPictureFit, drawIdCard, pictureBaseScale, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-23';
 
-const V = '20261005-28';
+const V = '20261005-30';
 const STORAGE_KEY = 'bandori-idcard-v1';
 const PIC_KEY = 'bandori-idcard-pic-v1';
+const PIC_FIT_KEY = 'bandori-idcard-pic-fit-v1'; // where the uploaded picture sits: { s, cx, cy }
 
 const $ = (selector) => document.querySelector(selector);
 const encodePath = (path) => path.split('/').map(encodeURIComponent).join('/');
@@ -40,7 +41,7 @@ const SERVERS = [
 // ---------- state ----------
 const emptyGames = () => Object.fromEntries(GAMES.map((g) => [g.id, Object.fromEntries(SERVERS.map((s) => [s.id, false]))]));
 const state = {
-  step: 'name', name: '', main: null, band: null, song: null, games: emptyGames(), ids: {}, picture: null,
+  step: 'name', name: '', main: null, band: null, song: null, games: emptyGames(), ids: {}, picture: null, pictureFit: null,
   charBand: null, charQuery: '', songBand: null, songQuery: '',
 };
 
@@ -98,6 +99,10 @@ function load() {
   state.ids = normalizeIds(src.ids);
   if (!fromLink && STEPS.some((s) => s.id === saved.step)) state.step = saved.step;
   try { state.picture = localStorage.getItem(PIC_KEY) || null; } catch { state.picture = null; }
+  try {
+    const fit = JSON.parse(localStorage.getItem(PIC_FIT_KEY));
+    state.pictureFit = fit && [fit.s, fit.cx, fit.cy].every(Number.isFinite) ? { s: fit.s, cx: fit.cx, cy: fit.cy } : null;
+  } catch { state.pictureFit = null; }
 }
 function persist() {
   try {
@@ -108,6 +113,8 @@ function persistPicture() {
   try {
     if (state.picture) localStorage.setItem(PIC_KEY, state.picture);
     else localStorage.removeItem(PIC_KEY);
+    if (state.picture && state.pictureFit) localStorage.setItem(PIC_FIT_KEY, JSON.stringify(state.pictureFit));
+    else localStorage.removeItem(PIC_FIT_KEY);
   } catch { /* too big or storage unavailable: the picture then lasts until the page is closed */ }
 }
 
@@ -195,6 +202,7 @@ function cardData() {
     accent: (band || mainBand)?.color || '#ff3377',
     pictureUrl: state.picture || pictureFor(state.main),
     pictureIsUpload: Boolean(state.picture),
+    pictureFit: state.picture ? state.pictureFit : null,
     logoUrl: band?.logo ? encodePath(band.logo) : null,
     coverUrl: song ? encodePath(song.file) : null,
   };
@@ -359,6 +367,7 @@ function renderPictureNote() {
   else note = `There is no picture for ${ch.name} yet, so a star mascot in their color stands in. You can upload your own picture.`;
   $('#pic-note').textContent = note;
   $('#pic-remove').hidden = !state.picture;
+  $('#pic-adjust').hidden = !state.picture;
 }
 async function downscale(file) {
   const bitmap = await createImageBitmap(file);
@@ -377,18 +386,126 @@ $('#pic-file').addEventListener('change', async (event) => {
   if (!file.type.startsWith('image/')) { toast('Please choose an image file.'); return; }
   try {
     state.picture = await downscale(file);
+    state.pictureFit = null; // starts whole, standing on the bottom edge; "Adjust picture" crops, resizes and moves it
     persistPicture();
     commit();
-    toast('Picture added to your card.');
+    await openAdjust();
   } catch {
     toast('Could not read that picture.');
   }
 });
 $('#pic-remove').addEventListener('click', () => {
   state.picture = null;
+  state.pictureFit = null;
   persistPicture();
   commit();
 });
+
+// ---------- adjust your own picture: crop, resize and move it ----------
+const adjust = { fit: null, pics: null, base: 1, pointers: new Map(), pinch: 0 };
+const adjustDialog = $('#adj-dialog');
+const adjustCanvas = $('#adj-canvas');
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+
+function drawAdjust() {
+  const ctx = adjustCanvas.getContext('2d');
+  drawIdCard(ctx, { ...cardData(), pictureFit: adjust.fit }, adjust.pics);
+  // guide: the picture column. Anything outside the dashed area is cropped.
+  ctx.save();
+  ctx.setLineDash([14, 10]);
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = 'rgba(42, 35, 71, 0.6)';
+  ctx.strokeRect(CARD_BOX.x + 1.5, CARD_BOX.y + 1.5, PICTURE_COLUMN - 3, CARD_BOX.h - 3);
+  ctx.restore();
+  const percent = Math.round((adjust.fit.s / adjust.base) * 100);
+  $('#adj-zoom').value = percent;
+  $('#adj-zoom-out').textContent = `${percent}%`;
+}
+function setFit(next) {
+  const f = { ...adjust.fit, ...next };
+  f.s = clamp(f.s, adjust.base * 0.15, adjust.base * 5);
+  f.cx = clamp(f.cx, -150, PICTURE_COLUMN + 150);
+  f.cy = clamp(f.cy, -150, CARD_BOX.h + 300);
+  adjust.fit = f;
+  drawAdjust();
+}
+async function openAdjust() {
+  if (!state.picture) return;
+  const pics = await prepareIdCard(cardData());
+  if (!pics.picture) { toast('Could not open that picture.'); return; }
+  adjust.pics = pics;
+  adjust.base = pictureBaseScale(pics.picture);
+  adjust.fit = state.pictureFit ? { ...state.pictureFit } : defaultPictureFit(pics.picture);
+  adjustCanvas.width = CANVAS_SIZE.width;
+  adjustCanvas.height = CANVAS_SIZE.height;
+  drawAdjust();
+  if (!adjustDialog.open) adjustDialog.showModal();
+}
+// how many card pixels one screen pixel of the editor stands for
+const toCard = () => CANVAS_SIZE.width / adjustCanvas.getBoundingClientRect().width;
+
+adjustCanvas.addEventListener('pointerdown', (event) => {
+  adjustCanvas.setPointerCapture(event.pointerId);
+  adjust.pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+  adjust.pinch = 0;
+});
+adjustCanvas.addEventListener('pointermove', (event) => {
+  const last = adjust.pointers.get(event.pointerId);
+  if (!last) return;
+  adjust.pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+  if (adjust.pointers.size === 2) { // two fingers: pinch to resize
+    const [a, b] = [...adjust.pointers.values()];
+    const distance = Math.hypot(a.x - b.x, a.y - b.y);
+    if (adjust.pinch) setFit({ s: adjust.fit.s * (distance / adjust.pinch) });
+    adjust.pinch = distance;
+    return;
+  }
+  const k = toCard(); // one pointer: drag to move
+  setFit({ cx: adjust.fit.cx + (event.clientX - last.x) * k, cy: adjust.fit.cy + (event.clientY - last.y) * k });
+});
+const endPointer = (event) => { adjust.pointers.delete(event.pointerId); adjust.pinch = 0; };
+adjustCanvas.addEventListener('pointerup', endPointer);
+adjustCanvas.addEventListener('pointercancel', endPointer);
+adjustCanvas.addEventListener('wheel', (event) => {
+  event.preventDefault();
+  const rect = adjustCanvas.getBoundingClientRect();
+  const k = toCard();
+  // resize around the pointer, so the part you are looking at stays under it
+  const px = (event.clientX - rect.left) * k - CARD_BOX.x;
+  const py = (event.clientY - rect.top) * k - CARD_BOX.y;
+  const s = clamp(adjust.fit.s * Math.exp(-event.deltaY * 0.0015), adjust.base * 0.15, adjust.base * 5);
+  const ratio = s / adjust.fit.s;
+  setFit({ s, cx: px + (adjust.fit.cx - px) * ratio, cy: py + (adjust.fit.cy - py) * ratio });
+}, { passive: false });
+adjustCanvas.addEventListener('keydown', (event) => {
+  const step = event.shiftKey ? 32 : 8;
+  const moves = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] };
+  if (moves[event.key]) {
+    event.preventDefault();
+    setFit({ cx: adjust.fit.cx + moves[event.key][0], cy: adjust.fit.cy + moves[event.key][1] });
+  } else if (event.key === '+' || event.key === '=') {
+    event.preventDefault();
+    setFit({ s: adjust.fit.s * 1.05 });
+  } else if (event.key === '-') {
+    event.preventDefault();
+    setFit({ s: adjust.fit.s / 1.05 });
+  }
+});
+$('#adj-zoom').addEventListener('input', (event) => setFit({ s: adjust.base * (Number(event.target.value) / 100) }));
+$('#adj-reset').addEventListener('click', () => setFit(defaultPictureFit(adjust.pics.picture)));
+$('#adj-fill').addEventListener('click', () => { // cover the whole picture column
+  const img = adjust.pics.picture;
+  setFit({ s: Math.max(PICTURE_COLUMN / img.width, CARD_BOX.h / img.height), cx: PICTURE_COLUMN / 2, cy: CARD_BOX.h / 2 });
+});
+$('#adj-cancel').addEventListener('click', () => adjustDialog.close());
+$('#adj-done').addEventListener('click', () => {
+  state.pictureFit = { ...adjust.fit };
+  persistPicture();
+  commit();
+  adjustDialog.close();
+  toast('Picture placed on your card.');
+});
+$('#pic-adjust').addEventListener('click', () => openAdjust());
 
 // ---------- left panel: step 3, band ----------
 function renderBandPick() {
@@ -721,7 +838,7 @@ $('#btn-share').addEventListener('click', async () => {
 $('#btn-clear').addEventListener('click', () => {
   if (!doneCount() && !state.picture) return;
   if (!window.confirm('Clear everything on your ID card?')) return;
-  Object.assign(state, { name: '', main: null, band: null, song: null, games: emptyGames(), ids: {}, picture: null, charBand: null, charQuery: '', songBand: null, songQuery: '' });
+  Object.assign(state, { name: '', main: null, band: null, song: null, games: emptyGames(), ids: {}, picture: null, pictureFit: null, charBand: null, charQuery: '', songBand: null, songQuery: '' });
   $('#idc-name').value = '';
   $('#idc-name-count').textContent = '0 / 24';
   $('#char-search').value = '';

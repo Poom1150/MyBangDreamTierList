@@ -107,3 +107,18 @@ label.btn { display: inline-flex; align-items: center; cursor: pointer; }
   .band-pick { grid-template-columns: repeat(2, 1fr); }
   .step-nav .btn { flex: 1; }
 }
+
+/* ---------- adjust your own picture ---------- */
+.adj-dialog { width: min(820px, 96vw); max-height: 96vh; overflow: auto; padding: 18px; border: 0; border-radius: 20px; background: var(--panel); box-shadow: 0 30px 80px rgba(42, 35, 71, 0.45); }
+.adj-dialog::backdrop { background: rgba(42, 35, 71, 0.6); backdrop-filter: blur(3px); }
+.adj-dialog h3 { margin: 0 0 4px; font-size: 20px; }
+.adj-help { margin: 0 0 12px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+#adj-canvas { display: block; width: 100%; height: auto; border-radius: 12px; background: var(--panel-2); cursor: grab; touch-action: none; }
+#adj-canvas:active { cursor: grabbing; }
+#adj-canvas:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.adj-controls { display: grid; gap: 10px; margin-top: 14px; }
+.adj-size { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; font-weight: 700; font-size: 14px; }
+.adj-size input[type=range] { width: 100%; accent-color: var(--pink); }
+.adj-size output { min-width: 4ch; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+.adj-buttons, .adj-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.adj-actions { justify-content: flex-end; margin-top: 14px; }

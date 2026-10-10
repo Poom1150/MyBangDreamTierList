@@ -6,15 +6,15 @@
   <meta name="theme-color" content="#ff3377" />
   <meta name="description" content="Make your own BanG Dream! fan ID card: your name, main character, band, song and the games you play." />
   <title>My BanG Dream! ID card</title>
-  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg?v=20261005-28" />
-  <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48.png?v=20261005-28" />
-  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png?v=20261005-28" />
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg?v=20261005-30" />
+  <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48.png?v=20261005-30" />
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png?v=20261005-30" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles/main.css?v=20261005-28" />
-  <link rel="stylesheet" href="./styles/idcard.css?v=20261005-28" />
-  <script src="./scripts/idcard.js?v=20261005-28" type="module"></script>
+  <link rel="stylesheet" href="./styles/main.css?v=20261005-30" />
+  <link rel="stylesheet" href="./styles/idcard.css?v=20261005-30" />
+  <script src="./scripts/idcard.js?v=20261005-30" type="module"></script>
 </head>
 <body>
   <header class="masthead">
@@ -57,6 +57,7 @@
           <div class="pic-buttons">
             <label class="btn" for="pic-file">Upload picture</label>
             <input id="pic-file" type="file" accept="image/*" hidden />
+            <button id="pic-adjust" class="btn" type="button" hidden>Adjust picture</button>
             <button id="pic-remove" class="btn ghost" type="button" hidden>Use the default</button>
           </div>
         </div>
@@ -142,6 +143,26 @@
   <dialog id="idc-zoom" class="idc-zoom" aria-label="Your ID card, larger">
     <img id="idc-zoom-img" alt="Your fan ID card" />
     <button id="idc-zoom-close" class="btn" type="button">Close</button>
+  </dialog>
+
+  <dialog id="adj-dialog" class="adj-dialog" aria-label="Adjust your picture">
+    <h3>Adjust your picture</h3>
+    <p class="adj-help">Drag the picture to move it. Resize it with the slider, the mouse wheel or two fingers. Anything outside the dashed area is cropped off.</p>
+    <canvas id="adj-canvas" tabindex="0" role="img" aria-label="Your card. Drag, or use the arrow keys, to move the picture; + and - resize it."></canvas>
+    <div class="adj-controls">
+      <label class="adj-size">Size
+        <input id="adj-zoom" type="range" min="15" max="500" step="1" value="100" />
+        <output id="adj-zoom-out">100%</output>
+      </label>
+      <div class="adj-buttons">
+        <button id="adj-reset" class="btn" type="button">Reset</button>
+        <button id="adj-fill" class="btn" type="button">Fill the picture area</button>
+      </div>
+    </div>
+    <div class="adj-actions">
+      <button id="adj-cancel" class="btn" type="button">Cancel</button>
+      <button id="adj-done" class="btn primary" type="button">Done</button>
+    </div>
   </dialog>
 
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>

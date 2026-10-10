@@ -12,6 +12,16 @@ const STAR = '13.37,3.64 19.00,10.78 27.82,8.61 22.77,16.17 27.56,23.89 18.81,21
   .split(' ').map((p) => p.split(',').map(Number));
 
 export const CANVAS_SIZE = { width: W, height: H };
+export const CARD_BOX = CARD;
+export const PICTURE_COLUMN = 500; // width of the picture column; anything outside it is cropped
+
+// An uploaded picture starts whole, centred in the picture column and standing on the card's bottom edge.
+// A fit is { s: scale, cx, cy }: the picture's scale and the position of its centre, in card pixels.
+export const pictureBaseScale = (img) => Math.min(470 / img.width, 650 / img.height);
+export function defaultPictureFit(img) {
+  const s = pictureBaseScale(img);
+  return { s, cx: 250, cy: CARD.h - 20 - (img.height * s) / 2 };
+}
 
 // ---------- helpers ----------
 const images = new Map();
@@ -420,11 +430,14 @@ export function drawIdCard(ctx, data, pics) {
   roundRect(ctx, cx0, cy0, w, h, CARD.r);
   ctx.clip();
   if (pics.picture && data.pictureIsUpload) {
-    // a picture you uploaded is shown whole (it may be a photo, a bust or a full-body picture), standing on the bottom edge
-    const s = Math.min(470 / pics.picture.width, 650 / pics.picture.height);
-    const pw = pics.picture.width * s;
-    const ph = pics.picture.height * s;
-    ctx.drawImage(pics.picture, baseX - pw / 2, baseY - ph, pw, ph);
+    // your own picture, placed by the "Adjust picture" tool (cropped to the picture column, resized, moved)
+    const fit = data.pictureFit || defaultPictureFit(pics.picture);
+    const pw = pics.picture.width * fit.s;
+    const ph = pics.picture.height * fit.s;
+    ctx.beginPath();
+    ctx.rect(cx0, cy0, PICTURE_COLUMN, h);
+    ctx.clip();
+    ctx.drawImage(pics.picture, cx0 + fit.cx - pw / 2, cy0 + fit.cy - ph / 2, pw, ph);
   } else if (pics.picture) {
     // Half-body framing: the picture is scaled up so that its upper part (about HALF_BODY of its height)
     // fills the space from just inside the header down to the bottom edge of the card. The legs are cut off by the
