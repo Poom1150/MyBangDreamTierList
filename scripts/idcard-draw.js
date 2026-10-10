@@ -411,10 +411,25 @@ export function drawIdCard(ctx, data, pics) {
   // row 3: joined since (a date, an event or an anime)
   label(ctx, 'Joined since', fx, cy0 + 412);
   if (data.since) {
+    // the kind (Date, Live event, Game event or Anime) as a small chip, then what you wrote
+    let tx = fx;
+    if (data.sinceType) {
+      ctx.font = `700 15px ${FONT}`;
+      const cw = ctx.measureText(data.sinceType).width + 22;
+      ctx.fillStyle = accent;
+      roundRect(ctx, fx, cy0 + 428, cw, 26, 13);
+      ctx.fill();
+      ctx.fillStyle = luminance(accent) > 0.62 ? INK : '#ffffff';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(data.sinceType, fx + cw / 2, cy0 + 442);
+      ctx.textBaseline = 'alphabetic';
+      tx = fx + cw + 14;
+    }
     ctx.font = `700 25px ${FONT}`;
     ctx.fillStyle = INK;
     ctx.textAlign = 'left';
-    wrap(ctx, data.since, fw, 2).forEach((line, i) => ctx.fillText(line, fx, cy0 + 446 + i * 30));
+    wrap(ctx, data.since, fw - (tx - fx), 2).forEach((line, i) => ctx.fillText(line, tx, cy0 + 448 + i * 30));
   } else placeholder(ctx, 'When did you join?', fx, cy0 + 446, 24);
 
   label(ctx, 'Games I play', fx, cy0 + 512);

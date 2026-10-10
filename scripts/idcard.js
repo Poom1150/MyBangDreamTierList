@@ -1,6 +1,6 @@
-import { CANVAS_SIZE, CARD_BOX, PICTURE_COLUMN, defaultPictureFit, drawIdCard, pictureBaseScale, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-58';
+import { CANVAS_SIZE, CARD_BOX, PICTURE_COLUMN, defaultPictureFit, drawIdCard, pictureBaseScale, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-59';
 
-const V = '20261005-58';
+const V = '20261005-59';
 const STORAGE_KEY = 'bandori-idcard-v1';
 const PIC_KEY = 'bandori-idcard-pic-v1';
 const PIC_FIT_KEY = 'bandori-idcard-pic-fit-v1'; // where the uploaded picture sits: { s, cx, cy }
@@ -24,9 +24,17 @@ const STEPS = [
   { id: 'main', label: 'My main', title: 'My favorite character (my main)', hint: 'Open a band, then tap your favorite character. Then upload a picture of your main, the one you love most, so it stands on your card.' },
   { id: 'band', label: 'My band', title: 'My favorite band', hint: 'Tap the band you like the most.' },
   { id: 'song', label: 'My song', title: 'My favorite song', hint: 'Open a band folder, then tap your favorite song.' },
-  { id: 'since', label: 'Joined since', title: 'Joined since', hint: 'Tell people when you joined this fandom: a date, an event, or the anime that made you a fan.' },
+  { id: 'since', label: 'Joined since', title: 'Joined since', hint: 'Tell people when you joined this fandom. Choose a date, a live event, a game event or an anime, then write it in.' },
   { id: 'games', label: 'Games I play', title: 'Games I play', hint: 'Tap the servers you play on (Japan, Global or Both), or "Don\'t play" if you skip a game. Add your player ID for each server in the same box. IDs are shown inside each game box on the card.' },
 ];
+// what made you a fan: pick one, then write it in
+const SINCE_TYPES = [
+  { id: 'date', label: 'Date', placeholder: 'For example: Spring 2017, or 12 March 2018' },
+  { id: 'live', label: 'Live event', placeholder: 'For example: the name of the live or concert, and the year' },
+  { id: 'game', label: 'Game event', placeholder: 'For example: the game event you first played' },
+  { id: 'anime', label: 'Anime', placeholder: 'For example: the anime or season that got you in' },
+];
+const sinceTypeById = Object.fromEntries(SINCE_TYPES.map((t) => [t.id, t]));
 const GAMES = [
   { id: 'gbp', name: 'BanG Dream! Girls Band Party!', short: 'Girls Band Party!' },
   { id: 'notes', name: 'BanG Dream! Our Notes', short: 'Our Notes' },
@@ -39,7 +47,7 @@ const SERVERS = [
 // ---------- state ----------
 const emptyGames = () => Object.fromEntries(GAMES.map((g) => [g.id, { ...Object.fromEntries(SERVERS.map((s) => [s.id, false])), none: false }]));
 const state = {
-  step: 'name', name: '', main: null, band: null, song: null, since: '', games: emptyGames(), ids: {}, picture: null, pictureFit: null,
+  step: 'name', name: '', main: null, band: null, song: null, since: '', sinceType: null, games: emptyGames(), ids: {}, picture: null, pictureFit: null,
   charBand: null, charQuery: '', songBand: null, songQuery: '',
 };
 
@@ -92,15 +100,16 @@ function load() {
   let saved = {};
   try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { saved = {}; }
   const hash = new URLSearchParams(location.hash.slice(1));
-  const fromLink = ['n', 'c', 'b', 's', 'j', 'g', 'i'].some((k) => hash.has(k));
+  const fromLink = ['n', 'c', 'b', 's', 'jt', 'j', 'g', 'i'].some((k) => hash.has(k));
   const src = fromLink
-    ? { name: hash.get('n') || '', main: hash.get('c'), band: hash.get('b'), song: hash.get('s'), since: hash.get('j') || '', games: parseGames(hash.get('g')), ids: parseIds(hash.get('i')) }
+    ? { name: hash.get('n') || '', main: hash.get('c'), band: hash.get('b'), song: hash.get('s'), since: hash.get('j') || '', sinceType: hash.get('jt'), games: parseGames(hash.get('g')), ids: parseIds(hash.get('i')) }
     : saved;
   state.name = typeof src.name === 'string' ? src.name.slice(0, 24) : '';
   state.main = charById[src.main] ? src.main : null;
   state.band = mainBands.some((b) => b.id === src.band) ? src.band : null;
   state.song = songById[src.song] ? src.song : null;
   state.since = cleanSince(src.since).trim();
+  state.sinceType = sinceTypeById[src.sinceType] ? src.sinceType : null;
   state.games = normalizeGames(src.games);
   state.ids = normalizeIds(src.ids);
   if (!fromLink && STEPS.some((s) => s.id === saved.step)) state.step = saved.step;
@@ -112,7 +121,7 @@ function load() {
 }
 function persist() {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ name: state.name, main: state.main, band: state.band, song: state.song, since: state.since, games: state.games, ids: state.ids, step: state.step }));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ name: state.name, main: state.main, band: state.band, song: state.song, since: state.since, sinceType: state.sinceType, games: state.games, ids: state.ids, step: state.step }));
   } catch { /* storage unavailable */ }
 }
 function persistPicture() {
@@ -173,7 +182,7 @@ const gameSummary = () => GAMES
 // ---------- what each section currently holds ----------
 function summary(id) {
   if (id === 'name') return state.name.trim() || null;
-  if (id === 'since') return state.since.trim() || null;
+  if (id === 'since') return state.since.trim() ? `${state.sinceType ? `${sinceTypeById[state.sinceType].label}: ` : ''}${state.since.trim()}` : null;
   if (id === 'main') return state.main ? charById[state.main].name : null;
   if (id === 'band') return state.band ? bandById[state.band].name : null;
   if (id === 'song') return state.song ? songById[state.song].title : null;
@@ -194,6 +203,7 @@ function cardData() {
   return {
     name: state.name.trim(),
     since: state.since.trim(),
+    sinceType: state.sinceType ? sinceTypeById[state.sinceType].label : '',
     mainName: ch ? ch.name : '',
     mainBand: mainBand ? mainBand.name : '',
     mainColor: ch ? ch.color : null,
@@ -800,14 +810,23 @@ $('#idc-since').addEventListener('input', (event) => {
   renderSteps();
   refreshPreview();
 });
-$('#since-ideas').addEventListener('click', (event) => {
-  const chip = event.target.closest('button[data-idea]');
-  if (!chip) return;
+function renderSince() {
+  for (const button of document.querySelectorAll('#since-types .srv')) button.setAttribute('aria-pressed', String(button.dataset.type === state.sinceType));
   const field = $('#idc-since');
-  const next = cleanSince(field.value.trim() ? `${field.value.trim()}, ${chip.dataset.idea}` : chip.dataset.idea);
-  field.value = next;
-  field.dispatchEvent(new Event('input', { bubbles: true }));
-  field.focus();
+  const type = sinceTypeById[state.sinceType];
+  field.disabled = !type;
+  field.placeholder = type ? type.placeholder : 'Pick one of the choices above first';
+  $('#since-label').textContent = type ? `Tell us about your ${type.label.toLowerCase()}` : 'What made you join this fandom?';
+}
+$('#since-types').addEventListener('click', (event) => {
+  const button = event.target.closest('.srv');
+  if (!button) return;
+  state.sinceType = state.sinceType === button.dataset.type ? null : button.dataset.type;
+  renderSince();
+  persist();
+  renderSteps();
+  refreshPreview();
+  if (state.sinceType) $('#idc-since').focus();
 });
 
 // ---------- steps ----------
@@ -867,6 +886,7 @@ $('#btn-share').addEventListener('click', async () => {
   if (state.band) params.set('b', state.band);
   if (state.song) params.set('s', state.song);
   if (state.since.trim()) params.set('j', state.since.trim());
+  if (state.since.trim() && state.sinceType) params.set('jt', state.sinceType);
   if (gamesParam()) params.set('g', gamesParam());
   if (idsParam()) params.set('i', idsParam());
   const link = `${location.origin}${location.pathname}#${params}`;
@@ -876,11 +896,12 @@ $('#btn-share').addEventListener('click', async () => {
 $('#btn-clear').addEventListener('click', () => {
   if (!doneCount() && !state.picture) return;
   if (!window.confirm('Clear everything on your ID card?')) return;
-  Object.assign(state, { name: '', main: null, band: null, song: null, since: '', games: emptyGames(), ids: {}, picture: null, pictureFit: null, charBand: null, charQuery: '', songBand: null, songQuery: '' });
+  Object.assign(state, { name: '', main: null, band: null, song: null, since: '', sinceType: null, games: emptyGames(), ids: {}, picture: null, pictureFit: null, charBand: null, charQuery: '', songBand: null, songQuery: '' });
   $('#idc-name').value = '';
   $('#idc-name-count').textContent = '0 / 24';
   $('#idc-since').value = '';
   $('#idc-since-count').textContent = '0 / 80';
+  renderSince();
   $('#char-search').value = '';
   $('#song-search').value = '';
   persistPicture();
@@ -898,6 +919,7 @@ load();
 $('#idc-name').value = state.name;
 $('#idc-name-count').textContent = `${state.name.length} / 24`;
 $('#idc-since').value = state.since;
+renderSince();
 $('#idc-since-count').textContent = `${state.since.length} / 80`;
 showStep(state.step);
 refreshPreview();
