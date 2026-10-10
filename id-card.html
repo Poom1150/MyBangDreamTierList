@@ -6,15 +6,15 @@
   <meta name="theme-color" content="#ff3377" />
   <meta name="description" content="Make your own BanG Dream! fan ID card: your name, main character, band, song and the games you play." />
   <title>My BanG Dream! ID card</title>
-  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg?v=20261005-26" />
-  <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48.png?v=20261005-26" />
-  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png?v=20261005-26" />
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg?v=20261005-27" />
+  <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48.png?v=20261005-27" />
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png?v=20261005-27" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles/main.css?v=20261005-26" />
-  <link rel="stylesheet" href="./styles/idcard.css?v=20261005-26" />
-  <script src="./scripts/idcard.js?v=20261005-26" type="module"></script>
+  <link rel="stylesheet" href="./styles/main.css?v=20261005-27" />
+  <link rel="stylesheet" href="./styles/idcard.css?v=20261005-27" />
+  <script src="./scripts/idcard.js?v=20261005-27" type="module"></script>
 </head>
 <body>
   <header class="masthead">
@@ -23,7 +23,7 @@
         <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="30" height="30"><polygon points="13.37,3.64 19.00,10.78 27.82,8.61 22.77,16.17 27.56,23.89 18.81,21.43 12.94,28.36 12.59,19.28 4.18,15.84 12.70,12.70" fill="#fff" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/></svg></span>
         <div>
           <h1>My BanG Dream! ID card</h1>
-          <p>Fill in five things and get your own fan ID card to save and share.</p>
+          <p>Fill in a few things and get your own fan ID card to save and share.</p>
         </div>
       </div>
       <a class="menu-link" href="./index.html">&larr; Main menu</a>
@@ -34,7 +34,7 @@
   <main class="layout">
     <section class="library" id="editor" aria-labelledby="step-title">
       <div class="lib-head">
-        <h2 id="step-title">Your name <small id="step-count">Step 1 of 5</small></h2>
+        <h2 id="step-title">Your name <small id="step-count">Step 1 of 6</small></h2>
       </div>
       <p class="lib-hint" id="step-hint"></p>
 
@@ -53,6 +53,11 @@
           <div class="pic-text">
             <strong>Card picture</strong>
             <span id="pic-note"></span>
+          </div>
+          <div class="pic-buttons">
+            <label class="btn" for="pic-file">Upload picture</label>
+            <input id="pic-file" type="file" accept="image/*" hidden />
+            <button id="pic-remove" class="btn ghost" type="button" hidden>Use the default</button>
           </div>
         </div>
         <div class="lib-head">
@@ -99,6 +104,12 @@
         <div class="game-list" id="game-list"></div>
       </div>
 
+      <!-- 6. Player IDs -->
+      <div class="step" id="step-ids" data-step="ids" hidden>
+        <div class="id-list" id="id-list"></div>
+        <p class="id-note">Player IDs are shown on the card and are included in share links. Leave a box empty to keep that ID off the card.</p>
+      </div>
+
       <div class="step-nav">
         <button id="btn-prev" class="btn" type="button">&larr; Back</button>
         <button id="btn-next" class="btn primary" type="button">Next &rarr;</button>
@@ -109,7 +120,7 @@
       <div class="ranking-card">
         <div class="ranking-head">
           <h2 id="card-title">My ID card</h2>
-          <small id="idc-count">0 / 5</small>
+          <small id="idc-count">0 / 6</small>
         </div>
         <canvas id="idc-canvas" class="idc-canvas" width="1280" height="836" role="button" tabindex="0" title="Click to see it larger" aria-label="Preview of your fan ID card. Press to see it larger."></canvas>
         <p class="target">Tap a section to fill it in.</p>
@@ -119,6 +130,7 @@
           <button id="btn-share" class="btn" type="button">Copy share link</button>
           <button id="btn-clear" class="btn ghost" type="button">Clear all</button>
         </div>
+        <p class="idc-note">Share links keep your answers, but not an uploaded picture.</p>
       </div>
     </aside>
   </main>

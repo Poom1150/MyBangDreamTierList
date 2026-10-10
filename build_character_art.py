@@ -21,7 +21,7 @@ from PIL import Image
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(ROOT, 'character_art')
 OUT = os.path.join(ROOT, 'assets', 'characters')
-MAX_HEIGHT = 760  # the card draws the picture about 650 px tall
+MAX_HEIGHT = 1100  # the card shows the upper half of the picture about 1.2x larger than this, so keep it sharp
 
 characters = json.load(open(os.path.join(ROOT, 'data', 'characters.json'), encoding='utf-8'))
 bands = json.load(open(os.path.join(ROOT, 'data', 'bands.json'), encoding='utf-8'))

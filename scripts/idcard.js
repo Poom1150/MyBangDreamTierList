@@ -1,8 +1,8 @@
 import { CANVAS_SIZE, drawIdCard, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-23';
 
-const V = '20261005-26';
+const V = '20261005-27';
 const STORAGE_KEY = 'bandori-idcard-v1';
-const OLD_PIC_KEY = 'bandori-idcard-pic-v1'; // an earlier version let visitors upload a picture; that is removed
+const PIC_KEY = 'bandori-idcard-pic-v1';
 
 const $ = (selector) => document.querySelector(selector);
 const encodePath = (path) => path.split('/').map(encodeURIComponent).join('/');
@@ -25,7 +25,8 @@ const STEPS = [
   { id: 'main', label: 'My main', title: 'My favorite character (my main)', hint: 'Open a band, then tap your favorite character. You can add your own picture of them for the card.' },
   { id: 'band', label: 'My band', title: 'My favorite band', hint: 'Tap the band you like the most.' },
   { id: 'song', label: 'My song', title: 'My favorite song', hint: 'Open a band folder, then tap your favorite song.' },
-  { id: 'games', label: 'Games I play', title: 'Games I play', hint: 'Tap the servers you play on. Pick Japan, Global, or both for each game.' },
+  { id: 'games', label: 'Games I play', title: 'Games I play', hint: 'Tap the servers you play on. Pick Japan, Global or Both for each game.' },
+  { id: 'ids', label: 'Player IDs', title: 'Player IDs', hint: 'Add your player ID for each game and server you picked. They are shown on the card, below the games.' },
 ];
 const GAMES = [
   { id: 'gbp', name: 'BanG Dream! Girls Band Party!', short: 'Girls Band Party!' },
@@ -39,7 +40,7 @@ const SERVERS = [
 // ---------- state ----------
 const emptyGames = () => Object.fromEntries(GAMES.map((g) => [g.id, Object.fromEntries(SERVERS.map((s) => [s.id, false]))]));
 const state = {
-  step: 'name', name: '', main: null, band: null, song: null, games: emptyGames(),
+  step: 'name', name: '', main: null, band: null, song: null, games: emptyGames(), ids: {}, picture: null,
   charBand: null, charQuery: '', songBand: null, songQuery: '',
 };
 
@@ -58,6 +59,23 @@ function parseGames(text) {
   }
   return games;
 }
+// player IDs are stored per "game:server", for example { 'gbp:jp': '123456789' }
+const idKeys = GAMES.flatMap((g) => SERVERS.map((s) => `${g.id}:${s.id}`));
+const cleanId = (text) => String(text ?? '').replace(/[^\w-]/g, '').slice(0, 24);
+function normalizeIds(raw) {
+  const ids = {};
+  for (const key of idKeys) if (raw?.[key]) ids[key] = cleanId(raw[key]);
+  return ids;
+}
+function parseIds(text) {
+  const ids = {};
+  for (const part of (text || '').split(',')) {
+    const [game, server, value] = part.split(':');
+    if (idKeys.includes(`${game}:${server}`) && value) ids[`${game}:${server}`] = cleanId(value);
+  }
+  return ids;
+}
+const idsParam = () => idKeys.filter((k) => state.ids[k]).map((k) => `${k}:${state.ids[k]}`).join(',');
 const gamesParam = () => GAMES
   .map((g) => [g.id, SERVERS.filter((s) => state.games[g.id][s.id]).map((s) => s.id)])
   .filter(([, list]) => list.length)
@@ -68,23 +86,31 @@ function load() {
   let saved = {};
   try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { saved = {}; }
   const hash = new URLSearchParams(location.hash.slice(1));
-  const fromLink = ['n', 'c', 'b', 's', 'g'].some((k) => hash.has(k));
+  const fromLink = ['n', 'c', 'b', 's', 'g', 'i'].some((k) => hash.has(k));
   const src = fromLink
-    ? { name: hash.get('n') || '', main: hash.get('c'), band: hash.get('b'), song: hash.get('s'), games: parseGames(hash.get('g')) }
+    ? { name: hash.get('n') || '', main: hash.get('c'), band: hash.get('b'), song: hash.get('s'), games: parseGames(hash.get('g')), ids: parseIds(hash.get('i')) }
     : saved;
   state.name = typeof src.name === 'string' ? src.name.slice(0, 24) : '';
   state.main = charById[src.main] ? src.main : null;
   state.band = mainBands.some((b) => b.id === src.band) ? src.band : null;
   state.song = songById[src.song] ? src.song : null;
   state.games = normalizeGames(src.games);
+  state.ids = normalizeIds(src.ids);
   if (!fromLink && STEPS.some((s) => s.id === saved.step)) state.step = saved.step;
-  try { localStorage.removeItem(OLD_PIC_KEY); } catch { /* storage unavailable */ }
+  try { state.picture = localStorage.getItem(PIC_KEY) || null; } catch { state.picture = null; }
 }
 function persist() {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ name: state.name, main: state.main, band: state.band, song: state.song, games: state.games, step: state.step }));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ name: state.name, main: state.main, band: state.band, song: state.song, games: state.games, ids: state.ids, step: state.step }));
   } catch { /* storage unavailable */ }
 }
+function persistPicture() {
+  try {
+    if (state.picture) localStorage.setItem(PIC_KEY, state.picture);
+    else localStorage.removeItem(PIC_KEY);
+  } catch { /* too big or storage unavailable: the picture then lasts until the page is closed */ }
+}
+
 // ---------- helpers ----------
 let toastTimer;
 function toast(message) {
@@ -122,6 +148,10 @@ function dot(band) {
   d.style.setProperty('--c', band.color);
   return d;
 }
+// the IDs that count: only for a game and server that is currently ticked
+const shownIds = () => GAMES.flatMap((g) => SERVERS
+  .filter((s) => state.games[g.id][s.id] && state.ids[`${g.id}:${s.id}`])
+  .map((s) => ({ short: g.short, server: s.label, value: state.ids[`${g.id}:${s.id}`] })));
 const gameSummary = () => GAMES
   .map((g) => [g, SERVERS.filter((s) => state.games[g.id][s.id]).map((s) => s.label)])
   .filter(([, list]) => list.length)
@@ -133,14 +163,19 @@ function summary(id) {
   if (id === 'main') return state.main ? charById[state.main].name : null;
   if (id === 'band') return state.band ? bandById[state.band].name : null;
   if (id === 'song') return state.song ? songById[state.song].title : null;
+  if (id === 'ids') {
+    const filled = shownIds();
+    return filled.length ? filled.map((e) => `${e.short} ${e.server}: ${e.value}`).join(' \u00b7 ') : null;
+  }
   const list = gameSummary();
-  return list.length ? list.join(' · ') : null;
+  return list.length ? list.join(' \u00b7 ') : null;
 }
 const doneCount = () => STEPS.filter((s) => summary(s.id)).length;
 
 // ---------- the card ----------
-// the picture for a character, if build_character_art.py found one for them
-const pictureFor = (id) => (id && characterArt[id] ? `${encodePath(characterArt[id])}?v=${V}` : null);
+// pictures made by build_character_art.py: the full picture (for the card) and a small icon (for the picker)
+const artOf = (id) => { const e = id && characterArt[id]; return !e ? null : (typeof e === 'string' ? e : e.art || null); };
+const pictureFor = (id) => (artOf(id) ? `${encodePath(artOf(id))}?v=${V}` : null);
 
 function cardData() {
   const ch = charById[state.main];
@@ -156,8 +191,10 @@ function cardData() {
     band: band ? { name: band.name, color: band.color } : null,
     song: song ? { title: song.title, bandName: bandById[song.band].name, color: bandById[song.band].color } : null,
     games: GAMES.map((g) => ({ short: g.short, servers: SERVERS.filter((s) => state.games[g.id][s.id]).map((s) => s.label) })).filter((g) => g.servers.length),
+    ids: shownIds().map((e) => ({ label: `${e.short} \u00b7 ${e.server}`, value: e.value })),
     accent: (band || mainBand)?.color || '#ff3377',
-    pictureUrl: pictureFor(state.main),
+    pictureUrl: state.picture || pictureFor(state.main),
+    pictureIsUpload: Boolean(state.picture),
     logoUrl: band?.logo ? encodePath(band.logo) : null,
     coverUrl: song ? encodePath(song.file) : null,
   };
@@ -312,15 +349,46 @@ $('#char-grid').addEventListener('click', (event) => {
   commit();
 });
 
-// what the card shows on the left: the character's picture if there is one, otherwise a star mascot in their color
+// what the card shows on the left: your own picture, else the character's picture, else a star mascot in their color
 function renderPictureNote() {
   const ch = charById[state.main];
   let note;
-  if (!ch) note = 'Pick your main character and their picture appears on the card. Until then a star mascot stands in.';
-  else if (characterArt[ch.id]) note = `${ch.name}'s picture is on your card, standing in front with no frame.`;
-  else note = `There is no picture for ${ch.name} yet, so a star mascot in their color stands in.`;
+  if (state.picture) note = 'Your own picture is on the card. It stays on this device and is never uploaded.';
+  else if (!ch) note = 'Pick your main character and their picture appears on the card. Until then a star mascot stands in. You can also upload your own picture.';
+  else if (artOf(ch.id)) note = `${ch.name}'s picture is on your card, standing in front with no frame. You can upload your own picture instead.`;
+  else note = `There is no picture for ${ch.name} yet, so a star mascot in their color stands in. You can upload your own picture.`;
   $('#pic-note').textContent = note;
+  $('#pic-remove').hidden = !state.picture;
 }
+async function downscale(file) {
+  const bitmap = await createImageBitmap(file);
+  const scale = Math.min(1, 900 / bitmap.height, 700 / bitmap.width);
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.max(1, Math.round(bitmap.width * scale));
+  canvas.height = Math.max(1, Math.round(bitmap.height * scale));
+  canvas.getContext('2d').drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  bitmap.close?.();
+  return canvas.toDataURL('image/webp', 0.92); // browsers without WebP encoding fall back to PNG
+}
+$('#pic-file').addEventListener('change', async (event) => {
+  const file = event.target.files[0];
+  event.target.value = '';
+  if (!file) return;
+  if (!file.type.startsWith('image/')) { toast('Please choose an image file.'); return; }
+  try {
+    state.picture = await downscale(file);
+    persistPicture();
+    commit();
+    toast('Picture added to your card.');
+  } catch {
+    toast('Could not read that picture.');
+  }
+});
+$('#pic-remove').addEventListener('click', () => {
+  state.picture = null;
+  persistPicture();
+  commit();
+});
 
 // ---------- left panel: step 3, band ----------
 function renderBandPick() {
@@ -498,6 +566,14 @@ function renderGames() {
       button.setAttribute('aria-pressed', String(state.games[game.id][server.id]));
       row.append(button);
     }
+    const both = document.createElement('button');
+    both.type = 'button';
+    both.className = 'srv both';
+    both.dataset.game = game.id;
+    both.dataset.server = 'both';
+    both.textContent = 'Both';
+    both.setAttribute('aria-pressed', String(SERVERS.every((srv) => state.games[game.id][srv.id])));
+    row.append(both);
     card.append(title, note, row);
     fragment.append(card);
   }
@@ -507,8 +583,67 @@ $('#game-list').addEventListener('click', (event) => {
   const button = event.target.closest('.srv');
   if (!button) return;
   const { game, server } = button.dataset;
-  state.games[game][server] = !state.games[game][server];
+  if (server === 'both') {
+    // Both = Japan and Global together; pressing it again turns both off
+    const on = !SERVERS.every((srv) => state.games[game][srv.id]);
+    for (const srv of SERVERS) state.games[game][srv.id] = on;
+  } else {
+    state.games[game][server] = !state.games[game][server];
+  }
   commit();
+});
+
+// ---------- left panel: step 6, player IDs ----------
+function renderIds() {
+  const list = $('#id-list');
+  const rows = GAMES.flatMap((g) => SERVERS.filter((s) => state.games[g.id][s.id]).map((s) => ({ g, s })));
+  list.replaceChildren();
+  if (!rows.length) {
+    const empty = document.createElement('div');
+    empty.className = 'id-empty';
+    empty.innerHTML = '<p>Pick the games you play first, then add your player ID for each one here.</p>';
+    const go = document.createElement('button');
+    go.type = 'button';
+    go.className = 'btn primary';
+    go.dataset.go = 'games';
+    go.textContent = 'Choose my games';
+    empty.append(go);
+    list.append(empty);
+    return;
+  }
+  for (const { g, s } of rows) {
+    const key = `${g.id}:${s.id}`;
+    const row = document.createElement('label');
+    row.className = 'id-row';
+    const caption = document.createElement('span');
+    caption.innerHTML = '<b></b><small></small>';
+    caption.querySelector('b').textContent = g.name;
+    caption.querySelector('small').textContent = `${s.label} server`;
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.inputMode = 'text';
+    input.maxLength = 24;
+    input.placeholder = 'Player ID';
+    input.autocomplete = 'off';
+    input.dataset.key = key;
+    input.value = state.ids[key] || '';
+    row.append(caption, input);
+    list.append(row);
+  }
+}
+$('#id-list').addEventListener('input', (event) => {
+  const input = event.target.closest('input[data-key]');
+  if (!input) return;
+  const value = cleanId(input.value);
+  if (value !== input.value) input.value = value; // letters, digits, "-" and "_" only
+  if (value) state.ids[input.dataset.key] = value;
+  else delete state.ids[input.dataset.key];
+  persist();
+  renderSteps();
+  refreshPreview();
+});
+$('#id-list').addEventListener('click', (event) => {
+  if (event.target.closest('[data-go=games]')) showStep('games', true);
 });
 
 // ---------- name ----------
@@ -526,6 +661,7 @@ function renderCurrent() {
   else if (state.step === 'band') renderBandPick();
   else if (state.step === 'song') renderSongs();
   else if (state.step === 'games') renderGames();
+  else if (state.step === 'ids') renderIds();
 }
 function showStep(id, scroll = false) {
   state.step = id;
@@ -577,18 +713,20 @@ $('#btn-share').addEventListener('click', async () => {
   if (state.band) params.set('b', state.band);
   if (state.song) params.set('s', state.song);
   if (gamesParam()) params.set('g', gamesParam());
+  if (idsParam()) params.set('i', idsParam());
   const link = `${location.origin}${location.pathname}#${params}`;
   try { await navigator.clipboard.writeText(link); toast('Share link copied.'); }
   catch { window.prompt('Copy this link:', link); }
 });
 $('#btn-clear').addEventListener('click', () => {
-  if (!doneCount()) return;
+  if (!doneCount() && !state.picture) return;
   if (!window.confirm('Clear everything on your ID card?')) return;
-  Object.assign(state, { name: '', main: null, band: null, song: null, games: emptyGames(), charBand: null, charQuery: '', songBand: null, songQuery: '' });
+  Object.assign(state, { name: '', main: null, band: null, song: null, games: emptyGames(), ids: {}, picture: null, charBand: null, charQuery: '', songBand: null, songQuery: '' });
   $('#idc-name').value = '';
   $('#idc-name-count').textContent = '0 / 24';
   $('#char-search').value = '';
   $('#song-search').value = '';
+  persistPicture();
   commit();
 });
 

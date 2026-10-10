@@ -177,16 +177,19 @@ function drawBackdrop(ctx) {
   ctx.fillRect(0, 0, W, 620);
 }
 
+// Draws the games as pills. Returns the y of the bottom of the last row.
 function drawGames(ctx, games, x, y, maxW, accent) {
-  if (!games.length) { placeholder(ctx, 'Pick your games', x, y + 32, 26); return; }
+  if (!games.length) { placeholder(ctx, 'Pick your games', x, y + 30, 26); return y + 40; }
   let px = x;
   let py = y;
-  const h = 46;
+  const h = 42;
   for (const game of games) {
     ctx.font = `700 21px ${FONT}`;
     const nameW = ctx.measureText(game.short).width;
     ctx.font = `700 15px ${FONT}`;
-    const chips = game.servers.map((s) => ({ s, w: ctx.measureText(s).width + 20 }));
+    // Japan + Global is shown as one "Both" chip
+    const servers = game.servers.includes('Japan') && game.servers.includes('Global') ? ['Both'] : game.servers;
+    const chips = servers.map((s) => ({ s, w: ctx.measureText(s).width + 20 }));
     const pillW = 18 + nameW + 12 + chips.reduce((sum, c) => sum + c.w + 6, 0) + 8;
     if (px > x && px + pillW > x + maxW) { px = x; py += h + 8; }
     ctx.fillStyle = rgba(accent, 0.12);
@@ -215,10 +218,35 @@ function drawGames(ctx, games, x, y, maxW, accent) {
     ctx.textBaseline = 'alphabetic';
     px += pillW + 10;
   }
+  return py + h;
+}
+
+// Draws the player IDs in two columns below the games. Returns nothing; stops before `limitY`.
+function drawPlayerIds(ctx, ids, x, y, maxW, limitY) {
+  label(ctx, 'Player ID', x, y);
+  if (!ids.length) { placeholder(ctx, 'Add your player IDs', x, y + 34, 24); return; }
+  const colW = (maxW - 24) / 2;
+  const rowH = 38;
+  ids.slice(0, 4).forEach((entry, i) => {
+    const col = i % 2;
+    const row = Math.floor(i / 2);
+    const ex = x + col * (colW + 24);
+    const ey = y + 14 + row * rowH;
+    if (ey + rowH > limitY) return;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic';
+    ctx.font = `700 21px ${FONT}`;
+    const valueW = Math.min(ctx.measureText(entry.value).width, colW * 0.55);
+    ctx.fillStyle = INK;
+    ctx.fillText(ellipsize(ctx, entry.value, colW * 0.55), ex, ey + 26);
+    ctx.font = `500 14px ${FONT}`;
+    ctx.fillStyle = MUTED;
+    ctx.fillText(ellipsize(ctx, entry.label, colW - valueW - 12), ex + valueW + 10, ey + 26);
+  });
 }
 
 /**
- * data: { name, mainName, mainBand, band: {name, color}, song: {title, bandName, color}, games: [{short, servers[]}], accent }
+ * data: { name, mainName, mainBand, band: {name, color}, song: {title, bandName, color}, games: [{short, servers[]}], ids: [{label, value}], accent }
  * pics: { picture, logo, cover }  (already-loaded images or null)
  */
 export function drawIdCard(ctx, data, pics) {
@@ -281,11 +309,11 @@ export function drawIdCard(ctx, data, pics) {
 
   // footer strip
   ctx.fillStyle = rgba(accent, 0.1);
-  ctx.fillRect(cx0, cy0 + h - 54, w, 54);
+  ctx.fillRect(cx0, cy0 + h - 44, w, 44);
   ctx.font = `700 15px ${FONT}`;
   ctx.fillStyle = MUTED;
   ctx.textAlign = 'right';
-  ctx.fillText('FAN ID · NOT A REAL ID', cx0 + w - 40, cy0 + h - 22);
+  ctx.fillText('FAN ID · NOT A REAL ID', cx0 + w - 40, cy0 + h - 17);
   ctx.textAlign = 'left';
 
   // soft shape behind the picture (not a frame)
@@ -303,99 +331,113 @@ export function drawIdCard(ctx, data, pics) {
   const fx = cx0 + 500;
   const fw = w - 500 - 48;
 
-  label(ctx, 'Name', fx, cy0 + 176);
+  label(ctx, 'Name', fx, cy0 + 168);
   if (data.name) {
-    const size = fitFont(ctx, data.name, fw, 70, 34);
+    const size = fitFont(ctx, data.name, fw, 64, 32);
     ctx.fillStyle = INK;
     ctx.textAlign = 'left';
-    ctx.fillText(ellipsize(ctx, data.name, fw), fx, cy0 + 176 + 12 + size * 0.9);
+    ctx.fillText(ellipsize(ctx, data.name, fw), fx, cy0 + 168 + 10 + size * 0.9);
   } else {
-    placeholder(ctx, 'Your name', fx, cy0 + 238, 52);
+    placeholder(ctx, 'Your name', fx, cy0 + 224, 48);
   }
   ctx.fillStyle = accent;
-  roundRect(ctx, fx, cy0 + 262, 120, 6, 3);
+  roundRect(ctx, fx, cy0 + 240, 120, 6, 3);
   ctx.fill();
 
   const colW = (fw - 30) / 2;
-  label(ctx, 'My main', fx, cy0 + 312);
+  label(ctx, 'My main', fx, cy0 + 284);
   if (data.mainName) {
-    const size = fitFont(ctx, data.mainName, colW, 32, 20);
+    const size = fitFont(ctx, data.mainName, colW, 30, 20);
     ctx.fillStyle = INK;
-    ctx.fillText(ellipsize(ctx, data.mainName, colW), fx, cy0 + 312 + 14 + size * 0.95);
+    ctx.fillText(ellipsize(ctx, data.mainName, colW), fx, cy0 + 284 + 12 + size * 0.95);
     if (data.mainBand) {
-      ctx.font = `500 19px ${FONT}`;
+      ctx.font = `500 18px ${FONT}`;
       ctx.fillStyle = MUTED;
-      ctx.fillText(ellipsize(ctx, data.mainBand, colW), fx, cy0 + 392);
+      ctx.fillText(ellipsize(ctx, data.mainBand, colW), fx, cy0 + 346);
     }
-  } else placeholder(ctx, 'Pick a character', fx, cy0 + 352, 26);
+  } else placeholder(ctx, 'Pick a character', fx, cy0 + 322, 24);
 
   const bx2 = fx + colW + 30;
-  label(ctx, 'My band', bx2, cy0 + 312);
+  label(ctx, 'My band', bx2, cy0 + 284);
   if (data.band) {
     if (pics.logo) {
-      const s = Math.min(colW / pics.logo.width, 76 / pics.logo.height);
-      ctx.drawImage(pics.logo, bx2, cy0 + 326, pics.logo.width * s, pics.logo.height * s);
+      const s = Math.min(colW / pics.logo.width, 64 / pics.logo.height);
+      ctx.drawImage(pics.logo, bx2, cy0 + 296, pics.logo.width * s, pics.logo.height * s);
     } else {
-      const size = fitFont(ctx, data.band.name, colW, 32, 20);
+      const size = fitFont(ctx, data.band.name, colW, 30, 20);
       ctx.fillStyle = data.band.color;
-      ctx.fillText(ellipsize(ctx, data.band.name, colW), bx2, cy0 + 312 + 14 + size * 0.95);
+      ctx.fillText(ellipsize(ctx, data.band.name, colW), bx2, cy0 + 284 + 12 + size * 0.95);
     }
-  } else placeholder(ctx, 'Pick a band', bx2, cy0 + 352, 26);
+  } else placeholder(ctx, 'Pick a band', bx2, cy0 + 322, 24);
 
-  label(ctx, 'My song', fx, cy0 + 432);
-  const coverSize = 104;
+  label(ctx, 'My song', fx, cy0 + 378);
+  const coverSize = 92;
+  const coverY = cy0 + 390;
   if (data.song) {
     ctx.save();
-    roundRect(ctx, fx, cy0 + 446, coverSize, coverSize, 16);
+    roundRect(ctx, fx, coverY, coverSize, coverSize, 14);
     ctx.clip();
     if (pics.cover) {
       const side = Math.min(pics.cover.width, pics.cover.height);
-      ctx.drawImage(pics.cover, (pics.cover.width - side) / 2, (pics.cover.height - side) / 2, side, side, fx, cy0 + 446, coverSize, coverSize);
+      ctx.drawImage(pics.cover, (pics.cover.width - side) / 2, (pics.cover.height - side) / 2, side, side, fx, coverY, coverSize, coverSize);
     } else {
       ctx.fillStyle = rgba(accent, 0.2);
-      ctx.fillRect(fx, cy0 + 446, coverSize, coverSize);
+      ctx.fillRect(fx, coverY, coverSize, coverSize);
     }
     ctx.restore();
     ctx.strokeStyle = data.song.color || accent;
     ctx.lineWidth = 3;
-    roundRect(ctx, fx, cy0 + 446, coverSize, coverSize, 16);
+    roundRect(ctx, fx, coverY, coverSize, coverSize, 14);
     ctx.stroke();
     const tx = fx + coverSize + 20;
     const tw = fw - coverSize - 20;
-    ctx.font = `700 31px ${FONT}`;
+    ctx.font = `700 29px ${FONT}`;
     ctx.fillStyle = INK;
     ctx.textAlign = 'left';
     const lines = wrap(ctx, data.song.title, tw, 2);
-    lines.forEach((line, i) => ctx.fillText(line, tx, cy0 + 488 + i * 36));
-    ctx.font = `500 19px ${FONT}`;
+    lines.forEach((line, i) => ctx.fillText(line, tx, cy0 + 424 + i * 33));
+    ctx.font = `500 18px ${FONT}`;
     ctx.fillStyle = MUTED;
-    ctx.fillText(ellipsize(ctx, data.song.bandName, tw), tx, cy0 + 488 + lines.length * 36 + 2);
+    ctx.fillText(ellipsize(ctx, data.song.bandName, tw), tx, cy0 + 424 + lines.length * 33 + 2);
   } else {
     ctx.strokeStyle = '#e8bfd2';
     ctx.lineWidth = 2;
     ctx.setLineDash([8, 6]);
-    roundRect(ctx, fx, cy0 + 446, coverSize, coverSize, 16);
+    roundRect(ctx, fx, coverY, coverSize, coverSize, 14);
     ctx.stroke();
     ctx.setLineDash([]);
-    placeholder(ctx, 'Pick a song', fx + coverSize + 20, cy0 + 508, 26);
+    placeholder(ctx, 'Pick a song', fx + coverSize + 20, cy0 + 446, 24);
   }
 
-  label(ctx, 'Games I play', fx, cy0 + 594);
-  drawGames(ctx, data.games, fx, cy0 + 608, fw, accent);
+  label(ctx, 'Games I play', fx, cy0 + 506);
+  const gamesBottom = drawGames(ctx, data.games, fx, cy0 + 518, fw, accent);
+  drawPlayerIds(ctx, data.ids || [], fx, gamesBottom + 30, fw, cy0 + h - 44);
 
   // ---- picture: sits on top of everything on the left, with no frame ----
-  const boxW = 470;
-  const boxH = 650;
   const baseX = cx0 + 250;
   const baseY = cy0 + h - 20;
   ctx.save();
   roundRect(ctx, cx0, cy0, w, h, CARD.r);
   ctx.clip();
-  if (pics.picture) {
-    const s = Math.min(boxW / pics.picture.width, boxH / pics.picture.height);
+  if (pics.picture && data.pictureIsUpload) {
+    // a picture you uploaded is shown whole (it may be a photo, a bust or a full-body picture), standing on the bottom edge
+    const s = Math.min(470 / pics.picture.width, 650 / pics.picture.height);
     const pw = pics.picture.width * s;
     const ph = pics.picture.height * s;
     ctx.drawImage(pics.picture, baseX - pw / 2, baseY - ph, pw, ph);
+  } else if (pics.picture) {
+    // Half-body framing: the picture is scaled up so that its upper part (about HALF_BODY of its height)
+    // fills the space from just inside the header down to the bottom edge of the card. The legs are cut off by the
+    // card edge, and anything wider than the picture column is cropped so it never runs into the text.
+    const HALF_BODY = 0.56;
+    const top = cy0 + 60;
+    const scale = (cy0 + h - top) / (pics.picture.height * HALF_BODY);
+    const pw = pics.picture.width * scale;
+    const ph = pics.picture.height * scale;
+    ctx.beginPath();
+    ctx.rect(cx0, cy0, 500, h);
+    ctx.clip();
+    ctx.drawImage(pics.picture, baseX - pw / 2, top, pw, ph);
   } else {
     drawMascot(ctx, baseX, baseY, 380, data.mainColor || accent, data.mainInitial);
   }
