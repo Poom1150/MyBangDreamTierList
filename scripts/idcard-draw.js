@@ -285,16 +285,18 @@ export function drawIdCard(ctx, data, pics) {
   ctx.textBaseline = 'alphabetic';
   ctx.textAlign = 'left';
   ctx.fillStyle = onAccent;
-  // title: big and tight, as wide as the space left of the star allows
-  const title = 'BanG Dream! FanClub ID Card';
+  // title: two big, tight lines; "UNOFFICIAL" sits small beside the first line
   const titleMax = w - 96 - INFO_X - 14;
   ctx.letterSpacing = '-1.5px';
-  const titleSize = fitFont(ctx, title, titleMax, 58, 30);
-  ctx.fillText(title, cx0 + INFO_X, cy0 + 62);
+  const titleSize = Math.min(fitFont(ctx, 'BanG Dream!', titleMax, 50, 30), fitFont(ctx, 'FanClub ID Card', titleMax, 50, 30));
+  ctx.font = `700 ${titleSize}px ${FONT}`;
+  ctx.fillText('BanG Dream!', cx0 + INFO_X, cy0 + 52);
+  const firstW = ctx.measureText('BanG Dream!').width;
+  ctx.fillText('FanClub ID Card', cx0 + INFO_X, cy0 + 100);
   ctx.letterSpacing = '4px';
-  ctx.font = `700 16px ${FONT}`;
+  ctx.font = `700 15px ${FONT}`;
   ctx.globalAlpha = 0.85;
-  ctx.fillText('UNOFFICIAL', cx0 + INFO_X + 2, cy0 + 62 + Math.round(titleSize * 0.2) + 22);
+  ctx.fillText('UNOFFICIAL', cx0 + INFO_X + firstW + 22, cy0 + 50);
   ctx.globalAlpha = 1;
   ctx.letterSpacing = '0px';
   // small star emblem on the right of the header
