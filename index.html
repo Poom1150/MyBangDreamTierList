@@ -4,16 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#ff3377" />
-  <meta name="description" content="Rank your ten favorite BanG Dream! original songs, then save or share the board." />
+  <meta name="description" content="Choose a mode: rank your favorite BanG Dream! songs, or build your BanG Dream! identity." />
   <title>My Best BanG Dream!</title>
-  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg?v=20261005-18" />
-  <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48.png?v=20261005-18" />
-  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png?v=20261005-18" />
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg?v=20261005-19" />
+  <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48.png?v=20261005-19" />
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png?v=20261005-19" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles/main.css?v=20261005-18" />
-  <script src="./scripts/app.js?v=20261005-18" type="module"></script>
+  <link rel="stylesheet" href="./styles/main.css?v=20261005-19" />
+  <script>
+    // Share links made before this menu existed pointed at the site root. Forward them to the song page.
+    if (/^#(?:.*&)?(?:r|b|m)=/.test(location.hash)) location.replace('songs.html' + location.hash);
+  </script>
 </head>
 <body>
   <header class="masthead">
@@ -22,67 +25,51 @@
         <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="30" height="30"><polygon points="13.37,3.64 19.00,10.78 27.82,8.61 22.77,16.17 27.56,23.89 18.81,21.43 12.94,28.36 12.59,19.28 4.18,15.84 12.70,12.70" fill="#fff" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/></svg></span>
         <div>
           <h1>My Best BanG Dream!</h1>
-          <p>Rank your favorite BanG Dream! original songs, or pick the best one from each band.</p>
+          <p>Choose a mode to get started.</p>
         </div>
       </div>
     </div>
     <div class="stripe" aria-hidden="true"></div>
   </header>
 
-  <div class="modebar">
-    <div class="modebar-inner" role="group" aria-label="Choose a mode">
-      <button class="mode" type="button" data-mode="top10" aria-pressed="true">Top 10 ranking</button>
-      <button class="mode" type="button" data-mode="band" aria-pressed="false">Best song per band</button>
+  <main class="menu">
+    <h2 class="menu-title">Choose a mode</h2>
+    <div class="menu-grid">
+      <a class="mode-card" href="./songs.html" style="--c: #ff3377">
+        <div class="mc-visual mc-covers" aria-hidden="true">
+          <img src="./covers/Roselia/BLACK%20SHOUT.webp?v=20261005-19" alt="" loading="lazy" />
+          <img src="./covers/Afterglow/True%20Color.webp?v=20261005-19" alt="" loading="lazy" />
+          <img src="./covers/Poppin%27Party/Girl%27s%20Code.webp?v=20261005-19" alt="" loading="lazy" />
+          <img src="./covers/Hello%2C%20Happy%20World%21/We%20Can%E2%98%86Hurray%21.webp?v=20261005-19" alt="" loading="lazy" />
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag">Mode 1</span>
+          <h3>My Song Ranking</h3>
+          <p>Rank your favorite songs in a Top 10 pyramid, or pick the best song from each band. Save it as an image to share.</p>
+          <span class="mc-go">Start ranking &rarr;</span>
+        </div>
+      </a>
+
+      <a class="mode-card" href="./identity.html" style="--c: #33aaff">
+        <div class="mc-visual mc-emblem" aria-hidden="true">
+          <svg viewBox="0 0 200 200" width="190" height="190" role="img" aria-label="A star surrounded by a ring of twelve band colors">
+          <circle cx="100" cy="100" r="74" fill="none" stroke="#f3d6e3" stroke-width="2" stroke-dasharray="3 7"/>
+          <circle cx="100.0" cy="26.0" r="12" fill="#ff3377"/> <circle cx="137.0" cy="35.9" r="12" fill="#e23344"/> <circle cx="164.1" cy="63.0" r="12" fill="#33ddaa"/> <circle cx="174.0" cy="100.0" r="12" fill="#3344aa"/> <circle cx="164.1" cy="137.0" r="12" fill="#ffcc11"/> <circle cx="137.0" cy="164.1" r="12" fill="#33aaff"/> <circle cx="100.0" cy="174.0" r="12" fill="#22cccc"/> <circle cx="63.0" cy="164.1" r="12" fill="#3388bb"/> <circle cx="35.9" cy="137.0" r="12" fill="#881144"/> <circle cx="26.0" cy="100.0" r="12" fill="#ee6699"/> <circle cx="35.9" cy="63.0" r="12" fill="#ff9933"/> <circle cx="63.0" cy="35.9" r="12" fill="#99aa55"/>
+          <g transform="translate(100 100) scale(3.9) translate(-16 -16)"><polygon points="13.37,3.64 19.00,10.78 27.82,8.61 22.77,16.17 27.56,23.89 18.81,21.43 12.94,28.36 12.59,19.28 4.18,15.84 12.70,12.70" fill="#ff3377" stroke="#ff3377" stroke-width="2.4" stroke-linejoin="round"/></g>
+        </svg>
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag soon">Mode 2 &middot; Coming soon</span>
+          <h3>My BanG Dream! Identity</h3>
+          <p>A new mode that is still being built.</p>
+          <span class="mc-go">Open &rarr;</span>
+        </div>
+      </a>
     </div>
-  </div>
-
-  <main class="layout">
-    <section class="library" aria-labelledby="lib-title">
-      <div class="lib-head">
-        <h2 id="lib-title">Song library <small id="lib-count"></small></h2>
-        <label class="search">
-          <span class="sr-only">Search songs</span>
-          <input id="search" type="search" placeholder="Search by title (press / )" autocomplete="off" />
-        </label>
-      </div>
-      <p class="lib-hint" id="lib-hint"></p>
-      <div class="crumb" id="crumb" hidden>
-        <button id="btn-back" class="btn" type="button">&larr; All folders</button>
-        <span class="crumb-name" id="crumb-name"></span>
-      </div>
-      <div class="folders" id="folders" role="list" aria-label="Band folders"></div>
-      <div class="grid" id="grid" hidden></div>
-      <p class="empty" id="empty" hidden>No songs match that search.</p>
-    </section>
-
-    <aside class="ranking" aria-labelledby="board-title">
-      <div class="ranking-card">
-        <div class="ranking-head">
-          <h2 id="board-title">My ranking</h2>
-          <small id="board-count">0 / 10</small>
-        </div>
-        <label class="nick">
-          <span>Your name</span>
-          <input id="nickname" type="text" maxlength="24" placeholder="Enter a name" autocomplete="nickname" />
-        </label>
-        <p class="target" id="target-note"></p>
-        <div class="board" id="board" aria-live="polite"></div>
-        <ol class="rank-list" id="rank-list"></ol>
-        <div class="band-board" id="band-board" hidden></div>
-        <ol class="band-list" id="band-list" hidden></ol>
-        <div class="actions">
-          <button id="btn-save" class="btn primary" type="button" disabled>Save as image</button>
-          <button id="btn-share" class="btn" type="button">Copy share link</button>
-          <button id="btn-clear" class="btn ghost" type="button">Clear all</button>
-        </div>
-      </div>
-    </aside>
   </main>
 
   <footer class="foot">
     <p>Unofficial fan project. BanG Dream! and all related artwork are &copy; Bushiroad / BanG Dream! Project. Cover images and band icons are used for personal, non-commercial fan purposes.</p>
   </footer>
-
-  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 </body>
 </html>
