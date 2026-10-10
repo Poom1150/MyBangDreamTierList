@@ -125,6 +125,25 @@ for b in bands:
     if entry and entry['kinds']:
         detail = ', '.join(f'{n} x {k}' for k, n in entry['kinds'].items())
         print(f"  {b['name']}: {sum(entry['kinds'].values())} / {entry['total']} ({detail})")
+# a checklist of the characters that still need a picture, with the file name that will be recognised
+def given(char):
+    parts = char['name'].split()
+    return unicodedata.normalize('NFKD', parts[-1]).encode('ascii', 'ignore').decode() or parts[-1]
+
+
+lines = ['Characters that still have no picture (they show a star mascot).', '',
+         'Save a picture for each one in character_art/<band folder>/ using either file name, then run:  python build_character_art.py',
+         '  BanG_Dream!_10th_Anniversary_<Name>.png   (preferred)',
+         '  BanG_Dream!_Our_Notes_<Name>.png          (used when there is no 10th Anniversary picture)', '']
+for b in bands:
+    todo = [c for c in characters if c['band'] == b['id'] and c['id'] not in matched]
+    if todo:
+        lines.append(f"{b['name']}  ->  folder: character_art/{b['name']}/   ({len(todo)} of 5 missing)")
+        lines += [f"    {c['name']:<20} <Name> = {given(c)}" for c in todo]
+        lines.append('')
+open(os.path.join(SRC, 'MISSING.txt'), 'w', encoding='utf-8').write('\n'.join(lines))
+print(f"A checklist of the {len(characters) - len(matched)} characters without a picture is in character_art/MISSING.txt")
+
 missing = [b['name'] for b in bands if b['id'] in by_band and not by_band[b['id']]['kinds']]
 if missing:
     print('  no pictures yet (these use the star mascot):', ', '.join(missing))
