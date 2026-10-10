@@ -1,6 +1,6 @@
-import { CANVAS_SIZE, CARD_BOX, PICTURE_COLUMN, defaultPictureFit, drawIdCard, pictureBaseScale, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-43';
+import { CANVAS_SIZE, CARD_BOX, PICTURE_COLUMN, defaultPictureFit, drawIdCard, pictureBaseScale, prepareIdCard, saveIdCard } from './idcard-draw.js?v=20261005-44';
 
-const V = '20261005-43';
+const V = '20261005-44';
 const STORAGE_KEY = 'bandori-idcard-v1';
 const PIC_KEY = 'bandori-idcard-pic-v1';
 const PIC_FIT_KEY = 'bandori-idcard-pic-fit-v1'; // where the uploaded picture sits: { s, cx, cy }
@@ -21,7 +21,7 @@ const songCount = songs.reduce((acc, s) => ((acc[s.band] = (acc[s.band] || 0) + 
 
 const STEPS = [
   { id: 'name', label: 'Name', title: 'Your name', hint: 'This is the name printed on your card.' },
-  { id: 'main', label: 'My main', title: 'My favorite character (my main)', hint: 'Open a band, then tap your favorite character. You can add your own picture of them for the card.' },
+  { id: 'main', label: 'My main', title: 'My favorite character (my main)', hint: 'Open a band, then tap your favorite character. Then upload a picture of your main, the one you love most, so it stands on your card.' },
   { id: 'band', label: 'My band', title: 'My favorite band', hint: 'Tap the band you like the most.' },
   { id: 'song', label: 'My song', title: 'My favorite song', hint: 'Open a band folder, then tap your favorite song.' },
   { id: 'games', label: 'Games I play', title: 'Games I play', hint: 'Tap the servers you play on (Japan, Global or Both), or "Don\'t play" if you skip a game. Add your player ID for each server in the same box. IDs are shown inside each game box on the card.' },
@@ -364,10 +364,10 @@ $('#char-grid').addEventListener('click', (event) => {
 function renderPictureNote() {
   const box = $('#pic-box');
   box.dataset.has = state.picture ? 'yes' : 'no';
-  $('#pic-title').textContent = state.picture ? 'Your picture is on the card' : 'Upload your card picture';
+  $('#pic-title').textContent = state.picture ? 'Your main is on the card' : 'Upload a picture of your main';
   $('#pic-note').textContent = state.picture
-    ? 'It stays on this device and is never uploaded. Use Adjust picture to crop, resize and move it.'
-    : 'Drop an image here or choose a file. The card shows only the picture you add yourself.';
+    ? 'Your picture stays on this device and is never sent anywhere. Use Adjust picture to crop, resize and move it.'
+    : 'Choose the picture of your favorite character that you want on your ID card. Drop an image here or pick a file; a picture where they stand alone looks best.';
   $('#pic-thumb').style.backgroundImage = state.picture ? `url(${state.picture})` : '';
   $('#pic-remove').hidden = !state.picture;
   $('#pic-adjust').hidden = !state.picture;
