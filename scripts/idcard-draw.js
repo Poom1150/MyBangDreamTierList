@@ -306,7 +306,7 @@ export function drawIdCard(ctx, data, pics) {
   ctx.font = `700 15px ${FONT}`;
   ctx.fillStyle = MUTED;
   ctx.textAlign = 'right';
-  ctx.fillText('FAN ID · NOT A REAL ID', cx0 + w - 40, cy0 + h - 17);
+  ctx.fillText('FAN IDENTITY CARD · NOT A REAL IDENTITY CARD', cx0 + w - 40, cy0 + h - 17);
   ctx.textAlign = 'left';
 
   // soft shape behind the picture (not a frame)
