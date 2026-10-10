@@ -432,18 +432,18 @@ export function drawIdCard(ctx, data, pics) {
   ctx.scale(SCALE, SCALE);
   ctx.translate(-cx0, -cy0);
   const titleColor = luminance(accent) > 0.62 ? INK : '#ffffff';
-  const titleX = cx0 + 44;
-  const titleMax = w - 96 - 44 - 18;
-  ctx.textAlign = 'left';
+  const titleRight = cx0 + w - 96 - 20; // the title is right-aligned, next to the star, and grows to the left
+  const titleMax = titleRight - (cx0 + 44);
+  ctx.textAlign = 'right';
   ctx.textBaseline = 'alphabetic';
   ctx.fillStyle = titleColor;
   ctx.letterSpacing = '-2px';
   const titleSize = fitFont(ctx, 'BanG Dream! FanClub ID Card', titleMax, 66, 30);
-  ctx.fillText('BanG Dream! FanClub ID Card', titleX, cy0 + 72);
+  ctx.fillText('BanG Dream! FanClub ID Card', titleRight, cy0 + 72);
   ctx.letterSpacing = '5px';
   ctx.font = `700 16px ${FONT}`;
   ctx.globalAlpha = 0.85;
-  ctx.fillText('UNOFFICIAL', titleX + 3, cy0 + 72 + Math.round(titleSize * 0.18) + 18);
+  ctx.fillText('UNOFFICIAL', titleRight + 5, cy0 + 72 + Math.round(titleSize * 0.18) + 18);
   ctx.globalAlpha = 1;
   ctx.letterSpacing = '0px';
   ctx.restore();
